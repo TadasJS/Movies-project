@@ -49,3 +49,9 @@ Kaip pasileisti projektą
 ***!! SVEIKINU2 BCKAS SĖKMINGAI PALEISTAS. GERO DARBO BACKE!!***
 
 ***!! Linkiu nepamiršti susikurti savo githubo šakų!!***
+
+
+## DB paleidimas
+
+* Kadangi serveryje prie main pamiršau suinstaliuoti DB. Tai susinstaliuoti paketą tiem kas jungsis prie DB (gal testuotojam nereikia)
+*  server papkėj $ npm i pg 
