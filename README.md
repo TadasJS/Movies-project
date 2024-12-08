@@ -50,8 +50,8 @@ Kaip pasileisti projektą
 
 ***!! Linkiu nepamiršti susikurti savo githubo šakų!!***
 
+## DB pasileidimas
+* Server papkėj susinstaliuoti postgres paketą $ npm i pg
+* Pasikeisti pagal save prisijungimo duomenis postgresConnection faile. 
+* Jeigu db lentelės užpildytos veikimo pasitikrinimo adresas(laikinas) http://localhost:3000/dbtest
 
-## DB paleidimas
-
-* Kadangi serveryje prie main pamiršau suinstaliuoti DB. Tai susinstaliuoti paketą tiem kas jungsis prie DB (gal testuotojam nereikia)
-*  server papkėj $ npm i pg 
