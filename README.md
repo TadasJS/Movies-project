@@ -54,3 +54,4 @@ Kaip pasileisti projektą
 * Server papkėj susinstaliuoti postgres paketą $ npm i pg
 * Pasikeisti pagal save prisijungimo duomenis postgresConnection faile. 
 * Jeigu db lentelės užpildytos veikimo pasitikrinimo adresas(laikinas) http://localhost:3000/dbtest
+
