@@ -43,8 +43,8 @@ function handleSubmit (e) {
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text movieform_title_color" id="inputGroup-sizing-default">Genre</span>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-            <option selected="">Select genre</option>
+                <select className="form-select form-select-sm" aria-label=".form-select-sm example">
+            <option select="">Select genre</option>
             <option value="1">One</option>
             <option value="2">Two</option>
             <option value="3">Three</option>
