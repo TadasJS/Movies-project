@@ -1,6 +1,8 @@
 import express from "express";
 import { pgConnection } from "./database/postgresConnection.mjs";
-import { pool } from "./database/postgresConnection.mjs";
+import routes from "./routes/index.mjs";
+import errorHandler from "./middleware/errorHandlerMiddleware.mjs";
+import cors from "cors";
 
 const initDataBase = async () => {
   try {
@@ -17,24 +19,12 @@ const startServer = async () => {
   const PORT = 3000;
   const app = express();
 
-  app.get("/", (req, res) => {
-    res.status(200).json({ status: 200, msg: "SERVER HOME PAGE..." });
-  });
+  
 
-  app.get("/dbtest", (req, res) => {
-    try {
-      pool.query("SELECT * FROM movies", (error, results) => {
-        res.status(200).json(results.rows);
-      });
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ status: 500, msg: "Can't get users data" });
-    }
-  });
-
-  app.get("*", (req, res) => {
-    res.status(200).json({ status: 200, msg: "SERVER NO PAGE" });
-  });
+  app.use(cors());
+  app.use(express.json());
+  app.use("/api/v1", routes);
+  app.use(errorHandler); 
 
   app.listen(PORT, console.log(`Server running on http://localhost:${PORT}`));
 };
