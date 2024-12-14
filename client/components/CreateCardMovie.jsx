@@ -40,6 +40,9 @@ export function CreateCardMovie() {
 
 function handleSubmit (e) {
     e.preventDefault()
+
+    if(title.length < 2 )
+
    axios
     .post('http://localhost:3000/api/mcard',{
         title ,
@@ -65,8 +68,14 @@ function handleSubmit (e) {
           <h5 className="mb-3" >Add Movie card</h5>
         <form onSubmit={handleSubmit} action="">
             <div className="input-group mb-3">
-                <span className="input-group-text movieform_title_color movieform_title_color" id="inputGroup-sizing-default">Title</span>
-                <input onChange={updateTitle}  type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                <span className="input-group-text movieform_title_color movieform_title_color " id="inputGroup-sizing-default">Title</span>
+                <input onChange={updateTitle}  type="text" className="form-control " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                <div className="valid-feedback">
+                    Looks good!!!!!
+                </div>
+                <div className="invalid-feedback">
+                  Title must be longer then 2 symbols, not longer then 30 symbols
+                </div>
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text movieform_title_color" id="inputGroup-sizing-default">Description</span>
