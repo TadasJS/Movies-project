@@ -19,6 +19,15 @@ const movieController = {
 
   postMovie: async (req, res) => {
     const {title, description, img_url, thumbnail_url, year, genreid, rating } = req.body
+
+
+    //nuo cia rasysiu validacija
+    if(title.length < 2 ){
+      res.status(409).json({msg:'To short title name'})
+    }
+
+
+    //iki cia rasau validacija
     try {
       const postMovieResult = await movieModels.createMovie({
         title,
