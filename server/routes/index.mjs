@@ -1,10 +1,17 @@
 import express from 'express'
 import { dbtest } from "./dbTestRoutes.mjs";
-import { movieCard } from "./moviesRoutes.mjs";
+import { movies } from "./moviesRoutes.mjs";
+import { tvshows } from './tvShowsRoutes.mjs';
 
 const api = express.Router()
 
 api.use('/dbtest', dbtest)
-api.use('/movie',movieCard)
+api.use('/movies',movies)
+api.use('/tvshows',tvshows)
+
+api.get('/', (req, res) => {
+    res.status(200).json({status:'ok', msg:'Wrong address. API page is being created. Try another address'})
+})
+
 
 export { api }

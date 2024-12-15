@@ -12,7 +12,7 @@ export function MovieDataList () {
 
    useEffect(() => {
        axios
-       .get('http://localhost:3000/api/movie')
+       .get('http://localhost:3000/api/movies')
        .then ((data) => setMovieList(data.data.data))
        .catch ((error) => console.log(error))
       

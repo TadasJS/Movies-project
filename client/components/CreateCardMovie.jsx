@@ -44,7 +44,7 @@ function handleSubmit (e) {
     if(title.length < 2 )
 
    axios
-    .post('http://localhost:3000/api/mcard',{
+    .post('http://localhost:3000/api/movies',{
         title ,
         description,
         img_url: imgUrl,
