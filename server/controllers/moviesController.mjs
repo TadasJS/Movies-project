@@ -71,16 +71,16 @@ const movieController = {
   
 //   putMovie: async (req, res) => {
 //     const {id} = req.params
-//     // console.log(id)
+//    
 //    const newData = req.body
-//   //  console.log(newData)
+//  
 
 //    try {
 //     const updateMovie = await movieModel.updateMovie(
 //       id,
 //       newData
 //     )
-// console.log('gryzes is models',updateMovie)
+
 
 //     if(updateMovie === 0){
 //       return res.status(404).json({
