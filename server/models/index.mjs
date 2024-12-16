@@ -1,4 +1,8 @@
-import tvShowModel from "./tvShowModel.mjs";
-import movieModel from "./movieModel.mjs";
 
-export { movieModel, tvShowModel };
+import { DbTestModel } from "./dbTestModels.mjs";
+import { movieModels } from "./movieModels.mjs";
+
+
+export { DbTestModel, movieModels}
+
+

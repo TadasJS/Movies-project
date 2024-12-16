@@ -1,12 +1,20 @@
-import express from "express";
 
-import { tvShowsController } from "../controllers/index.mjs";
-
-const router = express.Router();
-
-router.get("/", tvShowsController.getTvShows);
-router.get("/:id", tvShowsController.getTvShowsById);
-router.put("/:id", tvShowsController.updateTvShow);
+import express from 'express'
+import { tvShowsController } from '../controllers/tvShowsController.mjs'
 
 
-export default router;
+const tvshows = express.Router()
+
+tvshows.get('/', tvShowsController .getTvShows)
+tvshows.post('/', tvShowsController.postTvShows)
+
+
+
+
+//Tado delete, update
+// tvshows.put('/:id', tvShowsController.putTvShows)
+// tvshows.delete('/:id', tvShowsController.deleteTvShows)
+
+export {tvshows}
+
+

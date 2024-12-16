@@ -1,78 +1,124 @@
-import { movieModel } from "../models/index.mjs";
 
-const moviesController = {
-  getMovies: async (req, res, next) => {
-    const movies = await movieModel.getMovies();
+import { movieModel } from "../models/movieModel.mjs";
+
+
+const movieController = {
+  getMovie: async (req, res) => {
     try {
+      const dbMoviesData = await movieModel.getMovies()
       res.status(200).json({
-        status: "success",
-        message: "Movies retrieved successfully",
-        data: movies,
-      });
-    } catch (error) {
-      next(error);
+        status:'ok', 
+        msg:'Get all movies list',
+        data: dbMoviesData,
+      })
+
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ status: 'err', msg: "Can't get movies data" });
     }
   },
 
-  getMoviesById: async (req, res, next) => {
-    const { id } = req.params;
+  postMovie: async (req, res) => {
+    const {title, description, img_url, thumbnail_url, year, genreid, rating } = req.body
 
-    try {
-      const getMovie = await movieModel.getMoviesById(id);
-      if (!getMovie) {
-        return res.status(400).json({
-          status: "error",
-          message: "Movie not found",
-        });
-      }
-      res.status(200).json({
-        status: "success",
-        message: "Movie retrieved successfully",
-        data: getMovie,
-      });
-    } catch (error) {
-      next(error);
+    // validacija start
+
+    if(title.length === 0 || description.length === 0 || img_url.length === 0 || thumbnail_url.length === 0
+      || year.length === 0 || genreid.length === 0 || rating.length === 0){
+
+     return res.status(409).json({status:'err', msg:'field cannot be empty'})
+
     }
-  },
-  updateMovie: async (req, res, next) => {
-    const { id } = req.params;
-    const {
-      title,
-      description,
-      img_url,
-      thumbnail_url,
-      year,
-      genreid,
-      rating,
-    } = req.body;
+   
+    if(typeof year !== 'number' || year < 1888 || year > 2025){
+      return res.status(409).json({status:'err', msg:'year must be number, year must be 1888-2025 digits'})
+    }
+
+    if(typeof rating !== 'number' || rating < 1 || rating > 10) {
+      return res.status(409).json({status:'err', msg:'rating must be number from 1-10'})
+    }   
 
     try {
-      const updatedMovie = await movieModel.updateMovie(id, {
+
+    const checkGenreSize = await movieModel.genreSizeMovie()
+
+    if(genreid > checkGenreSize.length || genreid < 0  ){
+      return res.status(409).json({status:'err', msg:'wrong genre'})
+    }
+
+    //validacija end
+
+
+      const postMovieResult = await movieModel.createMovie({
+=======>>>>>>> main
         title,
         description,
         img_url,
         thumbnail_url,
         year,
         genreid,
-        rating,
-      });
 
-      if (!updatedMovie) {
-        return res.status(404).json({
-          status: "error",
-          message: "Movie not found",
-        });
-      }
-
+        rating 
+      })
       res.status(200).json({
-        status: "success",
-        message: "Movie updated successfully",
-        data: updatedMovie,
-      });
-    } catch (error) {
-      next(error);
+        status:'ok',
+        msg:'Create movie success',
+        data:postMovieResult
+      })
+
+    } catch (err) {
+      console.error(err)
+      res.status(500).json({ status: 'err', msg: "Can't create movie" });
     }
   },
-};
+  
+//   putMovie: async (req, res) => {
+//     const {id} = req.params
+//    
+//    const newData = req.body
+//  
 
-export default moviesController;
+//    try {
+//     const updateMovie = await movieModel.updateMovie(
+//       id,
+//       newData
+//     )
+
+
+//     if(updateMovie === 0){
+//       return res.status(404).json({
+//         status:'err',
+//         msg:'movie not found'
+//       })
+//     }
+//     res.status(200).json({status:'ok', msg:'movie updated success'})
+//    } catch (error) {
+//     console.error(error)
+//    }
+    
+      
+//   },
+  
+//   deleteMovie: async (req, res) => {
+//     const {id} = req.params
+//     try {
+//       const deleteMovie = await movieModel.deleteMovie(
+//         id,
+//       )
+
+//       if(deleteMovie === 0){
+//         res.status(404).json({status:'err', msg:'movie cannot be deleted' })
+//       }
+
+//       res.status(200).json({status:'ok', msg:'movie deleted success'})
+//     } catch (error) {
+//       console.error(error)
+//     }
+//   }
+  
+  
+}
+export { movieController }
+
+
+

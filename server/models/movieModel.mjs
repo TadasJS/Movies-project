@@ -1,100 +1,89 @@
 import { pool } from "../database/postgresConnection.mjs";
 
 const movieModel = {
-  getMovies: async () => {
-    let client;
+
+
+getMovies: async () => {
     try {
-        const client = await pool.connect();
-      const query = `
-            SELECT 
-            movies.*,
-            genres.genre_type
-        FROM 
-            movies
-        JOIN 
-            genres 
-        ON 
-            movies.genreid = genres.id
-        ORDER BY 
-          movies.id ASC;
-            `;
-
-      const result = await client.query(query);
-      return result.rows;
-    } finally {
-      if(client) client.release();
+        const result = await pool.query("SELECT * FROM movies");   
+        return result.rows;
+    } catch (error) {
+        console.error(error);
     }
-  },
+},
 
-  getMoviesById: async (id) => {
-    let client;
+genreSizeMovie: async () => {
     try {
-        const client = await pool.connect();
-      const query = `
-            SELECT 
-                movies.*,
-                genres.genre_type
-            FROM 
-                movies
-            JOIN 
-                genres 
-            ON 
-                movies.genreid = genres.id
-            WHERE 
-                movies.id = $1;
-        `;
-      const result = await client.query(query, [id]);
-      return result.rows[0];
-    } finally {
-      if(client) client.release();
+       const genreSize = await pool.query(`SELECT * FROM genres ORDER BY id ASC`)
+        return genreSize.rows
+    } catch (error) {
+       console.error(error) 
     }
-  },
-  updateMovie: async (id, movieData) => {
-    let client;
+},
+
+createMovie: async (jonas) => {
+    const {title, description, img_url, thumbnail_url, year, genreid, rating } = jonas
+    const genreidInt = parseInt(genreid)
+    const yearInt = parseInt(year)
+    const ratingInt = parseInt(rating)
     try {
-      client = await pool.connect();
-      const query = `
-        UPDATE movies
-        SET 
-          title = $1,
-          description = $2,
-          img_url = $3,
-          thumbnail_url = $4,
-          year = $5,
-          genreid = $6,
-          rating = $7,
-          updated_at = CURRENT_TIMESTAMP
-        WHERE 
-          id = $8
-        RETURNING *;
-      `;
+       const insertMovie = await pool.query(`
+        INSERT INTO movies (title, description, img_url, thumbnail_url, year, genreid, rating )
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        RETURNING title, description, img_url, thumbnail_url, year, genreid, rating`, 
+        [title, description, img_url, thumbnail_url, yearInt, genreidInt, ratingInt] )
+        
+       return insertMovie.rows[0]
 
-      const {
-        title,
-        description,
-        img_url,
-        thumbnail_url,
-        year,
-        genreid,
-        rating,
-      } = movieData;
-
-      const result = await client.query(query, [
-        title,
-        description,
-        img_url,
-        thumbnail_url,
-        year,
-        genreid,
-        rating,
-        id,
-      ]);
-
-      return result.rows[0]; 
-    } finally {
-      if (client) client.release();
+        
+    } catch (error) {
+        console.error(error)
     }
-  },
-};
+},
 
-export default movieModel;
+// updateMovie: async (id, newData) => {
+    
+//     try {
+        
+//      const updateMovie = await pool.query(
+//          `UPDATE movies 
+//       SET title = $1, 
+//       description = $2, 
+//       img_url = $3, 
+//       thumbnail_url = $4, 
+//       year = $5, 
+//       genreid  = $6, 
+//       rating = $7
+//       where id = $8`, [newData.title, 
+//         newData.description, 
+//         newData.img_url, 
+//         newData.thumbnail_url, 
+//         newData.year, 
+//         newData.genreid, 
+//         newData.rating, 
+//         id,
+//      ]
+//      ) 
+//      console.log(updateMovie.rowCount)
+    
+//      return updateMovie.rowCount
+//     } catch (error) {
+//         console.error(error)   
+//     }  
+// },
+
+// deleteMovie: async (id) => {
+
+//     const deleteMovie = await pool.query( `
+//     DELETE FROM movies
+//     WHERE id = $1;`,
+//     [id] )
+
+//     console.log(deleteMovie.rowCount)
+//     return(deleteMovie.rowCount)
+// }
+    
+}
+export {movieModel}
+
+
