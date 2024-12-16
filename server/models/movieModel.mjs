@@ -2,6 +2,7 @@ import { pool } from "../database/postgresConnection.mjs";
 
 const movieModel = {
 
+
 getMovies: async () => {
     try {
         const result = await pool.query("SELECT * FROM movies");   
@@ -84,3 +85,5 @@ createMovie: async (jonas) => {
     
 }
 export {movieModel}
+
+

@@ -1,3 +1,4 @@
+
 import { tvShowModel } from "../models/tvShowModel.mjs"
 
 
@@ -50,12 +51,14 @@ const tvShowsController = {
     
     
       const postTvShowResult = await tvShowModel.createTvShow({
+
         title,
         description,
         img_url,
         thumbnail_url,
         year,
         genreid,
+
         rating 
       })
       res.status(200).json({
@@ -114,5 +117,6 @@ const tvShowsController = {
   
 }
 export { tvShowsController }
+
 
 

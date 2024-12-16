@@ -1,3 +1,4 @@
+
 import { movieModel } from "../models/movieModel.mjs";
 
 
@@ -49,12 +50,14 @@ const movieController = {
 
 
       const postMovieResult = await movieModel.createMovie({
+=======>>>>>>> main
         title,
         description,
         img_url,
         thumbnail_url,
         year,
         genreid,
+
         rating 
       })
       res.status(200).json({
@@ -116,5 +119,6 @@ const movieController = {
   
 }
 export { movieController }
+
 
 

@@ -1,5 +1,8 @@
-import { movieCardsController } from "./movieCardsController.mjs";
 
 
+import moviesController from "./moviesController.mjs";
+import tvShowsController from "./tvShowsController.mjs";
 
-export { movieCardsController }
+
+export { moviesController, tvShowsController };
+
