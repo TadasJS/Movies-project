@@ -41,47 +41,47 @@ createMovie: async (jonas) => {
     }
 },
 
-// updateMovie: async (id, newData) => {
+updateMovie: async (id, newData) => {
     
-//     try {
+    try {
         
-//      const updateMovie = await pool.query(
-//          `UPDATE movies 
-//       SET title = $1, 
-//       description = $2, 
-//       img_url = $3, 
-//       thumbnail_url = $4, 
-//       year = $5, 
-//       genreid  = $6, 
-//       rating = $7
-//       where id = $8`, [newData.title, 
-//         newData.description, 
-//         newData.img_url, 
-//         newData.thumbnail_url, 
-//         newData.year, 
-//         newData.genreid, 
-//         newData.rating, 
-//         id,
-//      ]
-//      ) 
-//      console.log(updateMovie.rowCount)
+     const updateMovie = await pool.query(
+         `UPDATE movies 
+      SET title = $1, 
+      description = $2, 
+      img_url = $3, 
+      thumbnail_url = $4, 
+      year = $5, 
+      genreid  = $6, 
+      rating = $7
+      where id = $8`, [newData.title, 
+        newData.description, 
+        newData.img_url, 
+        newData.thumbnail_url, 
+        newData.year, 
+        newData.genreid, 
+        newData.rating, 
+        id,
+     ]
+     ) 
+     console.log(updateMovie.rowCount)
     
-//      return updateMovie.rowCount
-//     } catch (error) {
-//         console.error(error)   
-//     }  
-// },
+     return updateMovie.rowCount
+    } catch (error) {
+        console.error(error)   
+    }  
+},
 
-// deleteMovie: async (id) => {
+deleteMovie: async (id) => {
 
-//     const deleteMovie = await pool.query( `
-//     DELETE FROM movies
-//     WHERE id = $1;`,
-//     [id] )
+    const deleteMovie = await pool.query( `
+    DELETE FROM movies
+    WHERE id = $1;`,
+    [id] )
 
-//     console.log(deleteMovie.rowCount)
-//     return(deleteMovie.rowCount)
-// }
+    console.log(deleteMovie.rowCount)
+    return(deleteMovie.rowCount)
+}
     
 }
 export {movieModel}

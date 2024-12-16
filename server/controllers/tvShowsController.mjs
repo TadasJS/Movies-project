@@ -73,46 +73,46 @@ const tvShowsController = {
     }
   },
   
-  // putTvShows: async (req, res) => {
-  //   const {id} = req.params
-  //   const newData = req.body
+  putTvShows: async (req, res) => {
+    const {id} = req.params
+    const newData = req.body
  
 
-  //  try {
-  //   const updateTvShow = await tvShowModel.updateTvShow(
-  //     id,
-  //     newData
-  //   )
-  //   if(updateTvShow === 0){
-  //     return res.status(404).json({
-  //       status:'err',
-  //       msg:'tvshow not found'
-  //     })
-  //   }
-  //   res.status(200).json({status:'ok', msg:'tvshow updated success'})
-  //  } catch (error) {
-  //   console.error(error)
-  //  }
+   try {
+    const updateTvShow = await tvShowModel.updateTvShow(
+      id,
+      newData
+    )
+    if(updateTvShow === 0){
+      return res.status(404).json({
+        status:'err',
+        msg:'tvshow not found'
+      })
+    }
+    res.status(200).json({status:'ok', msg:'tvshow updated success'})
+   } catch (error) {
+    console.error(error)
+   }
     
       
-  // },
+  },
   
-  // deleteTvShows: async (req, res) => {
-  //   const {id} = req.params
-  //   try {
-  //     const deleteTvShow = await tvShowModel.deleteTvShow(
-  //       id,
-  //     )
+  deleteTvShows: async (req, res) => {
+    const {id} = req.params
+    try {
+      const deleteTvShow = await tvShowModel.deleteTvShow(
+        id,
+      )
  
-  //     if(deleteTvShow === 0){
-  //       res.status(404).json({status:'err', msg:'tvshow cannot be deleted' })
-  //     }
+      if(deleteTvShow === 0){
+        res.status(404).json({status:'err', msg:'tvshow cannot be deleted' })
+      }
 
-  //     res.status(200).json({status:'ok', msg:'tvshow deleted success'})
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
+      res.status(200).json({status:'ok', msg:'tvshow deleted success'})
+    } catch (error) {
+      console.error(error)
+    }
+  }
   
   
 }

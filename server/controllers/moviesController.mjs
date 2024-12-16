@@ -30,13 +30,13 @@ const movieController = {
 
     }
    
-    if(typeof year !== 'number' || year < 1888 || year > 2025){
-      return res.status(409).json({status:'err', msg:'year must be number, year must be 1888-2025 digits'})
-    }
+    // if(typeof year !== 'number' || year < 1888 || year > 2025){
+    //   return res.status(409).json({status:'err', msg:'year must be number, year must be 1888-2025 digits'})
+    // }
 
-    if(typeof rating !== 'number' || rating < 1 || rating > 10) {
-      return res.status(409).json({status:'err', msg:'rating must be number from 1-10'})
-    }   
+    // if(typeof rating !== 'number' || rating < 1 || rating > 10) {
+    //   return res.status(409).json({status:'err', msg:'rating must be number from 1-10'})
+    // }   
 
     try {
 
@@ -50,7 +50,6 @@ const movieController = {
 
 
       const postMovieResult = await movieModel.createMovie({
-=======>>>>>>> main
         title,
         description,
         img_url,
@@ -72,49 +71,49 @@ const movieController = {
     }
   },
   
-//   putMovie: async (req, res) => {
-//     const {id} = req.params
-//    
-//    const newData = req.body
-//  
+  putMovie: async (req, res) => {
+    const {id} = req.params
+   
+   const newData = req.body
+ 
 
-//    try {
-//     const updateMovie = await movieModel.updateMovie(
-//       id,
-//       newData
-//     )
+   try {
+    const updateMovie = await movieModel.updateMovie(
+      id,
+      newData
+    )
 
 
-//     if(updateMovie === 0){
-//       return res.status(404).json({
-//         status:'err',
-//         msg:'movie not found'
-//       })
-//     }
-//     res.status(200).json({status:'ok', msg:'movie updated success'})
-//    } catch (error) {
-//     console.error(error)
-//    }
+    if(updateMovie === 0){
+      return res.status(404).json({
+        status:'err',
+        msg:'movie not found'
+      })
+    }
+    res.status(200).json({status:'ok', msg:'movie updated success'})
+   } catch (error) {
+    console.error(error)
+   }
     
       
-//   },
+  },
   
-//   deleteMovie: async (req, res) => {
-//     const {id} = req.params
-//     try {
-//       const deleteMovie = await movieModel.deleteMovie(
-//         id,
-//       )
+  deleteMovie: async (req, res) => {
+    const {id} = req.params
+    try {
+      const deleteMovie = await movieModel.deleteMovie(
+        id,
+      )
 
-//       if(deleteMovie === 0){
-//         res.status(404).json({status:'err', msg:'movie cannot be deleted' })
-//       }
+      if(deleteMovie === 0){
+        res.status(404).json({status:'err', msg:'movie cannot be deleted' })
+      }
 
-//       res.status(200).json({status:'ok', msg:'movie deleted success'})
-//     } catch (error) {
-//       console.error(error)
-//     }
-//   }
+      res.status(200).json({status:'ok', msg:'movie deleted success'})
+    } catch (error) {
+      console.error(error)
+    }
+  }
   
   
 }

@@ -12,8 +12,8 @@ movies.post('/', movieController.postMovie)
 
 
 //Tado delete update
-// movies.put('/:id', movieController.putMovie)
-// movies.delete('/:id', movieController.deleteMovie)
+movies.put('/:id', movieController.putMovie)
+movies.delete('/:id', movieController.deleteMovie)
 
 export {movies}
 

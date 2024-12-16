@@ -12,8 +12,8 @@ tvshows.post('/', tvShowsController.postTvShows)
 
 
 //Tado delete, update
-// tvshows.put('/:id', tvShowsController.putTvShows)
-// tvshows.delete('/:id', tvShowsController.deleteTvShows)
+tvshows.put('/:id', tvShowsController.putTvShows)
+tvshows.delete('/:id', tvShowsController.deleteTvShows)
 
 export {tvshows}
 

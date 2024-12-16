@@ -28,7 +28,7 @@ const startServer = async () => {
 
   app.use(cors())
  app.use(bodyParser.json())
-//  app.use(bodyParser.urlencoded({ extended: false }));
+//  app.use(bodyParser.urlencoded({ extended: false })); krc nenaudot
 
   app.get("/", (req, res) => {
     res.status(200).json({ status: 200, msg: "SERVER HOME PAGE..." });

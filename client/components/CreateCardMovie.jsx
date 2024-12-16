@@ -41,7 +41,7 @@ export function CreateCardMovie() {
 function handleSubmit (e) {
     e.preventDefault()
 
-    if(title.length < 2 )
+  
 
    axios
     .post('http://localhost:3000/api/movies',{
