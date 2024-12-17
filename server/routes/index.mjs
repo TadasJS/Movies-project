@@ -11,8 +11,8 @@ const api = express.Router()
 api.use('/dbtest', dbtest)
 api.use('/movies',movies)
 api.use('/tvshows',tvshows)
-api.use('/login',login)
-api.use('/users',users)
+api.use('/users/login',login)
+api.use('/users/register',users)
 
 api.get('/', (req, res) => {
     res.status(200).json({status:'ok', msg:'Wrong address. API page is being created. Try another address'})

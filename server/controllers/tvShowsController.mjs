@@ -30,14 +30,14 @@ const tvShowsController = {
 
     }
    
-    if(typeof year !== 'number' || year < 1928 || year > 2025){
-      return res.status(409).json({status:'err', msg:'year must be number, year must be 1928-2025 digits'})
-    }
+    // if(typeof year !== 'number' || year < 1928 || year > 2025){
+    //   return res.status(409).json({status:'err', msg:'year must be number, year must be 1928-2025 digits'})
+    // }
 
 
-    if(typeof rating !== 'number' || rating < 1 || rating > 10 ) {
-      return res.status(409).json({status:'err', msg:'rating must be number from 1-10'})
-    }    
+    // if(typeof rating !== 'number' || rating < 1 || rating > 10 ) {
+    //   return res.status(409).json({status:'err', msg:'rating must be number from 1-10'})
+    // }    
     
     try {
 
