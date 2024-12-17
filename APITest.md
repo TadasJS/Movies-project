@@ -224,6 +224,56 @@ http://localhost:3000/api/tvshows/:id
     msg:'movie cannot be deleted' 
 }
 ```
+#### login user
+
+http://localhost:3000/api/users/login
+
+* status 200
+
+```
+{
+    "status": "ok",
+    "msg": "user loged in"
+}
+```
+
+* status 404
+
+```
+{
+    "status": "err",
+    "msg": "check your email and password"
+}
+```
+
+#### register user 
+
+http://localhost:3000/api/users/register
+
+* status 200 
+```
+{
+    "status": "ok",
+    "msg": "user created success"
+}
+```
+* status 409
+
+```
+{
+    "status": "err",
+    "msg": "user with this credentials already exsist"
+}
+```
+
+* status 500
+
+```
+{
+    status: 'err', 
+    msg:'DB connection error'
+}
+```
 
 
 

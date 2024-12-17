@@ -19,7 +19,8 @@ export function MovieDataList () {
    },[])
     return(
       
-        <div className="row row-cols-1 row-cols-md-2 row-cols-xl-4  g-4">
+        <div className="row row-cols-1 row-cols-md-2 row-cols-xl-4 mb-5  g-4">
+           
             { movieList?.map((key)=>(<MovieCard key={key.id} id={key.id} title={key.title} description={key.description}
             img={key.img_url} thumb={key.thumbnail_url} year={key.year} genre={key.genreid} rating={key.rating} />))}  
         

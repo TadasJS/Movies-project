@@ -1,7 +1,7 @@
 
-export function MovieCard(props) {
+export function TvShowCard(props) {
 
-
+ 
     return (
 
       <div className="col">

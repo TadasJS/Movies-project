@@ -1,13 +1,63 @@
 import { Link } from "react-router-dom"
+import { useState } from "react"
+import axios from "axios"
 
 
 export function CreateCardSerial() {
 
+    const[title, setTitle] = useState()
+    const[description, setDescription] = useState()
+    const[imgUrl, setImgUrl] = useState()
+    const[thumbUrl, setThumbUrl] = useState()
+    const[year, setYear] = useState()
+    const[genre, setGenre] = useState()
+    const [rating, setRating] = useState()
 
-    function handleSubmit (e) {
-        e.preventDefault()
-        console.log('sending serial...')
+    function updateTitle(e) {
+        setTitle(e.target.value)
     }
+    function updateDescription(e) {
+        setDescription(e.target.value)
+    }
+    function updateImgUrl(e) {
+        setImgUrl(e.target.value)
+    }
+    function updateThumbUrl(e) {
+        setThumbUrl(e.target.value)
+    }
+    function updateYear(e) {
+        setYear(e.target.value)
+    }
+    function updateGenre(e) {
+        setGenre(e.target.value)
+    }
+    function updateRating(e) {
+        setRating(e.target.value)
+    }
+
+
+
+function handleSubmit (e) {
+    e.preventDefault()
+
+  
+
+   axios
+    .post('http://localhost:3000/api/tvshows',{
+        title ,
+        description,
+        img_url: imgUrl,
+        thumbnail_url:thumbUrl,
+        year, 
+        genreid:genre, 
+        rating,
+    })
+    .then((data) => console.log(data.data))
+    .catch((error) => console.log(error))
+
+}
+
+
 
     return (
 
@@ -28,28 +78,28 @@ export function CreateCardSerial() {
  <h5 className="mb-3" >Add Tv_show card</h5>
         <form onSubmit={handleSubmit} action="">
             <div className="input-group mb-3">
-                <span className="input-group-text serialform_title_color " id="inputGroup-sizing-default">Title</span>
-                <input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                <span  className="input-group-text serialform_title_color " id="inputGroup-sizing-default">Title</span>
+                <input onChange={updateTitle} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text serialform_title_color " id="inputGroup-sizing-default">Description</span>
-                <input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                <input onChange={updateDescription} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text serialform_title_color " id="inputGroup-sizing-default">Img url</span>
-                <input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                <input onChange={updateImgUrl} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text serialform_title_color " id="inputGroup-sizing-default">Thubnail url</span>
-                <input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                <input onChange={updateThumbUrl} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text serialform_title_color " id="inputGroup-sizing-default">Year    </span>
-                <input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                <input onChange={updateYear} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text serialform_title_color " id="inputGroup-sizing-default">Genre</span>
-                <select className="form-select form-select-sm" aria-label=".form-select-sm example">
+                <select onChange={updateGenre} className="form-select form-select-sm" aria-label=".form-select-sm example">
             <option select="">Select genre</option>
             <option value="1">One</option>
             <option value="2">Two</option>
@@ -58,7 +108,7 @@ export function CreateCardSerial() {
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text serialform_title_color" id="inputGroup-sizing-default">Rating</span>
-                <input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                <input onChange={updateRating} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             </div>
             <div className="d-grid gap-2">
                 <button className="btn btn-outline-success" type="submit">Submit</button>
