@@ -5,7 +5,8 @@ import { NoPage } from '../pages/NoPage'
 import { BasicLayout } from '../layout/BasicLayout'
 import { CreateCardMovie } from '../components/CreateCardMovie'
 import { CreateCardSerial } from '../components/CreateCardSerial'
-import { MovieDataList } from '../components/MovieDataList'
+import { LoginDetailsList } from '../login/LoginDetailsList'
+
 
 function App() {
 
@@ -16,6 +17,8 @@ function App() {
           <Route index path="/" element={<HomePage />} />
           <Route index path="/addcardmov" element={<CreateCardMovie />} />
           <Route index path="/addcardser" element={<CreateCardSerial />} />
+          <Route index path='/login-details' element={<LoginDetailsList/>} />
+          
     
 
 
