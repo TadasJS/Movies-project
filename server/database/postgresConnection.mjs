@@ -6,8 +6,8 @@ export const pool = new Pool ({
     host: 'localhost',
     port: 5432,
     user: 'postgres',
-    password: 'master',
-    database: 'movies-project'
+    password: '1234',
+    database: 'postgres'
 })
 
 
