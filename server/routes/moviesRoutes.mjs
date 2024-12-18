@@ -8,7 +8,7 @@ const movies = express.Router()
 movies.get('/', movieController.getMovie)
 movies.post('/', movieController.postMovie)
 
-
+movies.get('/:id', movieController.getMovieById);
 
 
 //Tado delete update

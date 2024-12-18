@@ -12,6 +12,15 @@ getMovies: async () => {
     }
 },
 
+getMovieById: async (id) => {
+    try {
+      const result = await pool.query("SELECT * FROM movies WHERE id = $1", [id]);
+      return result.rows; 
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
 genreSizeMovie: async () => {
     try {
        const genreSize = await pool.query(`SELECT * FROM genres ORDER BY id ASC`)
