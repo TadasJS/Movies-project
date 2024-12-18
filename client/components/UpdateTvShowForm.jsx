@@ -4,7 +4,7 @@ import axios from 'axios';
 import './CreateCardForm.css'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
-export default function UpdateMovieForm() {
+export default function UpdateTvShowForm() {
   const { id } = useParams(); 
 
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export default function UpdateMovieForm() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/movies/${id}`)
+      .get(`http://localhost:3000/api/tvshows/${id}`)
       .then((response) => {
         setFormData(response.data.data);
         setLoading(false); 
@@ -29,28 +29,28 @@ export default function UpdateMovieForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:3000/api/movies/${id}`, formData)
+      .put(`http://localhost:3000/api/tvshows/${id}`, formData)
       .then(() => {
         navigate('/');
       })
       .catch((error) => {
-        console.error('Updating movie failed:', error);
+        console.error('Updating tv_shows failed:', error);
       });
   };
-
+console.log(formData)
   if (loading) {
     return <p>Loading...</p>; 
   }
 
   if (!formData) {
-    return <p>Error: movie data not found.</p>; 
+    return <p>Error: tv_shows data not found.</p>; 
   }
 
   return (
     <Container className="">
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
-          <h2 className='formCenter' >Update movie</h2>
+          <h2 className="formCenter">Update Tv_show</h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-2">
               <Form.Label className="fs-4">Title:</Form.Label>

@@ -5,7 +5,7 @@ export function MovieCard(props) {
   const navigate = useNavigate();
 
   const handleUpdateClick = () => {
-    navigate(`/update/${props.id}`); 
+    navigate(`/updateMovie/${props.id}`); 
   };
 
   return (

@@ -18,6 +18,30 @@ const tvShowsController = {
     }
   },
 
+  getTvShowById: async (req, res) => {
+    const { id } = req.params; 
+  
+    try {
+      const tvShow = await tvShowModel.getTvShowById(id);
+  
+      if (!tvShow) {
+        return res.status(404).json({
+          status: 'err',
+          msg: 'tvShow not found',
+        });
+      }
+  
+      res.status(200).json({
+        status: 'ok',
+        msg: 'tvShow found',
+        data: tvShow,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ status: 'err', msg: "Can't get tvShow data" });
+    }
+  },
+
   postTvShows: async (req, res) => {
     const {title, description, img_url, thumbnail_url, year, genreid, rating } = req.body
 
@@ -76,7 +100,9 @@ const tvShowsController = {
   putTvShows: async (req, res) => {
     const {id} = req.params
     const newData = req.body
- 
+
+    console.log('controlerio data...',newData)
+  
 
    try {
     const updateTvShow = await tvShowModel.updateTvShow(

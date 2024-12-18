@@ -7,11 +7,7 @@ const tvshows = express.Router()
 
 tvshows.get('/', tvShowsController .getTvShows)
 tvshows.post('/', tvShowsController.postTvShows)
-
-
-
-
-//Tado delete, update
+tvshows.get('/:id', tvShowsController.getTvShowById);
 tvshows.put('/:id', tvShowsController.putTvShows)
 tvshows.delete('/:id', tvShowsController.deleteTvShows)
 

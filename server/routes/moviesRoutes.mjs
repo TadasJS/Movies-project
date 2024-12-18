@@ -11,7 +11,7 @@ movies.post('/', movieController.postMovie)
 movies.get('/:id', movieController.getMovieById);
 
 
-//Tado delete update
+
 movies.put('/:id', movieController.putMovie)
 movies.delete('/:id', movieController.deleteMovie)
 
