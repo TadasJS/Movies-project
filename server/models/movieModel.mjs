@@ -51,8 +51,13 @@ createMovie: async (jonas) => {
 },
 
 updateMovie: async (id, newData) => {
-    
-    try {
+
+    const yearInt = parseInt(newData.year) 
+    const genreidInt = parseInt(newData.genreId) 
+    const ratingInt = parseInt(newData.rating)
+
+    console.log(yearInt, genreidInt, ratingInt)
+    try { 
         
      const updateMovie = await pool.query(
          `UPDATE movies 
@@ -67,9 +72,9 @@ updateMovie: async (id, newData) => {
         newData.description, 
         newData.img_url, 
         newData.thumbnail_url, 
-        newData.year, 
-        newData.genreid, 
-        newData.rating, 
+        yearInt, 
+        genreidInt, 
+        ratingInt, 
         id,
      ]
      ) 

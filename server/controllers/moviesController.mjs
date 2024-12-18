@@ -99,8 +99,9 @@ const movieController = {
     const {id} = req.params
    
    const newData = req.body
+   
  
-
+ 
    try {
     const updateMovie = await movieModel.updateMovie(
       id,

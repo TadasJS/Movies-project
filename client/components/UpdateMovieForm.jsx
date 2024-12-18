@@ -5,6 +5,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 export default function UpdateMovieForm() {
   const { id } = useParams(); 
+
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState(null); 
@@ -22,6 +23,8 @@ export default function UpdateMovieForm() {
         setLoading(false);
       });
   }, [id]);
+
+  console.log(formData)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -93,7 +96,7 @@ export default function UpdateMovieForm() {
             <Form.Group className="mb-3">
               <Form.Label className="fs-4">Years:</Form.Label>
               <Form.Control
-                type="number"
+                type="text"
                 name="year"
                 value={formData.year}
                 onChange={(e) => setFormData({ ...formData, year: e.target.value })}
@@ -103,7 +106,7 @@ export default function UpdateMovieForm() {
             <Form.Group className="mb-3">
               <Form.Label className="fs-4">Genre ID:</Form.Label>
               <Form.Control
-                type="number"
+                type="text"
                 name="genreId"
                 value={formData.genreId}
                 onChange={(e) => setFormData({ ...formData, genreId: e.target.value })}
@@ -113,7 +116,7 @@ export default function UpdateMovieForm() {
             <Form.Group className="mb-3">
               <Form.Label className="fs-4">Rating:</Form.Label>
               <Form.Control
-                type="number"
+                type="text"
                 name="rating"
                 value={formData.rating}
                 onChange={(e) => setFormData({ ...formData, rating: e.target.value })}
