@@ -5,12 +5,21 @@ const movieModel = {
 
 getMovies: async () => {
     try {
-        const result = await pool.query("SELECT * FROM movies");   
+        const result = await pool.query("SELECT * FROM movies ORDER BY id ASC ");   
         return result.rows;
     } catch (error) {
         console.error(error);
     }
 },
+
+getMovieById: async (id) => {
+    try {
+      const result = await pool.query("SELECT * FROM movies WHERE id = $1", [id]);
+      return result.rows; 
+    } catch (error) {
+      console.error(error);
+    }
+  },
 
 genreSizeMovie: async () => {
     try {
@@ -42,8 +51,13 @@ createMovie: async (jonas) => {
 },
 
 updateMovie: async (id, newData) => {
-    
-    try {
+
+    const yearInt = parseInt(newData.year) 
+    const genreidInt = parseInt(newData.genreId) 
+    const ratingInt = parseInt(newData.rating)
+
+    console.log(yearInt, genreidInt, ratingInt)
+    try { 
         
      const updateMovie = await pool.query(
          `UPDATE movies 
@@ -58,9 +72,9 @@ updateMovie: async (id, newData) => {
         newData.description, 
         newData.img_url, 
         newData.thumbnail_url, 
-        newData.year, 
-        newData.genreid, 
-        newData.rating, 
+        yearInt, 
+        genreidInt, 
+        ratingInt, 
         id,
      ]
      ) 
@@ -73,13 +87,14 @@ updateMovie: async (id, newData) => {
 },
 
 deleteMovie: async (id) => {
-
+    
     const deleteMovie = await pool.query( `
-    DELETE FROM movies
-    WHERE id = $1;`,
-    [id] )
-
-    console.log(deleteMovie.rowCount)
+        DELETE FROM movies
+        WHERE id = $1;`,
+        [id] ) 
+        
+        
+   
     return(deleteMovie.rowCount)
 }
     

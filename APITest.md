@@ -10,6 +10,8 @@
 }
 ```
 ---
+### MOVIES CRUD
+---
 #### movies get 
  http://localhost:3000/api/movies 
  * status 200
@@ -39,8 +41,61 @@
 msg: "Can't get movies data" }
 ```
 
+#### movies get by id
+
+http://localhost:3000/api/movies/:id
+
+* status 200
+
+```
+{
+    "status": "ok",
+    "msg": "movie found",
+    "data": [
+        {
+            "id": 23,
+            "title": "title",
+            "description": "descr",
+            "img_url": "img",
+            "thumbnail_url": "thumb",
+            "year": 2025,
+            "genreid": 1,
+            "rating": 3,
+            "created_at": "2024-12-18T07:57:23.693Z",
+            "updated_at": "2024-12-18T07:57:23.693Z"
+        }
+    ]
+}
+```
+
+* status 404
+
+```
+{
+   status: 'err',
+   msg: 'Movie not found',
+}
+```
+
+
+
+
 #### movies post
 http://localhost:3000/api/movies 
+
+* body
+```
+    {                      
+        "title": "title",
+        "description": "descr",
+        "img_url": "img",
+        "thumbnail_url": "thumb",
+        "year": 2025,
+        "genreid": 1,
+        "rating": 3
+    }
+```
+
 * status 200
 
 ```
@@ -84,6 +139,19 @@ http://localhost:3000/api/movies
 #### movies put
 http://localhost:3000/api/movies/:id
 
+* body
+```
+    {                      
+        "title": "title",
+        "description": "descr",
+        "img_url": "img",
+        "thumbnail_url": "thumb",
+        "year": 2025,
+        "genreid": 1,
+        "rating": 3
+    }
+```
+
 * status 404
 ```
 {
@@ -115,9 +183,9 @@ http://localhost:3000/api/movies/:id
     msg:'movie cannot be deleted' 
 }
 ```
-
 ---
-
+### TV_SHOWS CRUD
+---
 #### tvshows get 
  http://localhost:3000/api/tvshows 
  * status 200
@@ -146,10 +214,63 @@ http://localhost:3000/api/movies/:id
 ```
 { status: 'err', 
 msg: "Can't get tvshows data" }
+
+```
+
+#### tvshow get by id
+
+http://localhost:3000/api/tvshows/:id
+
+* status 200
+
+```
+{
+    "status": "ok",
+    "msg": "tvShow found",
+    "data": [
+        {
+            "id": 23,
+            "title": "title",
+            "description": "descr",
+            "img_url": "img",
+            "thumbnail_url": "thumb",
+            "year": 2025,
+            "genreid": 1,
+            "rating": 3,
+            "created_at": "2024-12-18T07:57:23.693Z",
+            "updated_at": "2024-12-18T07:57:23.693Z"
+        }
+    ]
+}
+```
+
+* status 404
+
+```
+{
+   status: 'err',
+   msg: 'tvShow not found',
+}
 ```
 
 #### tvshows post
 http://localhost:3000/api/tvshows 
+
+* body
+```
+    {                      
+        "title": "title",
+        "description": "descr",
+        "img_url": "img",
+        "thumbnail_url": "thumb",
+        "year": 2025,
+        "genreid": 1,
+        "rating": 3
+    }
+```
+
+
+
 * status 200
 
 ```
@@ -193,6 +314,20 @@ http://localhost:3000/api/tvshows
 #### tvshow put
 http://localhost:3000/api/tvshows/:id
 
+* body
+
+```
+    {                      
+        "title": "title",
+        "description": "descr",
+        "img_url": "img",
+        "thumbnail_url": "thumb",
+        "year": 2025,
+        "genreid": 1,
+        "rating": 3
+    }
+ ```
+
 * status 404
 ```
 {
@@ -210,6 +345,8 @@ http://localhost:3000/api/tvshows/:id
 #### tvshow delete
 http://localhost:3000/api/tvshows/:id
 
+
+
 * status 200
 ```
 {
@@ -224,9 +361,23 @@ http://localhost:3000/api/tvshows/:id
     msg:'movie cannot be deleted' 
 }
 ```
+---
+### USER LOGIN
+---
+
+
 #### login user
 
 http://localhost:3000/api/users/login
+
+* body
+
+```
+   {                      
+            "email": "testas@testas1",
+            "password": "testas@testas1"
+    }
+```
 
 * status 200
 
@@ -246,9 +397,25 @@ http://localhost:3000/api/users/login
 }
 ```
 
+-------
+### USER REGISTER
+---
+
 #### register user 
 
 http://localhost:3000/api/users/register
+
+* body
+```
+   {          
+            "first_name": "asfs",
+            "last_name": "asfas",            
+            "email": "testas@testas31",
+            "username": "asfsasfas",
+            "password": "testas@testas2",
+            "repass": "testas@testas2"        
+     }
+ ```
 
 * status 200 
 ```

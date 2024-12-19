@@ -18,13 +18,37 @@ const movieController = {
     }
   },
 
+  getMovieById: async (req, res) => {
+    const { id } = req.params; 
+  
+    try { 
+      const movie = await movieModel.getMovieById(id);
+  
+      if (movie.length === 0) {
+        return res.status(404).json({
+          status: 'err',
+          msg: 'Movie not found',
+        });
+      }
+  
+      res.status(200).json({
+        status: 'ok',
+        msg: 'Movie found',
+        data: movie,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ status: 'err', msg: "Can't get movie data" });
+    }
+  },
+
   postMovie: async (req, res) => {
     const {title, description, img_url, thumbnail_url, year, genreid, rating } = req.body
 
     // validacija start
 
     if(title.length === 0 || description.length === 0 || img_url.length === 0 || thumbnail_url.length === 0
-      || year.length === 0 || genreid.length === 0 || rating.length === 0){
+      || year.length === 0 || genreid.length === 0 || rating.length === 0){ 
 
      return res.status(409).json({status:'err', msg:'field cannot be empty'})
 
@@ -75,6 +99,7 @@ const movieController = {
     const {id} = req.params
    
    const newData = req.body
+   
  
 
    try {
@@ -100,6 +125,9 @@ const movieController = {
   
   deleteMovie: async (req, res) => {
     const {id} = req.params
+    
+    
+
     try {
       const deleteMovie = await movieModel.deleteMovie(
         id,

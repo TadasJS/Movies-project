@@ -1,32 +1,38 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { MovieCard } from "./MovieCard"
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { MovieCard } from './MovieCard';
 
+export function MovieDataList() {
+  const [movieList, setMovieList] = useState([]);
 
-
-
-export function MovieDataList () {
-
- const [movieList, setMovieList] = useState()
- 
-
-   useEffect(() => {
-       axios
-       .get('http://localhost:3000/api/movies')
-       .then ((data) => setMovieList(data.data.data))
-       .catch ((error) => console.log(error))
-      
-   },[])
-    return(
-      
-        <div className="row row-cols-1 row-cols-md-2 row-cols-xl-4 mb-5  g-4">
-           
-            { movieList?.map((key)=>(<MovieCard key={key.id} id={key.id} title={key.title} description={key.description}
-            img={key.img_url} thumb={key.thumbnail_url} year={key.year} genre={key.genreid} rating={key.rating} />))}  
-        
-        </div>
-            
-                            
-       
-    )
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/api/movies')
+      .then((response) => {
+        console.log("Fetched movies:", response.data.data);
+        setMovieList(response.data.data);
+      })
+      .catch((error) => console.error("Fetching movie list failed:", error));
+  }, []);
+  return (
+    <div className="row row-cols-1 row-cols-md-2 row-cols-xl-4  g-4">
+      {movieList.length === 0 ? (
+        <p>Loading...</p>
+      ) : (
+        movieList.map((movie) => ( 
+        <MovieCard
+          key={movie.id}
+          id={movie.id}
+          title={movie.title}
+          description={movie.description}
+          img={movie.img_url}
+          thumb={movie.thumbnail_url}
+          year={movie.year}
+          genre={movie.genreid}
+          rating={movie.rating}
+        />
+      ))
+    )}
+    </div>
+  );
 }
