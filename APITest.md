@@ -41,6 +41,45 @@
 msg: "Can't get movies data" }
 ```
 
+#### movies get by id
+
+http://localhost:3000/api/movies/:id
+
+* status 200
+
+```
+{
+    "status": "ok",
+    "msg": "movie found",
+    "data": [
+        {
+            "id": 23,
+            "title": "title",
+            "description": "descr",
+            "img_url": "img",
+            "thumbnail_url": "thumb",
+            "year": 2025,
+            "genreid": 1,
+            "rating": 3,
+            "created_at": "2024-12-18T07:57:23.693Z",
+            "updated_at": "2024-12-18T07:57:23.693Z"
+        }
+    ]
+}
+```
+
+* status 404
+
+```
+{
+   status: 'err',
+   msg: 'Movie not found',
+}
+```
+
+
+
+
 #### movies post
 http://localhost:3000/api/movies 
 
@@ -175,6 +214,43 @@ http://localhost:3000/api/movies/:id
 ```
 { status: 'err', 
 msg: "Can't get tvshows data" }
+
+```
+
+#### tvshow get by id
+
+http://localhost:3000/api/tvshows/:id
+
+* status 200
+
+```
+{
+    "status": "ok",
+    "msg": "tvShow found",
+    "data": [
+        {
+            "id": 23,
+            "title": "title",
+            "description": "descr",
+            "img_url": "img",
+            "thumbnail_url": "thumb",
+            "year": 2025,
+            "genreid": 1,
+            "rating": 3,
+            "created_at": "2024-12-18T07:57:23.693Z",
+            "updated_at": "2024-12-18T07:57:23.693Z"
+        }
+    ]
+}
+```
+
+* status 404
+
+```
+{
+   status: 'err',
+   msg: 'tvShow not found',
+}
 ```
 
 #### tvshows post

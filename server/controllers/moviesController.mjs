@@ -21,10 +21,10 @@ const movieController = {
   getMovieById: async (req, res) => {
     const { id } = req.params; 
   
-    try {
+    try { 
       const movie = await movieModel.getMovieById(id);
   
-      if (!movie) {
+      if (movie.length === 0) {
         return res.status(404).json({
           status: 'err',
           msg: 'Movie not found',

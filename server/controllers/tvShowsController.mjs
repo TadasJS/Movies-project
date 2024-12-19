@@ -24,7 +24,7 @@ const tvShowsController = {
     try {
       const tvShow = await tvShowModel.getTvShowById(id);
   
-      if (!tvShow) {
+      if (tvShow.length === 0) {
         return res.status(404).json({
           status: 'err',
           msg: 'tvShow not found',

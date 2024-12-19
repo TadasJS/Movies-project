@@ -15,6 +15,7 @@ getMovies: async () => {
 getMovieById: async (id) => {
     try {
       const result = await pool.query("SELECT * FROM movies WHERE id = $1", [id]);
+      console.log(result.rows)
       return result.rows; 
     } catch (error) {
       console.error(error);
