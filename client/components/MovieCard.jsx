@@ -1,5 +1,7 @@
 
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { DeleteMovie } from "./DeleteMovie";
 
 export function MovieCard(props) {
   const navigate = useNavigate();
@@ -7,6 +9,10 @@ export function MovieCard(props) {
   const handleUpdateClick = () => {
     navigate(`/updateMovie/${props.id}`); 
   };
+
+
+
+  
 
   return (
     <div className="col">
@@ -21,6 +27,7 @@ export function MovieCard(props) {
           <button onClick={handleUpdateClick} className="btn btn-primary">
             Update
           </button>
+         <DeleteMovie id = {props.id} />
         </div>
       </div>
     </div>

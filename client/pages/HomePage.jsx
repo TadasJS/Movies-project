@@ -14,7 +14,7 @@ export function HomePage() {
       <div className="container">
         <h4>Bendri klausimai</h4>
         <ul>
-          <li> Gabrielė prašė sudėt Id an mygtukų nav barų ir dar kažko. Ant ko tiksliai reikia dėt ir kaip dedam? </li>
+          <li> Testuotojų pageidavimai </li>
         </ul>
     <TestuotojuPastabos />
      <h4>TOP MOVIES FOR TODAY</h4> 

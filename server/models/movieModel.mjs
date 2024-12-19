@@ -15,7 +15,6 @@ getMovies: async () => {
 getMovieById: async (id) => {
     try {
       const result = await pool.query("SELECT * FROM movies WHERE id = $1", [id]);
-      console.log(result.rows)
       return result.rows; 
     } catch (error) {
       console.error(error);
@@ -88,13 +87,14 @@ updateMovie: async (id, newData) => {
 },
 
 deleteMovie: async (id) => {
-
+    
     const deleteMovie = await pool.query( `
-    DELETE FROM movies
-    WHERE id = $1;`,
-    [id] )
-
-    console.log(deleteMovie.rowCount)
+        DELETE FROM movies
+        WHERE id = $1;`,
+        [id] ) 
+        
+        
+   
     return(deleteMovie.rowCount)
 }
     

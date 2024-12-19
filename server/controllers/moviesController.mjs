@@ -48,7 +48,7 @@ const movieController = {
     // validacija start
 
     if(title.length === 0 || description.length === 0 || img_url.length === 0 || thumbnail_url.length === 0
-      || year.length === 0 || genreid.length === 0 || rating.length === 0){
+      || year.length === 0 || genreid.length === 0 || rating.length === 0){ 
 
      return res.status(409).json({status:'err', msg:'field cannot be empty'})
 
@@ -101,7 +101,7 @@ const movieController = {
    const newData = req.body
    
  
- 
+
    try {
     const updateMovie = await movieModel.updateMovie(
       id,
@@ -125,6 +125,9 @@ const movieController = {
   
   deleteMovie: async (req, res) => {
     const {id} = req.params
+    
+    
+
     try {
       const deleteMovie = await movieModel.deleteMovie(
         id,
