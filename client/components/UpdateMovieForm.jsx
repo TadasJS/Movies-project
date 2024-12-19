@@ -7,6 +7,9 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 export default function UpdateMovieForm() {
   const { id } = useParams(); 
 
+ 
+  
+
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState(null); 
