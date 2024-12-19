@@ -12,6 +12,16 @@ getMovies: async () => {
     }
 },
 
+getMovieById: async (id) => {
+    try {
+      const result = await pool.query("SELECT * FROM movies WHERE id = $1", [id]);
+      console.log(result.rows)
+      return result.rows; 
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
 genreSizeMovie: async () => {
     try {
        const genreSize = await pool.query(`SELECT * FROM genres ORDER BY id ASC`)
@@ -42,8 +52,13 @@ createMovie: async (jonas) => {
 },
 
 updateMovie: async (id, newData) => {
-    
-    try {
+
+    const yearInt = parseInt(newData.year) 
+    const genreidInt = parseInt(newData.genreId) 
+    const ratingInt = parseInt(newData.rating)
+
+    console.log(yearInt, genreidInt, ratingInt)
+    try { 
         
      const updateMovie = await pool.query(
          `UPDATE movies 
@@ -58,9 +73,9 @@ updateMovie: async (id, newData) => {
         newData.description, 
         newData.img_url, 
         newData.thumbnail_url, 
-        newData.year, 
-        newData.genreid, 
-        newData.rating, 
+        yearInt, 
+        genreidInt, 
+        ratingInt, 
         id,
      ]
      ) 

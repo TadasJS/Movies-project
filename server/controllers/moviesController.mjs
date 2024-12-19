@@ -18,6 +18,30 @@ const movieController = {
     }
   },
 
+  getMovieById: async (req, res) => {
+    const { id } = req.params; 
+  
+    try { 
+      const movie = await movieModel.getMovieById(id);
+  
+      if (movie.length === 0) {
+        return res.status(404).json({
+          status: 'err',
+          msg: 'Movie not found',
+        });
+      }
+  
+      res.status(200).json({
+        status: 'ok',
+        msg: 'Movie found',
+        data: movie,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ status: 'err', msg: "Can't get movie data" });
+    }
+  },
+
   postMovie: async (req, res) => {
     const {title, description, img_url, thumbnail_url, year, genreid, rating } = req.body
 
@@ -75,8 +99,9 @@ const movieController = {
     const {id} = req.params
    
    const newData = req.body
+   
  
-
+ 
    try {
     const updateMovie = await movieModel.updateMovie(
       id,
