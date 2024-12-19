@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 
-export function DeleteMovie(props){
+export function DeleteTvShow(props){
     
     
     const [show, setShow] = useState(false);
@@ -18,7 +18,7 @@ export function DeleteMovie(props){
     
     useEffect(() => {
         axios
-          .get(`http://localhost:3000/api/movies/${props.id}`)
+          .get(`http://localhost:3000/api/tvshows/${props.id}`)
           .then((response) => {
             setFormData(response.data.data);
             setLoading(false); 
@@ -34,7 +34,7 @@ export function DeleteMovie(props){
     function handleOnSubmit() {
         // e.preventDefault();
     axios
-      .delete(`http://localhost:3000/api/movies/${props.id}`, formData)
+      .delete(`http://localhost:3000/api/tvshows/${props.id}`, formData)
       .then(() => {
         // navigate('/');
       })
@@ -52,6 +52,7 @@ export function DeleteMovie(props){
     return <p>Error: movie data not found.</p>; 
   }
       
+
     return(
         <>
       <Button className="ms-2 pe-3 ps-3" variant="danger" onClick={handleShow}>

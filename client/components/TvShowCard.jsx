@@ -1,5 +1,6 @@
 
 import {useNavigate} from 'react-router-dom'
+import { DeleteTvShow } from './DeleteTvShow';
 
 export function TvShowCard(props) {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ export function TvShowCard(props) {
           <button onClick={handleUpdateClick} className="btn btn-primary">
             Update
           </button>
+          <DeleteTvShow id = {props.id} />
           </div>
         </div>
       </div>

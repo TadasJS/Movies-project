@@ -5,7 +5,7 @@ const movieModel = {
 
 getMovies: async () => {
     try {
-        const result = await pool.query("SELECT * FROM movies");   
+        const result = await pool.query("SELECT * FROM movies ORDER BY id ASC ");   
         return result.rows;
     } catch (error) {
         console.error(error);
