@@ -13,7 +13,7 @@ export function TvShowCard(props) {
 
       <div className="col">
         <div className="card">
-          <h5>{props.id}</h5>
+          {/* <h5>{props.id}</h5> */}
           <img src={props.thumb} className="card-img-top" alt="..."/>
           <div className="card-body">
             <h5 className="card-title">{props.title}</h5>

@@ -70,7 +70,7 @@ function handleSubmit (e) {
         <nav>
           <div className="nav nav-tabs mb-3" id="nav-tab" role="tablist">
             <Link to='/addcardmov' className="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="false" tabIndex="-1">Add Movie card</Link>
-            <Link to='/addcardser' className="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" tabIndex="-1">Add tv_show card</Link>
+            <Link to='/addcardser' className="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" tabIndex="-1">Add Tv_show card</Link>
           </div>
         </nav>       
   </div>
