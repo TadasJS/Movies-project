@@ -28,7 +28,6 @@ export default function UpdateMovieForm() {
       });
   }, [id]);
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     axios

@@ -20,10 +20,7 @@ function App() {
 
           <Route path="/updateMovie/:id" element={<UpdateMovieForm />} />
           <Route path="/updateTvshow/:id" element={<UpdateTvShowForm />} />
-          <Route path="/deleteMovie/:id" element={<DeleteMovie />} />
-
-
-          
+                
 
           <Route path="/addcardmov" element={<CreateCardMovie />} />
           <Route path="/addcardser" element={<CreateCardSerial />} />
