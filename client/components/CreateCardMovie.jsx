@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
-import './CreateCardForm.css'
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import axios from 'axios'
 
 
@@ -53,12 +52,14 @@ export function CreateCardMovie() {
     }
 
     const symbList ='`~!@#$%^&*()_+-=[]{}|":;?/>.<,\''
+    const symbList2 ='`~!@#$%^&*()_+-=[]{}|":;?/>.<,\'qwertyuioplkjhgfdsazxcvbnmąčęėįšųūQWERTYUIOPLKJHGFDSAZXCVBNMĄČĘĖĮŠŲŪ'
+
     
     function handleSubmit (e) {
-        e.preventDefault()
+        e.preventDefault()  
 
-        
-        
+      //validacijos pradzia 
+
         if(!title){
             setTitleErr(`field can't be empty`)
             setTitleValid(false)
@@ -66,6 +67,14 @@ export function CreateCardMovie() {
         }else{
             setTitleErr(false)
             setTitleValid(true)
+        }
+
+        for (const i of symbList){
+            for(const j of title){
+                if(i === j){                    
+                   return setTitleErr(`can't use symbols`)                    
+                }
+            }
         }
 
         if(!description){
@@ -77,6 +86,14 @@ export function CreateCardMovie() {
             setDescriptionValid(true)
         }
 
+        for (const i of symbList){
+            for(const j of description){
+                if(i === j){                    
+                   return setDescriptionErr(`can't use symbols`)                    
+                }
+            }
+        }
+
         if(!imgUrl){
             setImgUrlErr(`field can't be empty`)
             setImgUrlValid(false)
@@ -84,6 +101,14 @@ export function CreateCardMovie() {
         }else{
             setImgUrlErr(false)
             setImgUrlValid(true)
+        }
+
+        for (const i of symbList){
+            for(const j of imgUrl){
+                if(i === j){                    
+                   return setImgUrlErr(`can't use symbols`)                    
+                }
+            }
         }
 
         if(!thumbUrl){
@@ -94,22 +119,34 @@ export function CreateCardMovie() {
             setThumbUrlErr(false)
             setThumbUrlValid(true)
         }
-
-        console.log(typeof(year))
+       
+        for (const i of symbList){
+            for(const j of thumbUrl){
+                if(i === j){                    
+                   return setThumbUrlErr(`can't use symbols`)                    
+                }
+            }
+        }
         
         if(!year || year < 1888 || year > 2025){
-            setYearErr(`field can't be empty`)
+            setYearErr(`field can't be empty, you can chose years from 1888-2025`)
             setYearValid(false)
             return
         }else{
             setYearErr(false)
             setYearValid(true)
         }
-        
-        console.log(genre)
 
-        if( genre === 'Select genre '){
-            setGenreErr(`you must choose`)
+        for (const i of symbList2){
+            for(const j of year){
+                if(i === j){                    
+                   return setYearErr(`can't use symbols and letters`)                    
+                }
+            }
+        }
+
+        if( genre === 'Select genre'){
+            setGenreErr(true)
             setGenreValid(false)
             console.log('trueeeee')
             return
@@ -120,10 +157,8 @@ export function CreateCardMovie() {
         }
 
 
-        console.log('genre reiksme...',genre)
-
         if(!rating || rating < 1 || rating > 10){
-            setRatingErr(`field can't be empty, and from 1-10`)
+            setRatingErr(`field can't be empty, use numbers from 1-10`)
             setRatingValid(false)
             return
         }else{
@@ -131,17 +166,16 @@ export function CreateCardMovie() {
             setRatingValid(true)
         }
 
+        for (const i of symbList2){
+            for(const j of rating){
+                if(i === j){                    
+                   return setRatingErr(`can't use symbols and letters`)                    
+                }
+            }
+        }
 
-
-    //     let count = 0
-        
-    //    for (const element of symbList){
-    //         for(const titleEl of title){
-    //             if(element === titleEl){                    
-    //                return setErrValidation(`can't be empty`)                    
-    //             }
-    //         }
-    //     }
+        //validacijos pabaiga  
+       
 
     
         axios
@@ -207,7 +241,7 @@ export function CreateCardMovie() {
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text movieform_title_color" id="inputGroup-sizing-default">Genre</span>
-                <select onChange={updateGenre} className={`form-control ${genreValid ? 'is-valid': ''} ${genreValid ? 'is-invalid': ''} form-select-sm  `} aria-label=".form-select-sm example" required>
+                <select onChange={updateGenre} className={`form-control ${genreValid ? 'is-valid': ''} ${genreErr ? 'is-invalid': ''} form-select-sm  `} aria-label=".form-select-sm example" required>
             <option select="">Select genre</option>
             <option value="1">One</option>
             <option value="2">Two</option>
