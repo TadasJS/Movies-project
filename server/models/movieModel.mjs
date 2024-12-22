@@ -56,7 +56,7 @@ updateMovie: async (id, newData) => {
     const genreidInt = parseInt(newData.genreId) 
     const ratingInt = parseInt(newData.rating)
 
-    console.log(yearInt, genreidInt, ratingInt)
+    
     try { 
         
      const updateMovie = await pool.query(
@@ -78,7 +78,7 @@ updateMovie: async (id, newData) => {
         id,
      ]
      ) 
-     console.log(updateMovie.rowCount)
+    
     
      return updateMovie.rowCount
     } catch (error) {

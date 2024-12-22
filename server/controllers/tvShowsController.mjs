@@ -101,9 +101,6 @@ const tvShowsController = {
     const {id} = req.params
     const newData = req.body
 
-    console.log('controlerio data...',newData)
-  
-
    try {
     const updateTvShow = await tvShowModel.updateTvShow(
       id,

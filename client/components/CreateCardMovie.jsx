@@ -1,9 +1,13 @@
-import { Link } from "react-router-dom"
+
 import { useState } from "react"
+import { useNavigate } from "react-router-dom";
 import axios from 'axios'
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 
 export function CreateCardMovie() {
+
+    const navigate = useNavigate()
 
     const[title, setTitle] = useState('')
     const[titleErr, setTitleErr] = useState('')
@@ -26,6 +30,9 @@ export function CreateCardMovie() {
     const [rating, setRating] = useState('')
     const [ratingErr, setRatingErr] = useState('')
     const [ratingValid, setRatingValid] = useState(false)
+
+    const [formErr, setFormErr] = useState('')
+    const [formValid, setFormValid] = useState('')
    
 
 
@@ -188,59 +195,82 @@ export function CreateCardMovie() {
         genreid:genre, 
         rating,
     })
-    .then((data) => console.log(data.data))
+    .then((data) => {
+        console.log(data.data)
+
+        if(data.data.status === 'ok'){
+            setFormValid(data.data.msg)
+            setFormErr('')
+          }
+          if(data.data.status === 'err'){
+            setFormErr(data.data.msg)
+            setFormValid('')
+          }
+    
+    
+    })
+    // .then(() => {naviagate('/')})
     .catch((error) => console.log(error))
 
 }
 
 
     return (        
-        <div className="container">
-        <div className="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-            <Link to='/addcardmov' className="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Add Movie card</Link>
-            <Link to='/addcardser' className="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" tabIndex="-1">Add Tv_show card</Link>
-          </div>
-          <h5 className="mb-3" >Add Movie card</h5>
-        <form onSubmit={handleSubmit} action="">
+        <Container className="">
+            <Row>
+        <Col md={{ span: 6, offset: 3 }}>
+          <h2 className='formCenter' >Create Movie</h2>
 
 
-            <div className="input-group mb-3">
-                <span className="input-group-text movieform_title_color movieform_title_color " id="inputGroup-sizing-default">Title</span>
-                <input onChange={updateTitle}  type="text" className={`form-control ${titleValid ? 'is-valid': ''} ${titleErr ? 'is-invalid': ''} `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+          {formValid && (<div className="ms-5 me-5 alert alert-success " role="alert">
+        <h4 className="alert-heading">Well done!</h4> 
+         <p className="mb-0">{formValid}</p>
+          </div>)}
+
+          {formErr && (<div className="ms-5 me-5 alert alert-danger " role="alert">
+        <h4 className="alert-heading">Error message</h4> 
+         <p className="mb-0">{formErr}</p>
+          </div>)}
+
+
+             <form onSubmit={handleSubmit} action="">
+            <Form.Group className="mb-2">
+                <Form.Label className="fs-4 " id="">Title:</Form.Label>
+                <Form.Control onChange={updateTitle}  type="text" className={`form-control ${titleValid ? 'is-valid': ''} ${titleErr ? 'is-invalid': ''} `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
                 <div className="invalid-feedback">
                   {titleErr}
                 </div>
-            </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text movieform_title_color" id="inputGroup-sizing-default">Description</span>
-                <input onChange={updateDescription}  type="text" className={`form-control ${descriptionValid ? 'is-valid': ''} ${descriptionErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                </Form.Group>
+            <Form.Group className="mb-2">
+                <Form.Label className="fs-4" id="inputGroup-sizing-default">Description:</Form.Label>
+                <Form.Control onChange={updateDescription}  type="text" className={`form-control ${descriptionValid ? 'is-valid': ''} ${descriptionErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
                 <div className="invalid-feedback">
                   {descriptionErr}
                 </div>
-            </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text movieform_title_color" id="inputGroup-sizing-default">Img url</span>
-                <input onChange={updateImgUrl}  type="text" className={`form-control ${imgUrlValid ? 'is-valid': ''} ${imgUrlErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                </Form.Group>
+            <Form.Group className="mb-2">
+                <Form.Label className="fs-4" id="inputGroup-sizing-default">Img url:</Form.Label>
+                <Form.Control onChange={updateImgUrl}  type="text" className={`form-control ${imgUrlValid ? 'is-valid': ''} ${imgUrlErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
                 <div className="invalid-feedback">
                   {imgUrlErr}
                 </div>
-            </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text movieform_title_color" id="inputGroup-sizing-default">Thubnail url</span>
-                <input onChange={updateThumbUrl}  type="text" className={`form-control ${thumbUrlValid ? 'is-valid': ''} ${thumbUrlErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                </Form.Group>
+            <Form.Group className="mb-2">
+                <Form.Label className="fs-4" id="inputGroup-sizing-default">Thubnail url:</Form.Label>
+                <Form.Control onChange={updateThumbUrl}  type="text" className={`form-control ${thumbUrlValid ? 'is-valid': ''} ${thumbUrlErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             <div className="invalid-feedback">
                   {thumbUrlErr}
                 </div>
-            </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text movieform_title_color" id="inputGroup-sizing-default">Year    </span>
-                <input onChange={updateYear}  type="text" className={`form-control ${yearValid ? 'is-valid': ''} ${yearErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                </Form.Group>
+            <Form.Group className="mb-2">
+                <Form.Label className="fs-4" id="inputGroup-sizing-default">Year:    </Form.Label>
+                <Form.Control onChange={updateYear}  type="text" className={`form-control ${yearValid ? 'is-valid': ''} ${yearErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             <div className="invalid-feedback">
                   {yearErr}
                 </div>
-            </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text movieform_title_color" id="inputGroup-sizing-default">Genre</span>
+                </Form.Group>
+            <Form.Group className="mb-2">
+                <Form.Label className="fs-4" id="inputGroup-sizing-default">Genre:</Form.Label>
                 <select onChange={updateGenre} className={`form-control ${genreValid ? 'is-valid': ''} ${genreErr ? 'is-invalid': ''} form-select-sm  `} aria-label=".form-select-sm example" required>
             <option select="">Select genre</option>
             <option value="1">One</option>
@@ -250,24 +280,20 @@ export function CreateCardMovie() {
             <div className="invalid-feedback">
                   {genreErr}
                 </div>
-            </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text movieform_title_color" id="inputGroup-sizing-default">Rating</span>
+                </Form.Group>
+            <Form.Group className="mb-2">
+                <Form.Label className="fs-4" id="inputGroup-sizing-default">Rating:</Form.Label>
                 <input onChange={updateRating}  type="text" className={`form-control ${ratingValid ? 'is-valid': ''} ${ratingErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
                 <div className="invalid-feedback">
                   {ratingErr}
                 </div>
-            </div>
+                </Form.Group>
             <div className="d-grid gap-2">
                 <button className="btn btn-outline-primary " type="submit">Submit</button>
             </div>
         </form>
-
-        </div>
-
-
-
-
-
+        </Col>
+      </Row>
+        </Container>
     )
 }
