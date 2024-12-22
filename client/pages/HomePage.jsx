@@ -11,10 +11,6 @@ export function HomePage() {
   
     return(
       <div className="container">
-        <h4>Bendri klausimai</h4>
-        <ul>
-          <li> Testuotojų pageidavimai </li>
-        </ul>
     <TestuotojuPastabos />
      <h4 className="mt-3 mb-3 bg-warning-subtle ">TOP MOVIES </h4> 
      <Link to='/addcardmov' type="button" className="btn btn-success mb-3">Add card Movies</Link>

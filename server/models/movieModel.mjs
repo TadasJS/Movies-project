@@ -91,10 +91,7 @@ deleteMovie: async (id) => {
     const deleteMovie = await pool.query( `
         DELETE FROM movies
         WHERE id = $1;`,
-        [id] ) 
-        
-        
-   
+        [id] )    
     return(deleteMovie.rowCount)
 }
     
