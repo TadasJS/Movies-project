@@ -47,12 +47,12 @@ const movieController = {
 
     // validacija start
 
-    if(title.length === 0 || description.length === 0 || img_url.length === 0 || thumbnail_url.length === 0
-      || year.length === 0 || genreid.length === 0 || rating.length === 0){ 
+    // if(title.length === 0 || description.length === 0 || img_url.length === 0 || thumbnail_url.length === 0
+    //   || year.length === 0 || genreid.length === 0 || rating.length === 0){ 
 
-     return res.status(409).json({status:'err', msg:'field cannot be empty'})
+    //  return res.status(409).json({status:'err', msg:'field cannot be empty'})
 
-    }
+    // }
    
     // if(typeof year !== 'number' || year < 1888 || year > 2025){
     //   return res.status(409).json({status:'err', msg:'year must be number, year must be 1888-2025 digits'})

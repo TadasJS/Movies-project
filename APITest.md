@@ -413,8 +413,7 @@ http://localhost:3000/api/users/register
             "email": "testas@testas31",
             "username": "asfsasfas",
             "password": "testas@testas2",
-            "repass": "testas@testas2"        
-     }
+    }
  ```
 
 * status 200 
@@ -439,6 +438,85 @@ http://localhost:3000/api/users/register
 {
     status: 'err', 
     msg:'DB connection error'
+}
+```
+-------
+### Genre CRUD
+---
+
+#### genre get
+
+http://localhost:3000/api/genre
+
+* body
+```
+{          
+    "genre":"classic"    
+}
+ ```
+
+* status 200 
+```
+{
+    "status": "ok",
+    "msg": "all genre data received",
+    "data": [
+        {
+            "id": 1,
+            "genre_type": "comedy"
+        },
+        {
+            "id": 2,
+            "genre_type": "thriller"
+        },
+        {
+            "id": 3,
+            "genre_type": "horror"
+        },
+        {
+            "id": 4,
+            "genre_type": "romance"
+        }
+    ]
+}
+```
+#### genre post
+http://localhost:3000/api/genre
+
+* status 200
+
+```
+{
+    "status": "ok",
+    "msg": "genre is created "
+}
+```
+
+* status 409
+
+```
+{
+    "status": "err",
+    "msg": "genre already exists"
+}
+```
+
+#### genre delete
+http://localhost:3000/api/genre
+
+* status 200 
+```
+{
+    "status": "ok",
+    "msg": "Genre completely deleted"
+}
+```
+* status 404
+
+```
+{
+    "status": "err",
+    "msg": "No data to delete"
 }
 ```
 
