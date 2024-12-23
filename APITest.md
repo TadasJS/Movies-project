@@ -413,8 +413,7 @@ http://localhost:3000/api/users/register
             "email": "testas@testas31",
             "username": "asfsasfas",
             "password": "testas@testas2",
-            "repass": "testas@testas2"        
-     }
+    }
  ```
 
 * status 200 

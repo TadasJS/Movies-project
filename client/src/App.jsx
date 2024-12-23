@@ -5,10 +5,9 @@ import { NoPage } from '../pages/NoPage'
 import { BasicLayout } from '../layout/BasicLayout'
 import { CreateCardMovie } from '../components/CreateCardMovie'
 import { CreateCardSerial } from '../components/CreateCardSerial'
-import { MovieDataList } from '../components/MovieDataList'
 import UpdateMovieForm from "../components/UpdateMovieForm"
 import UpdateTvShowForm from '../components/UpdateTvShowForm'
-import { DeleteMovie } from '../components/DeleteMovie'
+import { Registration } from '../pages/Registration'
 
 function App() {
   
@@ -20,6 +19,7 @@ function App() {
 
           <Route path="/updateMovie/:id" element={<UpdateMovieForm />} />
           <Route path="/updateTvshow/:id" element={<UpdateTvShowForm />} />
+          <Route path="/registration" element={<Registration />} />
                 
 
           <Route path="/addcardmov" element={<CreateCardMovie />} />
