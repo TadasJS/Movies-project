@@ -51,12 +51,14 @@ createMovie: async (jonas) => {
 },
 
 updateMovie: async (id, newData) => {
+console.log(newData)
+
 
     const yearInt = parseInt(newData.year) 
     const genreidInt = parseInt(newData.genreId) 
     const ratingInt = parseInt(newData.rating)
+    const idInt = parseInt(id)
 
-    
     try { 
         
      const updateMovie = await pool.query(
@@ -66,27 +68,28 @@ updateMovie: async (id, newData) => {
       img_url = $3, 
       thumbnail_url = $4, 
       year = $5, 
-      genreid  = $6, 
+      genreid  = $6,
       rating = $7
-      where id = $8`, [newData.title, 
+      WHERE id = $8;`, [newData.title, 
         newData.description, 
         newData.img_url, 
         newData.thumbnail_url, 
         yearInt, 
         genreidInt, 
         ratingInt, 
-        id,
+        idInt,
      ]
      ) 
-    
-    
+    console.log(updateMovie)    
      return updateMovie.rowCount
+
     } catch (error) {
-        console.error(error)   
+        console.error(error)  
+         return error.severity
     }  
 },
 
-deleteMovie: async (id) => {
+deleteMovie: async (id) => { 
     
     const deleteMovie = await pool.query( `
         DELETE FROM movies

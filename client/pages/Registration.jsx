@@ -197,11 +197,7 @@ export function Registration() {
         <h4 className="alert-heading">Error message</h4> 
          <p className="mb-0">{formErr}</p>
           </div>)}
-            {!formErr &&
-            (<div> Sitas turi dingt po validacijos patvirtinimo</div>)
-            }
-
-             <form onSubmit={handleSubmit} action="">
+           <form onSubmit={handleSubmit} action="">
             <Form.Group className="mb-2">
                 <Form.Label className="fs-4 " id="">First Name:</Form.Label>
                 <Form.Control onChange={updateFirstName}  type="text" className={`form-control ${firstNameValid ? 'is-valid': ''} ${firstNameErr ? 'is-invalid': ''} `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
