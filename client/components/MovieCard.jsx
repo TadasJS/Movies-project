@@ -17,7 +17,7 @@ export function MovieCard(props) {
   return (
     <div className="col">
       <div className="card">
-        <h4>{props.id}</h4>
+        {/* <h4>{props.id}</h4> */}
         <img src={props.thumb} className="card-img-top" alt={props.title} />
         <div className="card-body">
           <h5 className="card-title">{props.title}</h5>
