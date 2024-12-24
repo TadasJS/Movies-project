@@ -31,8 +31,7 @@ export function DeleteTvShow(props){
 
       console.log(formData)
 
-    function handleOnSubmit() {
-        e.preventDefault();
+    function handleOnSubmit() {      
     axios
       .delete(`http://localhost:3000/api/tvshows/${props.id}`, formData)
       .then(() => {
