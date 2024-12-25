@@ -1,8 +1,13 @@
 
 import {useNavigate} from 'react-router-dom'
 import { DeleteTvShow } from './DeleteTvShow';
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 
 export function TvShowCard(props) {
+  const ctx = useContext(UserContext)
+  const usserLogedIn = ctx.user.loggedIn
+
   const navigate = useNavigate();
 
   const handleUpdateClick = () => {
@@ -20,10 +25,10 @@ export function TvShowCard(props) {
           <p className="card-text">Genre: {props.genre}</p>
           <p className="card-text">Rating: {props.rating}</p>
           <p className="card-text">Years: {props.year}</p>
-          <button onClick={handleUpdateClick} className="btn btn-primary">
+          {usserLogedIn && <button onClick={handleUpdateClick} className="btn btn-primary">
             Update
-          </button>
-          <DeleteTvShow id = {props.id} />
+          </button>}
+          {usserLogedIn &&<DeleteTvShow id = {props.id} />}
           </div>
         </div>
       </div>

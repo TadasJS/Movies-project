@@ -1,13 +1,15 @@
 
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { UserContext } from "../context/UserContext";
 
 
 export function Login() {
 
     const navigate = useNavigate()
+    const ctx = useContext(UserContext)
 
     
     const[email, setEmail] = useState('')
@@ -37,6 +39,7 @@ export function Login() {
     const symbList4 ='`~!#$%^&*()_+=[]{}|-":;?/><,\''
     
     const pwdFilter = /^(?=.*\p{Ll})(?=.*\p{Lu})(?=.*[\d|@#$!%*?&])[\p{L}\d@#$!%*?&]{8,50}$/gmu
+    const emailFilter = /^\S+@\S+\.\S+$/
     
     function handleSubmit (e) {
         e.preventDefault()  
@@ -44,7 +47,7 @@ export function Login() {
       //validacijos pradzia 
 
        
-        if(!email){
+        if(!email || !emailFilter.test(email)){
             setEmailErr(`field can't be empty`)
             setEmailValid(false)
             return
@@ -84,6 +87,7 @@ export function Login() {
         if(data.data.status === 'ok'){
             setFormValid(data.data.msg)
             setFormErr('')
+            ctx.loginUser()
         }
     })
     // .then(() => {navigate('/')})
