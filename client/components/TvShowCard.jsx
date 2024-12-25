@@ -22,7 +22,7 @@ export function TvShowCard(props) {
           <img src={props.thumb} className="card-img-top" alt="..."/>
           <div className="card-body">
             <h5 className="card-title">{props.title}</h5>
-          <p className="card-text">Genre: {props.genre}</p>
+          <p className="card-text">Genre: {props.genreType}</p>
           <p className="card-text">Rating: {props.rating}</p>
           <p className="card-text">Years: {props.year}</p>
           {usserLogedIn && <button onClick={handleUpdateClick} className="btn btn-primary">

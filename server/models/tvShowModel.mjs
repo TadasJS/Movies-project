@@ -5,7 +5,19 @@ const tvShowModel = {
 
 getTvShows: async () => {
     try {
-        const result = await pool.query("SELECT * FROM tv_shows ORDER BY id ASC ");   
+        const result = await pool.query(`SELECT   
+tv_shows.id, 
+tv_shows.title, 
+tv_shows.description,
+tv_shows.img_url, 
+tv_shows.thumbnail_url,
+tv_shows.year, 
+tv_shows.rating,
+genres.genre_type
+FROM tv_shows
+INNER JOIN genres
+ON tv_shows.genreid = genres.id
+ORDER BY id ASC `);   
         return result.rows;
     } catch (error) {
         console.error(error);

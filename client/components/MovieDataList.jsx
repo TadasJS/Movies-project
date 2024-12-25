@@ -4,7 +4,10 @@ import { MovieCard } from './MovieCard';
 
 export function MovieDataList(props) {
   const [movieList, setMovieList] = useState([]);
-  const [genreList, setGenreList] = useState([])
+  
+
+  console.log(props);
+  
 
   useEffect(() => {
     axios
@@ -14,17 +17,6 @@ export function MovieDataList(props) {
       })
       .catch((error) => console.error("Fetching movie list failed:", error));
   }, []);
-
-
-  // useEffect(() => {
-  //   axios
-  //     .get('http://localhost:3000/api/genre')
-  //     .then((response) => {
-  //       setGenreList(response.data.data);
-  //     })
-  //     .catch((error) => console.error("Fetching movie list failed:", error));
-  // }, []);
-
 
   return (
     <div className="row row-cols-1 row-cols-md-2 row-cols-xl-4  g-4">
@@ -40,15 +32,11 @@ export function MovieDataList(props) {
           img={movie.img_url}
           thumb={movie.thumbnail_url}
           year={movie.year}
-          genreId={movie.genreid}
           rating={movie.rating}
-          genreType={props.genreType}
+          genreType={movie.genre_type}
         />
       ))
     )}
-   
-
-      {/* {genreList.map((genre) => <MovieCard key={genre.id} id={genre.id} gerneType={genre.genre_type} />)} */}
 
 
     </div>

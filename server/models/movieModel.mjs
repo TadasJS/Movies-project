@@ -5,7 +5,20 @@ const movieModel = {
 
 getMovies: async () => {
     try {
-        const result = await pool.query("SELECT * FROM movies ORDER BY id ASC ");   
+        const result = await pool.query(`
+SELECT   
+movies.id, 
+movies.title, 
+movies.description,
+movies.img_url, 
+movies.thumbnail_url,
+movies.year, 
+movies.rating,
+genres.genre_type
+FROM movies
+INNER JOIN genres
+ON movies.genreid = genres.id
+ORDER BY id ASC `);   
         return result.rows;
     } catch (error) {
         console.error(error);
