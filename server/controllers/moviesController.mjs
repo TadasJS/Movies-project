@@ -80,7 +80,6 @@ const movieController = {
         thumbnail_url,
         year,
         genreid,
-
         rating 
       })
       res.status(200).json({
@@ -100,8 +99,6 @@ const movieController = {
    
    const newData = req.body
    
- 
-
    try {
     const updateMovie = await movieModel.updateMovie(
       id,
@@ -115,6 +112,13 @@ const movieController = {
         msg:'movie not found'
       })
     }
+    if(updateMovie === 'ERROR'){
+      return res.status(500).json({
+        status:'err',
+        msg: "DB error"
+      })
+    }
+
     res.status(200).json({status:'ok', msg:'movie updated success'})
    } catch (error) {
     console.error(error)

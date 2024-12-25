@@ -4,13 +4,7 @@ const loginController = {
 postUsers: async (req, res) => {
     const {email, password} = req.body
 
-    if(email.length < 6){
-      return  res.status(409).json({status: 'err', msg: 'email must be more then 6 symbols'})
-    }
 
-    if(password.length < 6){
-        return  res.status(409).json({status: 'err', msg: 'password must be more then 8 symbols'})
-    }
 try {
   const loginValuesCheck = await loginModel.checkLoginValues(
     email,
