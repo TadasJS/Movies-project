@@ -56,7 +56,8 @@ export function Registration() {
     const symbList3 ='`~!@#$%^&*()+=[]{}|-":;?/><,\''
     const symbList4 ='`~!#$%^&*()_+=[]{}|-":;?/><,\''
     
-    const pwdFilter = /^(?=.*\p{Ll})(?=.*\p{Lu})(?=.*[\d|@#$!%*?&])[\p{L}\d@#$!%*?&]{8,50}$/gmu
+    const pwdFilter = /^((?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W)\w.{5,20}\w)/
+    const emailFilter = /^\S+@\S+\.\S+$/
     
     function handleSubmit (e) {
         e.preventDefault()  
@@ -97,7 +98,7 @@ export function Registration() {
             }
         }
 
-        if(!email){
+        if(!email || !emailFilter.test(email)){
             setEmailErr(`field can't be empty`)
             setEmailValid(false)
             return
@@ -131,7 +132,7 @@ export function Registration() {
             }
         }
         
-        if(!password || password.length < 8|| !pwdFilter.test(password)){
+        if(!password|| password.length < 8 || !pwdFilter.test(password)){
             setPasswordErr(`The password must consist of one lowercase letter, one uppercase letter, one symbol and one number.`)
             setPasswordValid(false)
             return
@@ -197,11 +198,7 @@ export function Registration() {
         <h4 className="alert-heading">Error message</h4> 
          <p className="mb-0">{formErr}</p>
           </div>)}
-            {!formErr &&
-            (<div> Sitas turi dingt po validacijos patvirtinimo</div>)
-            }
-
-             <form onSubmit={handleSubmit} action="">
+           <form onSubmit={handleSubmit} action="">
             <Form.Group className="mb-2">
                 <Form.Label className="fs-4 " id="">First Name:</Form.Label>
                 <Form.Control onChange={updateFirstName}  type="text" className={`form-control ${firstNameValid ? 'is-valid': ''} ${firstNameErr ? 'is-invalid': ''} `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>

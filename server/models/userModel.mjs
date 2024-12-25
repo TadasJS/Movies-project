@@ -2,6 +2,18 @@ import { pool } from "../database/postgresConnection.mjs"
 
 
 const userModel = {
+    checkUsername: async (username) => {
+        try {
+            const checkUserEmail = await pool.query('SELECT FROM users WHERE username = $1',[username])
+            return checkUserEmail.rowCount
+        } catch (error) {
+            console.error(error)
+        }
+
+
+    },
+
+
     checkUserEmail: async (email) => {        
         try {
             const checkUserEmail = await pool.query('SELECT FROM users WHERE email = $1',[email])
