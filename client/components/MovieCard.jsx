@@ -1,11 +1,13 @@
 
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { DeleteMovie } from "./DeleteMovie";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
 export function MovieCard(props) {
+
+console.log(props)
+
   const navigate = useNavigate();
 
   const ctx = useContext(UserContext)
@@ -22,11 +24,10 @@ export function MovieCard(props) {
   return (
     <div className="col">
       <div className="card">
-        {/* <h4>{props.id}</h4> */}
         <img src={props.thumb} className="card-img-top" alt={props.title} />
         <div className="card-body">
           <h5 className="card-title">{props.title}</h5>
-          <p className="card-text">Genre: {props.genre}</p>
+          <p className="card-text">Genre: {props.genreType}</p>
           <p className="card-text">Rating: {props.rating}</p>
           <p className="card-text">Years: {props.year}</p>
          {userLoggedIn && <button onClick={handleUpdateClick} className="btn btn-primary">
