@@ -33,10 +33,21 @@ genrePost: async (data) => {
     }
 },
 
-genreDelete: async (data) => {
-   
+genreUpdate: async (genre, id) => {
+        
     try {
-      const genreDeleted = await pool.query('DELETE FROM genres * WHERE genre_type = $1;',[data])
+        const genreUpdate = await pool.query('UPDATE genres SET genre_type = $1 WHERE id = $2;',[genre, id])
+        
+        return genreUpdate.rowCount
+      
+    } catch (error) {
+        console.error(error)
+    }
+},
+
+genreDelete: async (data) => {
+    try {
+      const genreDeleted = await pool.query('DELETE FROM genres * WHERE id = $1;',[data])
        return genreDeleted.rowCount
     } catch (error) {
         console.error(error) 

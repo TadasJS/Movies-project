@@ -17,8 +17,10 @@ export function HomePage() {
     return(
       <div className="container">
     <TestuotojuPastabos />
+    
      <h4 className="mt-3 mb-3 bg-warning-subtle ">TOP MOVIES </h4> 
-    {userLoggedIn && <Link to='/addcardmov' type="button" className="btn btn-success mb-3">Add card Movies</Link> }
+    {userLoggedIn && <Link to='/addcardmov' type="button" className="btn btn-success mb-3 me-2">Add card Movies</Link> }
+    {userLoggedIn && <Link to='/genres' type="button" className="btn btn-success mb-3 me-2">Add genre</Link> }
      <MovieDataList /> 
      <h4 className="mt-3 mb-3 bg-warning-subtle" >TOP TV_SHOWS</h4>   
      {userLoggedIn && <Link to='/addcardser' type="button" className="btn btn-success mb-3">Add card Tv show</Link>}

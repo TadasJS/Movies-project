@@ -11,26 +11,27 @@ import { Registration } from '../pages/Registration'
 import { Login } from '../pages/Login'
 import { UserCntextProvider } from '../context/UserContext'
 import { UserLayout } from '../layout/UserLayout'
+import { GenreList } from '../components/GenreList'
 
 
 
 function App() {
   
   return (
-<UserCntextProvider>
- <BrowserRouter>    
-    <Routes>
+    <UserCntextProvider>
+ <BrowserRouter>         
+   <Routes>
         <Route Component={BasicLayout}>
           <Route index path="/" element={<HomePage />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/login" element={<Login />} />
         </Route>
-                
         <Route Component={UserLayout}>
           <Route path="/updateMovie/:id" element={<UpdateMovieForm />} />
           <Route path="/updateTvshow/:id" element={<UpdateTvShowForm />} />
           <Route path="/addcardmov" element={<CreateCardMovie />} />
           <Route path="/addcardser" element={<CreateCardSerial />} />
+          <Route path="/genres" element={<GenreList />} />
         </Route>
 
         <Route Component={BasicLayout}>
