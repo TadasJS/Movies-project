@@ -1,8 +1,9 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { Container, Row, Col, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useState } from "react";
 import axios from "axios";
+import './CreateCardForm.css'
 
 
 export function UpdateGendre(props) {
@@ -87,8 +88,8 @@ export function UpdateGendre(props) {
                 </h1>               
               </div>
               <Form.Group className="mb-2">
-                <Form.Control onChange={updateGenre}  type="text" className={`form-control ${genreValid ? 'is-valid': ''} ${genreErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-                <div className="invalid-feedback">
+                <Form.Control onChange={updateGenre}  type="text" className={`genreupdate form-control ${genreValid ? 'is-valid': ''} ${genreErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+                <div className="invalid-feedback ms-4">
                   {genreErr}
                 </div>
                 </Form.Group>

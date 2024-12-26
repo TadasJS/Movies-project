@@ -10,9 +10,9 @@ export function GenreTable(props) {
       <table className="table table-striped tableform ">
         <tbody>
           <tr>
-            <th className="tableform1 " scope="row">{props.id}</th>
-            <td className="tableform2 " >{props.genreType}</td>
-        <td className="tableform3 " ><UpdateGendre id={props.id} genreType={props.genreType} />
+            <td className="tableform1">{props.id}</td>
+            <td className="tableform2">{props.genreType}</td>
+        <td className="tableform3" ><UpdateGendre id={props.id} genreType={props.genreType} />
                                          <DeleteGenre id={props.id} />
             </td>
           </tr>
