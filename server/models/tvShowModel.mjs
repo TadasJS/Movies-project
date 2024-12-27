@@ -5,7 +5,19 @@ const tvShowModel = {
 
 getTvShows: async () => {
     try {
-        const result = await pool.query("SELECT * FROM tv_shows ORDER BY id ASC ");   
+        const result = await pool.query(`SELECT   
+tv_shows.id, 
+tv_shows.title, 
+tv_shows.description,
+tv_shows.img_url, 
+tv_shows.thumbnail_url,
+tv_shows.year, 
+tv_shows.rating,
+genres.genre_type
+FROM tv_shows
+INNER JOIN genres
+ON tv_shows.genreid = genres.id
+ORDER BY id ASC `);   
         return result.rows;
     } catch (error) {
         console.error(error);
@@ -21,10 +33,11 @@ getTvShowById: async (id) => {
     }
   },
 
-genreSizeTvShow: async () => { 
+genreidTvShow: async (genreid) => { 
+  
     try {
-       const genreSize = await pool.query(`SELECT * FROM genres ORDER BY id ASC`)
-        return genreSize.rows
+       const genreSize = await pool.query(`SELECT * FROM genres WHERE id = $1;`,[genreid])
+        return genreSize.rowCount
     } catch (error) {
        console.error(error) 
     }
@@ -52,12 +65,6 @@ createTvShow: async (jonas) => {
 },
 
 updateTvShow: async (id, newData) => {
-
-    const yearInt = parseInt(newData.year) 
-    const genreidInt = parseInt(newData.genreId) 
-    const ratingInt = parseInt(newData.rating)
-
-   
     
     try {   
         
@@ -70,20 +77,23 @@ updateTvShow: async (id, newData) => {
       year = $5, 
       genreid  = $6, 
       rating = $7
-      where id = $8`, [newData.title, 
+      where id = $8;`, [
+        newData.title, 
         newData.description, 
         newData.img_url, 
         newData.thumbnail_url, 
-        yearInt, 
-        genreidInt, 
-        ratingInt, 
+        newData.year, 
+        newData.genreid, 
+        newData.rating, 
         id,
      ]
      ) 
     
      return updateTvShow.rowCount
+     
     } catch (error) {
-        console.error(error)   
+        console.error(error) 
+        return error.severity  
     }  
 },
 
