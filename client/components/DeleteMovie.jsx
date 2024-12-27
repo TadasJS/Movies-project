@@ -28,8 +28,6 @@ export function DeleteMovie(props){
           });
       }, []);
 
-      console.log(formData)
-
     function handleOnSubmit() {
         // e.preventDefault();
     axios

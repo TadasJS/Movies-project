@@ -4,11 +4,7 @@ import { MovieCard } from './MovieCard';
 
 export function MovieDataList(props) {
   const [movieList, setMovieList] = useState([]);
-  
-
-  console.log(props);
-  
-
+ 
   useEffect(() => {
     axios
       .get('http://localhost:3000/api/movies')

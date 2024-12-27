@@ -29,8 +29,6 @@ export function DeleteTvShow(props){
           });
       }, []);
 
-      console.log(formData)
-
     function handleOnSubmit() {
         e.preventDefault();
     axios

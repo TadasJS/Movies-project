@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { CreateGenre } from './CreateGenre';
 import { GenreTable } from './GenreTable';
 import './CreateCardForm.css'
+import { GenreSelect } from './genreSelect';
 
 export function GenreList() {
   const [genreList, setGenreList] = useState([]);
@@ -41,9 +42,10 @@ export function GenreList() {
           key={genre.id}
           id={genre.id}
           genreType={genre.genre_type}
-        />
+        />        
       ))
     )}
+         
     </div>
   );
 }

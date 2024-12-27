@@ -6,8 +6,6 @@ import { UserContext } from "../context/UserContext";
 
 export function MovieCard(props) {
 
-console.log(props)
-
   const navigate = useNavigate();
 
   const ctx = useContext(UserContext)

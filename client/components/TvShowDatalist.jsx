@@ -14,7 +14,7 @@ export function TvShowDataList () {
        axios
        .get('http://localhost:3000/api/tvshows')
        .then ((data) => setTvShowList(data.data.data))
-       .catch ((error) => console.log(error))
+       .catch ((error) => console.error(error))
       
    },[])
     return(

@@ -6,8 +6,7 @@ import { UserContext } from '../context/UserContext'
 export function Header() {
     const navigate = useNavigate()
     const ctx = useContext(UserContext)
-    console.log(ctx);
-    
+     
     const userLoggedIn = ctx.user.loggedIn
 
     function handleLogout () {
