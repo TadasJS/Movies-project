@@ -29,8 +29,10 @@ export function DeleteTvShow(props){
           });
       }, []);
 
+
     function handleOnSubmit() {
         e.preventDefault();
+
     axios
       .delete(`http://localhost:3000/api/tvshows/${props.id}`, formData)
       .then(() => {
