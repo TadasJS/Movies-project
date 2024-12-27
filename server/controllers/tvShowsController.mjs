@@ -45,34 +45,13 @@ const tvShowsController = {
   postTvShows: async (req, res) => {
     const {title, description, img_url, thumbnail_url, year, genreid, rating } = req.body
 
-    // validacija Start
-
-    if(title.length === 0 || description.length === 0 || img_url.length === 0 || thumbnail_url.length === 0
-      || year.length === 0 || genreid.length === 0 || rating.length === 0){
-
-     return res.status(409).json({status:'err', msg:'field cannot be empty'})
-
-    }
-   
-    // if(typeof year !== 'number' || year < 1928 || year > 2025){
-    //   return res.status(409).json({status:'err', msg:'year must be number, year must be 1928-2025 digits'})
-    // }
-
-
-    // if(typeof rating !== 'number' || rating < 1 || rating > 10 ) {
-    //   return res.status(409).json({status:'err', msg:'rating must be number from 1-10'})
-    // }    
-    
     try {
 
-    const checkGenreSize = await tvShowModel.genreSizeTvShow()
+    const checkGenre = await tvShowModel.genreidTvShow(genreid)
     
-    if(genreid > checkGenreSize.length || genreid < 0  ){
+    if(checkGenre === 0  ){
       return res.status(409).json({status:'err', msg:'wrong genre'})
     }
-    
-    //validacija End
-    
     
       const postTvShowResult = await tvShowModel.createTvShow({
 
@@ -106,18 +85,27 @@ const tvShowsController = {
       id,
       newData
     )
+   
     if(updateTvShow === 0){
       return res.status(404).json({
         status:'err',
-        msg:'tvshow not found'
+        msg:'movie not found'
       })
     }
+
+    if(updateTvShow === 'ERROR'){
+      return res.status(500).json({
+        status:'err',
+        msg:'DB error'
+      })
+    }
+   
     res.status(200).json({status:'ok', msg:'tvshow updated success'})
+
    } catch (error) {
     console.error(error)
    }
-    
-      
+
   },
   
   deleteTvShows: async (req, res) => {
@@ -136,8 +124,7 @@ const tvShowsController = {
       console.error(error)
     }
   }
-  
-  
+    
 }
 export { tvShowsController }
 

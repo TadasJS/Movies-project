@@ -7,6 +7,7 @@ const genre = express.Router()
 
 genre.get('/', genreController.genreGet )
 genre.post('/', genreController.genrePost )
-genre.delete('/', genreController.genreDelete )
+genre.delete('/:id', genreController.genreDelete )
+genre.put('/:id', genreController.genrePut )
 
 export { genre }

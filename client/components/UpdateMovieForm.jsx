@@ -3,24 +3,38 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './CreateCardForm.css'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { GenreSelect } from './genreSelect';
 
 export default function UpdateMovieForm() {
   const { id } = useParams(); 
 
- 
+ //genre select from DB
+ const [genreList, setGenreList] = useState([]);
+  
+ useEffect(() => {
+   axios
+     .get('http://localhost:3000/api/genre/')
+     .then((response) => {
+       setGenreList(response.data.data);
+     })
+     .catch((error) => console.error("Fetching movie list failed:", error));
+ }, []);
+
+//end genre select from DB
   
 
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState(null); 
+  const [newData, setNewData] = useState(null)
   const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     axios
       .get(`http://localhost:3000/api/movies/${id}`)
       .then((response) => {
-        setFormData(response.data.data);
-        setLoading(false); 
+        setFormData(response.data.data[0]);
+        setLoading(false);         
       })
       .catch((error) => {
         console.error('Unable to get movie data:', error);
@@ -28,12 +42,15 @@ export default function UpdateMovieForm() {
       });
   }, [id]);
 
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:3000/api/movies/${id}`, formData)
+      .put(`http://localhost:3000/api/movies/${id}`, newData)
+      .then((data) => console.log(data))
       .then(() => {
-        navigate('/');
+        // navigate('/');
       })
       .catch((error) => {
         console.error('Updating movie failed:', error);
@@ -59,8 +76,8 @@ export default function UpdateMovieForm() {
               <Form.Control
                 type="text"
                 name="title"
-                value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+               
+                onChange={(e) => setNewData({ ...newData, title: e.target.value })}
               />
             </Form.Group>
 
@@ -68,10 +85,9 @@ export default function UpdateMovieForm() {
               <Form.Label className="fs-4">Description:</Form.Label>
               <Form.Control
                 as="textarea"
-                rows={5}
                 name="description"
-                value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              
+                onChange={(e) => setNewData({ ...newData, description: e.target.value })}
               />
             </Form.Group>
 
@@ -80,8 +96,8 @@ export default function UpdateMovieForm() {
               <Form.Control
                 type="text"
                 name="img_url"
-                value={formData.img_url}
-                onChange={(e) => setFormData({ ...formData, img_url: e.target.value })}
+           
+                onChange={(e) => setNewData({ ...newData, img_url: e.target.value })}
               />
             </Form.Group>
 
@@ -90,8 +106,8 @@ export default function UpdateMovieForm() {
               <Form.Control
                 type="text"
                 name="thumbnail_url"
-                value={formData.thumbnail_url}
-                onChange={(e) => setFormData({ ...formData, thumbnail_url: e.target.value })}
+             
+                onChange={(e) => setNewData({ ...newData, thumbnail_url: e.target.value })}
               />
             </Form.Group>
 
@@ -100,28 +116,32 @@ export default function UpdateMovieForm() {
               <Form.Control
                 type="text"
                 name="year"
-                value={formData.year}
-                onChange={(e) => setFormData({ ...formData, year: e.target.value })}
+        
+                onChange={(e) => setNewData({ ...newData, year: e.target.value })}
               />
             </Form.Group>
 
-            <Form.Group className="mb-2">
-              <Form.Label className="fs-4">Genre ID:</Form.Label>
-              <Form.Control
-                type="text"
-                name="genreId"
-                value={formData.genreId}
-                onChange={(e) => setFormData({ ...formData, genreId: e.target.value })}
-              />
-            </Form.Group>
+             <Form.Group className="mb-2">
+                        <Form.Label className="fs-4" id="inputGroup-sizing-default">Genre:</Form.Label>
+                        <select name='genreid' onChange={(e) => setNewData({ ...newData, genreid: e.target.value })} 
+                        className={`form-control  form-select-sm  `} aria-label=".form-select-sm example" required>
+                    <option select="">Select genre</option>
+                     { genreList.map((genre) => ( 
+                            <GenreSelect
+                              key={genre.id}
+                              id={genre.id}
+                              genreType={genre.genre_type}
+                            />))}
+                  </select>
+                        </Form.Group>
 
             <Form.Group className="mb-2">
               <Form.Label className="fs-4">Rating:</Form.Label>
               <Form.Control
                 type="text"
                 name="rating"
-                value={formData.rating}
-                onChange={(e) => setFormData({ ...formData, rating: e.target.value })}
+               
+                onChange={(e) => setFormData({ ...newData, rating: e.target.value })}
               />
             </Form.Group>
 

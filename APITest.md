@@ -108,7 +108,7 @@ http://localhost:3000/api/movies
         "img_url": "asfas1",
         "thumbnail_url": "asfasf1",
         "year": 2025,
-        "genreid": 1,
+        "genre_type": "horror"
         "rating": 3
     }
 }
@@ -283,7 +283,7 @@ http://localhost:3000/api/tvshows
         "img_url": "asfas1",
         "thumbnail_url": "asfasf1",
         "year": 2025,
-        "genreid": 1,
+        "genre_type": "horror"
         "rating": 3
     }
 }

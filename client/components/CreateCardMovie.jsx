@@ -1,8 +1,9 @@
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { GenreSelect } from "./genreSelect";
 
 
 export function CreateCardMovie() {
@@ -33,6 +34,18 @@ export function CreateCardMovie() {
 
     const [formErr, setFormErr] = useState('')
     const [formValid, setFormValid] = useState('')
+
+    const [genreList, setGenreList] = useState([]);
+  
+    useEffect(() => {
+      axios
+        .get('http://localhost:3000/api/genre/')
+        .then((response) => {
+          setGenreList(response.data.data);
+        })
+        .catch((error) => console.error("Fetching movie list failed:", error));
+    }, []);
+  
    
 
 
@@ -155,12 +168,10 @@ export function CreateCardMovie() {
         if( genre === 'Select genre'){
             setGenreErr(true)
             setGenreValid(false)
-            console.log('trueeeee')
             return
         }else{
             setGenreErr(false)
             setGenreValid(true)
-            console.log('false')
         }
 
 
@@ -210,7 +221,7 @@ export function CreateCardMovie() {
     
     })
     // .then(() => {naviagate('/')})
-    .catch((error) => console.log(error))
+    .catch((error) => console.error(error))
 
 }
 
@@ -273,9 +284,12 @@ export function CreateCardMovie() {
                 <Form.Label className="fs-4" id="inputGroup-sizing-default">Genre:</Form.Label>
                 <select onChange={updateGenre} className={`form-control ${genreValid ? 'is-valid': ''} ${genreErr ? 'is-invalid': ''} form-select-sm  `} aria-label=".form-select-sm example" required>
             <option select="">Select genre</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            { genreList.map((genre) => ( 
+        <GenreSelect
+          key={genre.id}
+          id={genre.id}
+          genreType={genre.genre_type}
+        />))}
           </select>
             <div className="invalid-feedback">
                   {genreErr}

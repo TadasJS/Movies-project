@@ -1,8 +1,10 @@
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import axios from "axios"
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
+import { GenreSelect } from "./genreSelect";
+
 
 
 export function CreateCardSerial() {
@@ -30,6 +32,20 @@ export function CreateCardSerial() {
     const [rating, setRating] = useState('')
     const [ratingErr, setRatingErr] = useState('')
     const [ratingValid, setRatingValid] = useState(false)
+
+//genre select from DB
+    const [genreList, setGenreList] = useState([]);
+  
+    useEffect(() => {
+      axios
+        .get('http://localhost:3000/api/genre/')
+        .then((response) => {
+          setGenreList(response.data.data);
+        })
+        .catch((error) => console.error("Fetching movie list failed:", error));
+    }, []);
+  
+//end genre select from DB
 
     function updateTitle(e) {
         setTitle(e.target.value)
@@ -187,7 +203,7 @@ for (const i of symbList2){
     })
     .then((data) => console.log(data.data))
     // .then(() => {navigate('/')})
-    .catch((error) => console.log(error))
+    .catch((error) => console.error(error))
 
 }
 
@@ -239,9 +255,12 @@ for (const i of symbList2){
             <Form.Label className="fs-4" id="inputGroup-sizing-default">Genre:</Form.Label>
             <select onChange={updateGenre} className={`form-control ${genreValid ? 'is-valid': ''} ${genreErr ? 'is-invalid': ''} form-select-sm  `} aria-label=".form-select-sm example" required>
         <option select="">Select genre</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+         { genreList.map((genre) => ( 
+                <GenreSelect
+                  key={genre.id}
+                  id={genre.id}
+                  genreType={genre.genre_type}
+                />))}
       </select>
         <div className="invalid-feedback">
               {genreErr}

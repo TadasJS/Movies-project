@@ -19,7 +19,7 @@ try {
   res.status(200).json({status: 'ok', msg: 'user loged in'})
 
 } catch (error) {
-  console.log(error)
+  console.error(error)
 }
     
 }

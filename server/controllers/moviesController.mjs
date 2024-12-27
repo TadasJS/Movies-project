@@ -11,7 +11,8 @@ const movieController = {
         msg:'Get all movies list',
         data: dbMoviesData,
       })
-
+      
+      
     } catch (err) {
         console.error(err)
         res.status(500).json({ status: 'err', msg: "Can't get movies data" });
@@ -45,35 +46,15 @@ const movieController = {
   postMovie: async (req, res) => {
     const {title, description, img_url, thumbnail_url, year, genreid, rating } = req.body
 
-    // validacija start
-
-    // if(title.length === 0 || description.length === 0 || img_url.length === 0 || thumbnail_url.length === 0
-    //   || year.length === 0 || genreid.length === 0 || rating.length === 0){ 
-
-    //  return res.status(409).json({status:'err', msg:'field cannot be empty'})
-
-    // }
-   
-    // if(typeof year !== 'number' || year < 1888 || year > 2025){
-    //   return res.status(409).json({status:'err', msg:'year must be number, year must be 1888-2025 digits'})
-    // }
-
-    // if(typeof rating !== 'number' || rating < 1 || rating > 10) {
-    //   return res.status(409).json({status:'err', msg:'rating must be number from 1-10'})
-    // }   
-
     try {
 
-    const checkGenreSize = await movieModel.genreSizeMovie()
+    const checkGenre = await movieModel.genreidMovie(genreid)
 
-    if(genreid > checkGenreSize.length || genreid < 0  ){
+    if(checkGenre === 0 ){
       return res.status(409).json({status:'err', msg:'wrong genre'})
     }
 
-    //validacija end
-
-
-      const postMovieResult = await movieModel.createMovie({
+       const postMovieResult = await movieModel.createMovie({
         title,
         description,
         img_url,
@@ -95,14 +76,14 @@ const movieController = {
   },
   
   putMovie: async (req, res) => {
-    const {id} = req.params
-   
-   const newData = req.body
+    const {id} = req.params   
+    const newData = req.body
+  
    
    try {
     const updateMovie = await movieModel.updateMovie(
-      id,
-      newData
+      newData,
+      id,    
     )
 
 
@@ -123,15 +104,11 @@ const movieController = {
    } catch (error) {
     console.error(error)
    }
-    
       
   },
   
   deleteMovie: async (req, res) => {
     const {id} = req.params
-    
-    
-
     try {
       const deleteMovie = await movieModel.deleteMovie(
         id,
