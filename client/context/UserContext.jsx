@@ -1,39 +1,41 @@
 import { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const initialUser = {
-    loggedIn: false,   
-}
 
-export const UserContext = createContext(undefined)
+export const UserContext = createContext()
 
-export function UserContextValues () {
-    const [user, setUser] = useState (initialUser)
+export function UserProvider ({children}) {
     
-    function loginUser() {
-        console.log('loggin in ...')
-        setUser(prew => ({...prew, loggedIn: true}))
-    }
-
-    function logoutUser() {
-        console.log('logout in ...')
-        setUser(prew => ({...prew, loggedIn: false}))
-    }
+    const [user, setUser] = useState ({
+        email:'',
+        user_role: []
+    })
     
-    // function updateUsername(newUsername) {
-        //     console.log('loggin in ...')
-        //     setUser(prew => ({...prew, username: newUsername}))
-        // }
+
+    
+    function loginUser(person) {
+
+        if (person === 'admin') {
+            setUser({email: person, user_role: ['admin']})
+        }  
+
+        if(person === 'user'){
+            setUser({email: person, user_role: ['user']})
+        }   
         
-        return {
-            user,  
-            loginUser, 
-            logoutUser, 
-        }
-}
-
-export function UserCntextProvider ({children}) {
+      console.log('login end....')
+    }
+    
+    function logoutUser() {
+        setUser({
+            email: '',
+            user_roles: [],
+               
+        })        
+    }
+ 
     return(
-       <UserContext.Provider value={UserContextValues()}>
+       <UserContext.Provider value={{user, loginUser, logoutUser}}>
         {children}
        </UserContext.Provider>
     )

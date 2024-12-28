@@ -11,12 +11,12 @@ try {
     password
   )
 
-  if (loginValuesCheck === 0 ){
+  if (loginValuesCheck.length === 0 ){
     return res.status(404).json({status:'err', msg:'check your email and password'
     })
   }
 
-  res.status(200).json({status: 'ok', msg: 'user loged in'})
+  res.status(200).json({status: 'ok', msg: 'user loged in', data: loginValuesCheck})
 
 } catch (error) {
   console.error(error)

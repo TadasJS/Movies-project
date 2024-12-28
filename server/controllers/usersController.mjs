@@ -2,8 +2,8 @@ import { userModel } from "../models/userModel.mjs";
 
 const usersController = {
     postUser: async (req, res) =>{
-        const {first_name, last_name, email, username, password} = req.body; 
-        
+        const {first_name, last_name, email, username, password, roleid} = req.body; 
+      
         try {
             const checkUsername = await userModel.checkUsername(username)
 
@@ -14,7 +14,6 @@ const usersController = {
             const checkUserEmail = await userModel.checkUserEmail(
                 email,              
             )
-
           
             if(checkUserEmail === 1){
                 return res.status(409).json({status:'err', msg: 'user with this credentials already exsist'})
@@ -26,6 +25,7 @@ const usersController = {
                 email,
                 username,
                 password,
+                roleid,
             )
 
             if (createUser === 0){

@@ -9,7 +9,7 @@ import { UserContext } from "../context/UserContext";
 export function Login() {
 
     const navigate = useNavigate()
-    const ctx = useContext(UserContext)
+    const{userLogin} = useContext(UserContext)
 
     
     const[email, setEmail] = useState('')
@@ -21,8 +21,6 @@ export function Login() {
 
     const [formErr, setFormErr] = useState('')
     const [formValid, setFormValid] = useState('')
-   
-
 
     
     function updateEmail(e) {
@@ -33,9 +31,6 @@ export function Login() {
         setPassword(e.target.value)
     }
    
-
-    const symbList ='`~!@#$%^&*()_+-=[]{}|":;?/>.<,\'0123456789'
-    const symbList3 ='`~!@#$%^&*()+=[]{}|-":;?/><,\''
     const symbList4 ='`~!#$%^&*()_+=[]{}|-":;?/><,\''
     
     const pwdFilter = /^(?=.*\p{Ll})(?=.*\p{Lu})(?=.*[\d|@#$!%*?&])[\p{L}\d@#$!%*?&]{8,50}$/gmu
@@ -62,9 +57,7 @@ export function Login() {
                    return setEmailErr(`can't use symbols`)                    
                 }
             }
-        }
-
-       
+        }      
         
         if(!password || password.length < 8|| !pwdFilter.test(password)){
             setPasswordErr(`The password must consist of one lowercase letter, one uppercase letter, one symbol and one number.`)
@@ -82,12 +75,14 @@ export function Login() {
         email : email,
         password : password, 
     })
-    .then((data) => {       
+    .then((data) => {      
+        console.log(data.data) 
           
         if(data.data.status === 'ok'){
             setFormValid(data.data.msg)
             setFormErr('')
-            ctx.loginUser()
+            // ctx.loginUser()
+            // userLogin()
         }
     })
     // .then(() => {navigate('/')})
@@ -118,8 +113,8 @@ export function Login() {
         <h4 className="alert-heading">Error message</h4> 
          <p className="mb-0">{formErr}</p>
           </div>)}
-             <form onSubmit={handleSubmit} action="">
-           
+             
+        <form onSubmit={handleSubmit} action="">           
             <Form.Group className="mb-2">
                 <Form.Label className="fs-4" id="inputGroup-sizing-default">Email:</Form.Label>
                 <Form.Control onChange={updateEmail}  type="email" className={`form-control ${emailValid ? 'is-valid': ''} ${emailErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
