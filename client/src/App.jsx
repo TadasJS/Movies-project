@@ -9,37 +9,42 @@ import UpdateMovieForm from "../components/UpdateMovieForm"
 import UpdateTvShowForm from '../components/UpdateTvShowForm'
 import { Registration } from '../pages/Registration'
 import { Login } from '../pages/Login'
-import { UserCntextProvider } from '../context/UserContext'
+import { UserProvider } from '../context/UserContext'
 import { UserLayout } from '../layout/UserLayout'
 import { GenreList } from '../components/GenreList'
+import { UserProfile } from '../pages/UserProfile'
+import { AdminLayout } from '../layout/AdminLayout'
 
 
 
 function App() {
   
   return (
-    <UserCntextProvider>
- <BrowserRouter>         
-   <Routes>
-        <Route Component={BasicLayout}>
-          <Route index path="/" element={<HomePage />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/login" element={<Login />} />
-        </Route>
-        <Route Component={UserLayout}>
-          <Route path="/updateMovie/:id" element={<UpdateMovieForm />} />
-          <Route path="/updateTvshow/:id" element={<UpdateTvShowForm />} />
-          <Route path="/addcardmov" element={<CreateCardMovie />} />
-          <Route path="/addcardser" element={<CreateCardSerial />} />
-          <Route path="/genres" element={<GenreList />} />
-        </Route>
+<UserProvider>
+    <BrowserRouter>         
+      <Routes>
+            <Route Component={BasicLayout}>
+              <Route index path="/" element={<HomePage />} />
+              <Route path="/registration" element={<Registration />} />
+              <Route path="/login" element={<Login />} />
+            </Route>
+            <Route Component={UserLayout}>
+              <Route path="/profile" element={<UserProfile />} />
+            </Route>
+            <Route Component={AdminLayout}>
+              <Route path="/updateMovie/:id" element={<UpdateMovieForm />} />
+              <Route path="/updateTvshow/:id" element={<UpdateTvShowForm />} />
+              <Route path="/addcardmov" element={<CreateCardMovie />} />
+              <Route path="/addcardser" element={<CreateCardSerial />} />
+              <Route path="/genres" element={<GenreList />} />
 
-        <Route Component={BasicLayout}>
-          <Route path="*" element={<NoPage />} />
-        </Route> 
-    </Routes>
- </BrowserRouter>
-</UserCntextProvider>
+            </Route>
+            <Route Component={BasicLayout}>
+              <Route path="*" element={<NoPage />} />
+            </Route> 
+        </Routes>
+    </BrowserRouter>
+</UserProvider>
   )
 }
 

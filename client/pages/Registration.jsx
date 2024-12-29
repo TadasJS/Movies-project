@@ -162,6 +162,7 @@ export function Registration() {
         username : username,
         password : password, 
         repass : repass, 
+        roleid: 1,
     })
     .then((data) => {       
           

@@ -4,7 +4,8 @@ import { pool } from "../database/postgresConnection.mjs"
 const userModel = {
     checkUsername: async (username) => {
         try {
-            const checkUserEmail = await pool.query('SELECT FROM users WHERE username = $1',[username])
+            const checkUserEmail = await pool.query('SELECT FROM users WHERE email = $1',[username])
+        
             return checkUserEmail.rowCount
         } catch (error) {
             console.error(error)
@@ -12,7 +13,6 @@ const userModel = {
 
 
     },
-
 
     checkUserEmail: async (email) => {        
         try {
@@ -24,7 +24,7 @@ const userModel = {
 
     },
 
-    postUser: async (first_name, last_name, email, username, password) => {
+    postUser: async (first_name, last_name, email, username, password, roleid) => {
 
         try {
             const createUser = await pool.query('INSERT INTO users (first_name, last_name, email, username) VALUES ($1, $2, $3, $4);', 
@@ -37,8 +37,10 @@ const userModel = {
             const findUserId = await pool.query('SELECT * FROM users WHERE email = $1',[email])
 
             const userId = findUserId.rows[0].id
+
+            console.log(userId)
                        
-            const savePassword = await pool.query('INSERT INTO users_secrets (userid, password) VALUES ($1, $2);',[userId, password])
+            const savePassword = await pool.query('INSERT INTO users_secrets (userid, password, roleid ) VALUES ($1, $2, $3);',[userId, password, roleid ])
 
             return savePassword.rowCount
             

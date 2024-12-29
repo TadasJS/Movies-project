@@ -5,11 +5,16 @@ const loginModel = {
     checkLoginValues: async (email, password) => {
       
         try {
-            const checkLoginValues = await pool.query(`SELECT * FROM users_secrets, users WHERE password = $1 and email = $2;`,
-               [password, email]
+            const checkLoginValues = await pool.query(`
+                SELECT users.email, users.username, users_secrets.password, users_roles.role_name 
+                FROM users
+                JOIN users_secrets ON users.id = users_secrets.userid
+                JOIN users_roles ON users_secrets.roleid = users_roles.id
+                WHERE email = $1 and password = $2`,
+               [ email, password]
             )
-                     
-           return checkLoginValues.rowCount
+                 
+           return checkLoginValues.rows
             
             
         } catch (error) {
