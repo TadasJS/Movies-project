@@ -8,7 +8,7 @@ export function UserProvider ({children}) {
     
     const [user, setUser] = useState ({
         email:'',
-        user_role: []
+        user_role: '',
     })
     
 
@@ -16,20 +16,24 @@ export function UserProvider ({children}) {
     function loginUser(person) {
 
         if (person === 'admin') {
-            setUser({email: person, user_role: ['admin']})
+            setUser({email: person, user_role:'admin'})
+            console.log('admin logedin ...')
         }  
 
         if(person === 'user'){
-            setUser({email: person, user_role: ['user']})
+            setUser({email: person, user_role:'user'})
+            console.log('user logedin ...')
         }   
         
       console.log('login end....')
     }
+
+    console.log(user)
     
     function logoutUser() {
         setUser({
             email: '',
-            user_roles: [],
+            user_role: '',
                
         })        
     }

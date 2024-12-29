@@ -9,7 +9,9 @@ import { UserContext } from "../context/UserContext";
 export function Login() {
 
     const navigate = useNavigate()
-    const{userLogin} = useContext(UserContext)
+    const ctx = useContext(UserContext)
+
+    console.log(ctx)
 
     
     const[email, setEmail] = useState('')
@@ -76,16 +78,14 @@ export function Login() {
         password : password, 
     })
     .then((data) => {      
-        console.log(data.data) 
-          
+                  
         if(data.data.status === 'ok'){
             setFormValid(data.data.msg)
-            setFormErr('')
-            // ctx.loginUser()
-            // userLogin()
+            setFormErr('')            
+            ctx.loginUser(data.data.data[0].role_name)           
         }
     })
-    // .then(() => {navigate('/')})
+    .then(() => {navigate('/profile')})
     .catch((error) => {
         console.error(error)
        

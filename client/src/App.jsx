@@ -13,6 +13,7 @@ import { UserProvider } from '../context/UserContext'
 import { UserLayout } from '../layout/UserLayout'
 import { GenreList } from '../components/GenreList'
 import { UserProfile } from '../pages/UserProfile'
+import { AdminLayout } from '../layout/AdminLayout'
 
 
 
@@ -28,14 +29,16 @@ function App() {
               <Route path="/login" element={<Login />} />
             </Route>
             <Route Component={UserLayout}>
+              <Route path="/profile" element={<UserProfile />} />
+            </Route>
+            <Route Component={AdminLayout}>
               <Route path="/updateMovie/:id" element={<UpdateMovieForm />} />
               <Route path="/updateTvshow/:id" element={<UpdateTvShowForm />} />
               <Route path="/addcardmov" element={<CreateCardMovie />} />
               <Route path="/addcardser" element={<CreateCardSerial />} />
               <Route path="/genres" element={<GenreList />} />
-              <Route path="/profile" element={<UserProfile />} />
-            </Route>
 
+            </Route>
             <Route Component={BasicLayout}>
               <Route path="*" element={<NoPage />} />
             </Route> 
