@@ -37,8 +37,6 @@ const userModel = {
             const findUserId = await pool.query('SELECT * FROM users WHERE email = $1',[email])
 
             const userId = findUserId.rows[0].id
-
-            console.log(userId)
                        
             const savePassword = await pool.query('INSERT INTO users_secrets (userid, password, roleid ) VALUES ($1, $2, $3);',[userId, password, roleid ])
 
