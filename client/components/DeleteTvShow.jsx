@@ -31,7 +31,7 @@ export function DeleteTvShow(props){
 
 
     function handleOnSubmit() {
-        e.preventDefault();
+        // e.preventDefault();
 
     axios
       .delete(`http://localhost:3000/api/tvshows/${props.id}`, formData)
@@ -71,7 +71,7 @@ export function DeleteTvShow(props){
             </div>
 
             <div className="modal-body p-5 pt-0">
-              <form onSubmit={handleOnSubmit}>
+              <form onSubmit={handleOnSubmit} >
                 <Button
                   className="buttonSize mb-2 btn btn-lg rounded-3 btn-success"
                   variant="secondary"
@@ -79,14 +79,12 @@ export function DeleteTvShow(props){
                 >
                   No
                 </Button>
-                <button
+                <Button
                   onClick={handleClose}
-                  className="buttonSize ms-1
-           mb-2 btn btn-lg rounded-3 btn-danger"
-                  type="submit"
-                >
+                  className="buttonSize ms-1 mb-2 btn btn-lg rounded-3 btn-danger"
+                  type="submit">
                   Yes
-                </button>
+                </Button>
               </form>
             </div>
           </div>
