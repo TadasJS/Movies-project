@@ -13,7 +13,7 @@ export function UserLayout() {
     <>
       <Header />
       <main>
-       {ctx.user.user_role === 'user' ? <Outlet /> : <h1>Only logged user can see this page</h1> }
+       {(ctx.user.user_role === 'user'||ctx.user.user_role === 'admin') ? <Outlet /> : <h1>Only logged user can see this page</h1> }
       </main>
       <Footer />
     </>
