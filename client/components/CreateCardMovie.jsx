@@ -2,13 +2,21 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Modal } from 'react-bootstrap';
 import { GenreSelect } from "./genreSelect";
+import { Link } from "react-router-dom";
 
 
 export function CreateCardMovie() {
 
     const navigate = useNavigate()
+
+    const [show, setShow] = useState(false);
+    const handleClose = () =>{
+        setShow(false);
+        window.location.reload()     
+    } 
+    const handleShow = () => setShow(true);
 
     const[title, setTitle] = useState('')
     const[titleErr, setTitleErr] = useState('')
@@ -212,20 +220,21 @@ export function CreateCardMovie() {
         if(data.data.status === 'ok'){
             setFormValid(data.data.msg)
             setFormErr('')
+            handleShow()
           }
           if(data.data.status === 'err'){
             setFormErr(data.data.msg)
             setFormValid('')
           }
-    
-    
     })
     // .then(() => {naviagate('/')})
-    .catch((error) => console.error(error))
+    .catch((error) => console.error(error))  
 
 }
 
-
+function handleCreateNew(){
+    window.location.reload()  
+}
     return (        
         <Container className="">
             <Row>
@@ -308,6 +317,26 @@ export function CreateCardMovie() {
         </form>
         </Col>
       </Row>
+      <>     
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Message</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <div class="alert alert-success" role="alert">
+                  Movie created successfully
+            </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="success" onClick={handleCreateNew}>
+            Create Another Movie
+          </Button>
+          <Link to='/' type='button' className="btn btn-success ms-3" >
+            Go to home page
+          </Link>
+        </Modal.Footer>
+      </Modal>
+    </>
         </Container>
     )
 }

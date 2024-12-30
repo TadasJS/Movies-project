@@ -1,15 +1,23 @@
 
 import { useState, useEffect } from "react"
 import axios from "axios"
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Modal } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { GenreSelect } from "./genreSelect";
+import { Link } from "react-router-dom";
 
 
 
 export function CreateCardSerial() {
 
     const navigate = useNavigate()
+
+    const [show, setShow] = useState(false);
+    const handleClose = () =>{
+        setShow(false);
+        window.location.reload()     
+    } 
+    const handleShow = () => setShow(true);
 
     const[title, setTitle] = useState('')
     const[titleErr, setTitleErr] = useState('')
@@ -32,6 +40,9 @@ export function CreateCardSerial() {
     const [rating, setRating] = useState('')
     const [ratingErr, setRatingErr] = useState('')
     const [ratingValid, setRatingValid] = useState(false)
+
+    const [formErr, setFormErr] = useState('')
+    const [formValid, setFormValid] = useState('')
 
 //genre select from DB
     const [genreList, setGenreList] = useState([]);
@@ -201,20 +212,45 @@ for (const i of symbList2){
         genreid:genre, 
         rating,
     })
-    .then((data) => console.log(data.data))
-    // .then(() => {navigate('/')})
+    .then((data) => {
+        if(data.data.status === 'ok'){
+            setFormValid(data.data.msg)
+            setFormErr('')
+            handleShow()
+          }
+          if(data.data.status === 'err'){
+            setFormErr(data.data.msg)
+            setFormValid('')
+          }
+    })
+
     .catch((error) => console.error(error))
 
 }
 
-
+function handleCreateNew(){
+    window.location.reload()  
+}
 
     return (
+
+        
 
         <Container className="">
         <Row>
     <Col md={{ span: 6, offset: 3 }}>
       <h2 className='formCenter' >Create Tv_Show</h2>
+
+      {formValid && (<div className="ms-5 me-5 alert alert-success " role="alert">
+        <h4 className="alert-heading">Well done!</h4> 
+         <p className="mb-0">{formValid}</p>
+          </div>)}
+
+          {formErr && (<div className="ms-5 me-5 alert alert-danger " role="alert">
+        <h4 className="alert-heading">Error message</h4> 
+         <p className="mb-0">{formErr}</p>
+          </div>)}
+
          <form onSubmit={handleSubmit} action="">
         <Form.Group className="mb-2">
             <Form.Label className="fs-4 " id="">Title:</Form.Label>
@@ -279,6 +315,26 @@ for (const i of symbList2){
     </form>
     </Col>
   </Row>
+  <>     
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Message</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <div class="alert alert-success" role="alert">
+                  Movie created successfully
+            </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="success" onClick={handleCreateNew}>
+            Create Another Tv_Show
+          </Button>
+          <Link to='/' type='button' className="btn btn-success ms-3" >
+            Go to home page
+          </Link>
+        </Modal.Footer>
+      </Modal>
+    </>
     </Container>
 
     )
