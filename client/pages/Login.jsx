@@ -11,9 +11,7 @@ export function Login() {
     const navigate = useNavigate()
     const ctx = useContext(UserContext)
 
-    console.log(ctx)
-
-    
+       
     const[email, setEmail] = useState('')
     const[emailErr, setEmailErr] = useState('')
     const[emailValid, setEmailValid] = useState(false)
