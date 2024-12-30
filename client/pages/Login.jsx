@@ -33,7 +33,7 @@ export function Login() {
    
     const symbList4 ='`~!#$%^&*()_+=[]{}|-":;?/><,\''
     
-    const pwdFilter = /^(?=.*\p{Ll})(?=.*\p{Lu})(?=.*[\d|@#$!%*?&])[\p{L}\d@#$!%*?&]{8,50}$/gmu
+    const pwdFilter = /^((?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W)\w.{5,20}\w)/
     const emailFilter = /^\S+@\S+\.\S+$/
     
     function handleSubmit (e) {
@@ -59,7 +59,7 @@ export function Login() {
             }
         }      
         
-        if(!password || password.length < 8|| !pwdFilter.test(password)){
+        if(!password || password.length < 8 || !pwdFilter.test(password)){
             setPasswordErr(`The password must consist of one lowercase letter, one uppercase letter, one symbol and one number.`)
             setPasswordValid(false)
             return
