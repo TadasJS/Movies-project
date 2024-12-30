@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -7,13 +6,21 @@ import Modal from "react-bootstrap/Modal";
 
 
 export function DeleteTvShow(props){
+
+  const [show1, setShow1] = useState(false);
+  const handleClose1 = () => {
+    setShow1(false)
+    window.location.reload()  
+  }
+  const handleShow1 = () => setShow1(true);
     
     
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [formData, setFormData] = useState(null); 
-    const [loading, setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
+    const [message, setMessage] = useState('') 
     
     
     useEffect(() => {
@@ -30,16 +37,21 @@ export function DeleteTvShow(props){
       }, []);
 
 
-    function handleOnSubmit() {
-        // e.preventDefault();
+    function handleOnSubmit(e) {
+        e.preventDefault();
 
     axios
       .delete(`http://localhost:3000/api/tvshows/${props.id}`, formData)
+      .then((data) => {        
+        if(data.data.status === 'ok'){
+         setMessage(data.data.msg)
+        }
+      })
       .then(() => {
         // navigate('/');
       })
       .catch((error) => {
-        console.error('Updating movie failed:', error);
+        console.error('Updating tv_show failed:', error);
       });
       
   };
@@ -50,6 +62,11 @@ export function DeleteTvShow(props){
 
   if (!formData) {
     return <p>Error: movie data not found.</p>; 
+  }
+
+  if(message){
+    handleShow1()    
+    setMessage('')
   }
       
 
@@ -90,6 +107,20 @@ export function DeleteTvShow(props){
           </div>
         </div>
       </Modal>
+
+      <Modal show={show1} onHide={handleClose1}>
+          <Modal.Header closeButton>
+            <Modal.Title>Message</Modal.Title>
+          </Modal.Header>
+         
+            <div class="alert alert-success" role="alert">
+                  TV_show deleted successfully
+            </div>
+         
+          <Modal.Footer>         
+          </Modal.Footer>
+        </Modal>
+        
     </>
       
     )

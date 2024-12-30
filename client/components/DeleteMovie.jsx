@@ -7,12 +7,20 @@ import Modal from "react-bootstrap/Modal";
 
 export function DeleteMovie(props){
     
-    
+  const [show1, setShow1] = useState(false);
+  const handleClose1 = () => {
+    setShow1(false)
+    window.location.reload()  
+  }
+  const handleShow1 = () => setShow1(true);
+
+
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [formData, setFormData] = useState(null); 
     const [loading, setLoading] = useState(true); 
+    const [message, setMessage] = useState('')
     
     
     useEffect(() => {
@@ -28,10 +36,15 @@ export function DeleteMovie(props){
           });
       }, []);
 
-    function handleOnSubmit() {
-        // e.preventDefault();
+    function handleOnSubmit(e) {
+        e.preventDefault();
     axios
       .delete(`http://localhost:3000/api/movies/${props.id}`, formData)
+      .then((data) => {        
+        if(data.data.status === 'ok'){
+         setMessage(data.data.msg)
+        }
+      })
       .then(() => {
         // navigate('/');
       })
@@ -48,7 +61,11 @@ export function DeleteMovie(props){
   if (!formData) {
     return <p>Error: movie data not found.</p>; 
   }
-      
+     
+  if(message){
+    handleShow1()    
+    setMessage('')
+  }
     return(
         <>
       <Button className="ms-2 pe-3 ps-3" variant="danger" onClick={handleShow}>
@@ -65,7 +82,7 @@ export function DeleteMovie(props){
               </h1>
               {/* <button type="button" className="btn-close " data-bs-dismiss="modal" aria-label="Close"></button> */}
             </div>
-
+            
             <div className="modal-body p-5 pt-0">
               <form onSubmit={handleOnSubmit}>
                 <Button
@@ -87,7 +104,21 @@ export function DeleteMovie(props){
             </div>
           </div>
         </div>
-      </Modal>
+      </Modal>  
+         
+       <Modal show={show1} onHide={handleClose1}>
+          <Modal.Header closeButton>
+            <Modal.Title>Message</Modal.Title>
+          </Modal.Header>
+         
+            <div class="alert alert-success" role="alert">
+                  Movie deleted successfully
+            </div>
+         
+          <Modal.Footer>         
+          </Modal.Footer>
+        </Modal>
+        
     </>
       
     )
