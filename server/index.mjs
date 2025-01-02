@@ -2,7 +2,6 @@ import express from "express";
 import { pgConnection } from "./database/postgresConnection.mjs";
 
 import cors from 'cors'
-import bodyParser from 'body-parser';
 
 import { api } from '../server/routes/index.mjs'
 
@@ -19,7 +18,8 @@ const initDataBase = async () => {
     process.exit(1);
   }
 };
- 
+// const jwt = require('jsonwebtoken')
+
 const startServer = async () => {
   await initDataBase();
   const PORT = 3000;
@@ -27,7 +27,7 @@ const startServer = async () => {
 
 
   app.use(cors())
- app.use(bodyParser.json())
+  app.use(express.json())
 //  app.use(bodyParser.urlencoded({ extended: false })); krc nenaudot
 
   app.get("/", (req, res) => {

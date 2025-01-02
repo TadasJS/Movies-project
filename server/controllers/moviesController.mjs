@@ -4,6 +4,9 @@ import { movieModel } from "../models/movieModel.mjs";
 
 const movieController = {
   getMovie: async (req, res) => {
+
+    // const jwt = require('jsonwebtoken')
+
     try {
       const dbMoviesData = await movieModel.getMovies()
       res.status(200).json({

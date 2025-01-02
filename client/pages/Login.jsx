@@ -3,15 +3,16 @@ import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { UserContext } from "../context/UserContext";
+import { UserContext, UserProvider } from "../context/UserContext";
 
 
 export function Login() {
 
     const navigate = useNavigate()
     const ctx = useContext(UserContext)
+    const {loginUser} = ctx
 
-       
+    const[user, setUser] = useState() 
     const[email, setEmail] = useState('')
     const[emailErr, setEmailErr] = useState('')
     const[emailValid, setEmailValid] = useState(false)
@@ -70,28 +71,35 @@ export function Login() {
      
         //validacijos pabaiga  
 
-        axios
-        .post('http://localhost:3000/api/users/login',{       
-        email : email,
-        password : password, 
-    })
-    .then((data) => {      
-                  
-        if(data.data.status === 'ok'){
-            setFormValid(data.data.msg)
-            setFormErr('')            
-            ctx.loginUser(data.data.data[0].role_name)           
-        }
-    })
-    .then(() => {navigate('/profile')})
-    .catch((error) => {
-        console.error(error)
+        setUser({
+            email: email,
+            password: password
+        })
+
+        loginUser(user)
+
+    //     axios
+    //     .post('http://localhost:3000/api/users/login',{       
+    //     email : email,
+    //     password : password, 
+    // })
+    // .then((data) => {      
+    //      console.log(data)         
+    //     if(data.data.status === 'ok'){
+    //         setFormValid(data.data.msg)
+    //         setFormErr('')            
+    //         // ctx.loginUser(data.data.data[0].role_name)           
+    //     }
+    // })
+    // .then(() => {navigate('/profile')})
+    // .catch((error) => {
+    //     console.error(error)
        
-    if(error.response.data.status === 'err'){
-        setFormErr(error.response.data.msg)
-        setFormValid('')
-        }  
-    })
+    // if(error.response.data.status === 'err'){
+    //     setFormErr(error.response.data.msg)
+    //     setFormValid('')
+    //     }  
+    // })
 
 }
 

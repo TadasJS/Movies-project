@@ -55,3 +55,7 @@ Kaip pasileisti projektą
 * Pasikeisti pagal save prisijungimo duomenis postgresConnection faile. 
 * Jeigu db lentelės užpildytos veikimo pasitikrinimo adresas(laikinas) http://localhost:3000/dbtest
 
+## tokenui naudoju
+
+* server papkej suinstaliuoti paketą $ npm i jsonwebtoken
+* server papkej suinstaliuoti paketą $ npm i dotenv

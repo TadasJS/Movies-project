@@ -1,9 +1,12 @@
 import { pool } from "../database/postgresConnection.mjs"
 
+
 const loginModel = {
+
+    
     
     checkLoginValues: async (email, password) => {
-      
+          
         try {
             const checkLoginValues = await pool.query(`
                 SELECT users.email, users.username, users_secrets.password, users_roles.role_name 

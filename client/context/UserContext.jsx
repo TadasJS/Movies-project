@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext, useState } from "react";
 
 
@@ -22,17 +23,30 @@ export function UserProvider ({children}) {
     
     function loginUser(person) {
 
-        if (person === 'admin') {
-            setUser({...user, email: person, user_role:'admin'})            
-            localStorage.setItem('token', JSON.stringify({email: person, user_role:'admin'}))
+        console.log(person)
+        try {
+            axios
+            .post('http://localhost:3000/api/users/login', person)
+            .then((data) => {
+                console.log(data.data)
+                setToken(data.data)
+                console.log('cia tokenas...',token)
+            })
+            
+        } catch (error) {
+            console.error(error)
+        }
+        // if (person === 'admin') {
+        //     setUser({...user, email: person, user_role:'admin'})            
+        //     localStorage.setItem('token', JSON.stringify({email: person, user_role:'admin'}))
            
-        }  
+        // }  
 
-        if(person === 'user'){          
-            setUser({...user, email: person, user_role:'user'})
-            localStorage.setItem('token', JSON.stringify({email: person, user_role:'user'}))
+        // if(person === 'user'){          
+        //     setUser({...user, email: person, user_role:'user'})
+        //     localStorage.setItem('token', JSON.stringify({email: person, user_role:'user'}))
                        
-        }   
+        // }   
         
     }
     
