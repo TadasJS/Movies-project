@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { UserContext } from "../context/UserContext";
-
+import "./Login.css"
 
 export function Login() {
 
@@ -96,9 +96,10 @@ export function Login() {
 }
 
     return (        
-        <Container className="">
+        <div className="login-container">  
+        <Container >
             <Row>
-        <Col md={{ span: 6, offset: 3 }}>
+        <Col md={{ span: 6, offset: 3 }}  className="login-form">
           <h2 className='formCenter' >Login</h2>
 
 
@@ -113,7 +114,7 @@ export function Login() {
           </div>)}
              
         <form onSubmit={handleSubmit} action="">           
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 form-group">
                 <Form.Label className="fs-4" id="inputGroup-sizing-default">Email:</Form.Label>
                 <Form.Control onChange={updateEmail}  type="email" className={`form-control ${emailValid ? 'is-valid': ''} ${emailErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
                 <div className="invalid-feedback">
@@ -121,7 +122,7 @@ export function Login() {
                 </div>
                 </Form.Group>
            
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 form-group">
                 <Form.Label className="fs-4" id="inputGroup-sizing-default">Password:    </Form.Label>
                 <Form.Control onChange={updatePassword}  type="password" className={`form-control ${passwordValid ? 'is-valid': ''} ${passwordErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             <div className="invalid-feedback">
@@ -129,11 +130,15 @@ export function Login() {
                 </div>
                 </Form.Group>
             <div className="d-grid gap-2">
-                <button className="btn btn-outline-primary " type="submit">Submit</button>
+                <button className="btn btn-outline-primary login-btn " type="submit">Submit</button>
             </div>
+            <p className="signup-link">
+          Don't have an account? <a href="/Registration">Sign Up</a>
+        </p>
         </form>
         </Col>
       </Row>
         </Container>
+        </div>
     )
 }
