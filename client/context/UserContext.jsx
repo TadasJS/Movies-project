@@ -1,5 +1,7 @@
 import axios from "axios";
 import { createContext, useState } from "react";
+import {jwtDecode} from 'jwt-decode'
+
 
 
 function getUserFromLocalStorage() {
@@ -23,14 +25,17 @@ export function UserProvider ({children}) {
     
     function loginUser(person) {
 
-        console.log(person)
+     
         try {
             axios
             .post('http://localhost:3000/api/users/login', person)
-            .then((data) => {
-                console.log(data.data)
-                setToken(data.data)
+            .then((res) => {
+                console.log(res.data)
+                setToken(res.data)
                 console.log('cia tokenas...',token)
+                const decoded = jwtDecode(token.toString(), {header: true})
+                setUser({...user, email: decoded.email, username: decoded.username, password:decoded.password, role: decoded.role_name })
+                console.log('cia decoded tokenas...',decoded)
             })
             
         } catch (error) {

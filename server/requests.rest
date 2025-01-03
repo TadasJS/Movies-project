@@ -16,5 +16,4 @@ Content-Type: application/json
 ### 
 
 GET http://localhost:3000/api/dbtest
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYXNmYXNAYXNmYXMuY29tIiwiaWF0IjoxNzM1ODA4MjY4fQ.n0X-xbP6AOtGV0kSkQLJ2BByr6lrZhrHvEjckrB0Ur8
-
+token: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZmFzQGFzZmFzLmNvbSIsInVzZXJuYW1lIjoiYXNmYXMiLCJwYXNzd29yZCI6IjEhcVFhenhzdyIsInJvbGVfbmFtZSI6InVzZXIiLCJpYXQiOjE3MzU4NDc0NTJ9.NP74ikZKDyBYReqgJwn_C3Q_S2M-8qmKfEe6gXtCYis

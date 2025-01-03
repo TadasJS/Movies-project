@@ -8,27 +8,26 @@ const loginController = {
   postUsers:  async (req, res) => {
     const {email, password} = req.body    
     
+    dotenv.config()
 
 try {
   const loginValuesCheck = await loginModel.checkLoginValues(
     email,
     password
   )
-  console.log(loginValuesCheck)
+  
   if (loginValuesCheck.length === 0 ){
     return res.status(404).json({status:'err', msg:'check your email and password'
     })
   }
 
-  dotenv.config()
 
-  const token = jwt  
+  const token = jwt 
  
-  
   const accessToken = token.sign(loginValuesCheck[0], process.env.ACCESS_TOKEN_SECRET)
-  res.status(200).json({token : accessToken}) 
+  res.status(200).json({status: 'ok', msg:'user loged in',token : accessToken}) 
 
-  res.status(200).json({status: 'ok', msg: 'user loged in', data: loginValuesCheck})
+  // res.status(200).json({status: 'ok', msg: 'user loged in', data: loginValuesCheck})
 
 } catch (error) {
   console.error(error)

@@ -57,5 +57,6 @@ Kaip pasileisti projektą
 
 ## tokenui naudoju
 
-* server papkej suinstaliuoti paketą $ npm i jsonwebtoken
-* server papkej suinstaliuoti paketą $ npm i dotenv
+* server papkėj suinstaliuoti paketą $ npm i jsonwebtoken
+* server papkėj suinstaliuoti paketą $ npm i dotenv
+* client papkėj suinstaliuoti paketą $ npm i jwt-decode

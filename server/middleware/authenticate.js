@@ -5,8 +5,10 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 
-export function authenticateToken(req, res, next) {
-    const authHeader = req.headers['authorization']
+export function authenticateToken (req, res, next) {
+  console.log('cia prasideda autentikacija')
+    const authHeader = req.headers['token']
+    console.log(req.headers)
     const token = authHeader && authHeader.split(' ')[1]
     if (token === null) return res.sendStatus(401)
         
