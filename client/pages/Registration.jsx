@@ -1,14 +1,23 @@
 
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from 'axios'
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Modal } from 'react-bootstrap';
 import "./Registration.css";
 
 
 export function Registration() {
 
     const navigate = useNavigate()
+
+    const [show, setShow] = useState(false);
+    const handleClose = () =>{
+        setShow(false);
+        window.location.reload()     
+    } 
+    const handleShow = () => setShow(true);
+
 
     const[firstName, setFirstName] = useState('')
     const[firstNameErr, setFirstNameErr] = useState('')
@@ -170,6 +179,7 @@ export function Registration() {
         if(data.data.status === 'ok'){
             setFormValid(data.data.msg)
             setFormErr('')
+            handleShow()
         }
     })
     // .then(() => {navigate('/')})
@@ -253,6 +263,26 @@ export function Registration() {
         </form>
         </Col>
       </Row>
+
+            <>     
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Message</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <div class="alert alert-success" role="alert">
+                        User created successfully
+                    </div>
+                </Modal.Body>
+                <Modal.Footer>
+              
+                <Link to='/' type='button' className="btn btn-success ms-3" >
+                    Go to home page
+                </Link>
+                </Modal.Footer>
+            </Modal>
+            </>
+
         </Container>
         </div>
     )
