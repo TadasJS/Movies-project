@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import "./Registration.css";
 
 
 export function Registration() {
@@ -183,10 +184,11 @@ export function Registration() {
 
 }
 
-    return (        
+    return (     
+        <div className="registration-container">   
         <Container className="">
             <Row>
-        <Col md={{ span: 6, offset: 3 }}>
+        <Col md={{ span: 6, offset: 3 }} className="registration-form" >
           <h2 className='formCenter' >Registration</h2>
 
 
@@ -200,42 +202,42 @@ export function Registration() {
          <p className="mb-0">{formErr}</p>
           </div>)}
            <form onSubmit={handleSubmit} action="">
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 registration-group">
                 <Form.Label className="fs-4 " id="">First Name:</Form.Label>
                 <Form.Control onChange={updateFirstName}  type="text" className={`form-control ${firstNameValid ? 'is-valid': ''} ${firstNameErr ? 'is-invalid': ''} `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
                 <div className="invalid-feedback">
                   {firstNameErr}
                 </div>
                 </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 registration-group">
                 <Form.Label className="fs-4" id="inputGroup-sizing-default">Last Name:</Form.Label>
                 <Form.Control onChange={updateLastName}  type="text" className={`form-control ${lastNameValid ? 'is-valid': ''} ${lastNameErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
                 <div className="invalid-feedback">
                   {lastNameErr}
                 </div>
                 </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 registration-group">
                 <Form.Label className="fs-4" id="inputGroup-sizing-default">Email:</Form.Label>
                 <Form.Control onChange={updateEmail}  type="email" className={`form-control ${emailValid ? 'is-valid': ''} ${emailErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
                 <div className="invalid-feedback">
                   {emailErr}
                 </div>
                 </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 registration-group">
                 <Form.Label className="fs-4" id="inputGroup-sizing-default">Username:</Form.Label>
                 <Form.Control onChange={updateUsername}  type="text" className={`form-control ${usernameValid ? 'is-valid': ''} ${usernameErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             <div className="invalid-feedback">
                   {usernameErr}
                 </div>
                 </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 registration-group">
                 <Form.Label className="fs-4" id="inputGroup-sizing-default">Password:    </Form.Label>
                 <Form.Control onChange={updatePassword}  type="password" className={`form-control ${passwordValid ? 'is-valid': ''} ${passwordErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             <div className="invalid-feedback">
                   {passwordErr}
                 </div>
                 </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 registration-group">
                 <Form.Label className="fs-4" id="inputGroup-sizing-default">Password Confirm:</Form.Label>
                 <input onChange={updateRepass}  type="password" className={`form-control ${repassValid ? 'is-valid': ''} ${repassErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
                 <div className="invalid-feedback">
@@ -243,11 +245,15 @@ export function Registration() {
                 </div>
                 </Form.Group>
             <div className="d-grid gap-2">
-                <button className="btn btn-outline-primary " type="submit">Submit</button>
+                <button className="btn btn-outline-primary registration-btn " type="submit">Submit</button>
             </div>
+            <p className="registration-link">
+          Already have an account? <a href="/Login">Login </a>
+        </p>
         </form>
         </Col>
       </Row>
         </Container>
+        </div>
     )
 }
