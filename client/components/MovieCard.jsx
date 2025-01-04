@@ -28,10 +28,10 @@ export function MovieCard(props) {
           <p className="card-text">Genre: {props.genreType}</p>
           <p className="card-text">Rating: {props.rating}</p>
           <p className="card-text">Years: {props.year}</p>
-         {ctx.user.user_role === 'admin' && <button onClick={handleUpdateClick} className="btn btn-primary">
+         {ctx.user.role_name === 'admin' && <button onClick={handleUpdateClick} className="btn btn-primary">
             Update
           </button>}
-        {ctx.user.user_role === 'admin' && <DeleteMovie id = {props.id} /> }
+        {ctx.user.role_name === 'admin' && <DeleteMovie id = {props.id} /> }
         </div>
       </div>
     </div>

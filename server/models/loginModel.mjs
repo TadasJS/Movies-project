@@ -17,7 +17,7 @@ const loginModel = {
                [ email, password]
             )
                  
-           return checkLoginValues.rows
+           return checkLoginValues.rows[0]
             
             
         } catch (error) {

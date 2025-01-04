@@ -1,40 +1,36 @@
-import { loginModel } from "../models/loginModel.mjs"
-import jwt from "jsonwebtoken"
-import dotenv from 'dotenv'
+import { loginModel } from "../models/loginModel.mjs";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
+dotenv.config();
 
 const loginController = {
+  postUsers: async (req, res)  => {
+    const { email, password } = req.body;
 
-  postUsers:  async (req, res) => {
-    const {email, password} = req.body    
-    
-    dotenv.config()
+    try {
+      const loginValuesCheck = await loginModel.checkLoginValues(
+        email,
+        password
+      );
 
-try {
-  const loginValuesCheck = await loginModel.checkLoginValues(
-    email,
-    password
-  )
-  
-  if (loginValuesCheck.length === 0 ){
-    return res.status(404).json({status:'err', msg:'check your email and password'
-    })
-  }
+      if (!loginValuesCheck) {
+        return res
+          .status(400)
+          .json({ status: "err", msg: "check your email and password" });
+      }
 
+        delete loginValuesCheck.password
 
-  const token = jwt 
- 
-  const accessToken = token.sign(loginValuesCheck[0], process.env.ACCESS_TOKEN_SECRET)
-  res.status(200).json({status: 'ok', msg:'user loged in',token : accessToken}) 
+      const token = jwt.sign(loginValuesCheck, process.env.PRIVAT_KEY);
 
-  // res.status(200).json({status: 'ok', msg: 'user loged in', data: loginValuesCheck})
+      res.cookie('token', token, {httpOnly: true,})
 
-} catch (error) {
-  console.error(error)
-}
-    
-}
+      res.status(200).json({status: 'ok', msg: 'user loged in', token: token})
+    } catch (error) {
+      console.error(error);
+    }
+  },
+};
 
-}
-
-export {loginController}
+export { loginController };

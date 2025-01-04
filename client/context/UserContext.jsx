@@ -5,12 +5,12 @@ import {jwtDecode} from 'jwt-decode'
 
 
 function getUserFromLocalStorage() {
-    let user = localStorage.getItem('token')
-
+    let user = localStorage.getItem('user_data')
+    console.log(user)
     if (!user){
-      return  {email:'', user_role:''}
+      return  {email:'', username: '', role_name:''}
     }
-
+    
     return JSON.parse(user)
 }
 
@@ -21,26 +21,32 @@ export function UserProvider ({children}) {
     
     const [user, setUser] = useState (getUserFromLocalStorage())
     const [token, setToken] = useState()
+    const [response, setResponse] = useState('err')
 
     
+    
     function loginUser(person) {
-
-     
-        try {
+        
+   
             axios
-            .post('http://localhost:3000/api/users/login', person)
+            .post ('http://localhost:3000/api/users/login', person)
             .then((res) => {
-                console.log(res.data)
-                setToken(res.data)
-                console.log('cia tokenas...',token)
-                const decoded = jwtDecode(token.toString(), {header: true})
-                setUser({...user, email: decoded.email, username: decoded.username, password:decoded.password, role: decoded.role_name })
-                console.log('cia decoded tokenas...',decoded)
+                console.log('cia response data...',res.data)
+                setResponse(res.data)
+                setToken(res.data.token)
+
+                console.log('cia tokenas...', token)
+                // localStorage.setItem('token', res.data.token)
+                const decoded = jwtDecode(token.toString())
+                setUser({...user, email: decoded.email, username:decoded.username, role_name: decoded.role_name })
+                localStorage.setItem('user_data', JSON.stringify(decoded))
+                
             })
             
-        } catch (error) {
-            console.error(error)
-        }
+     
+        console.log('user antrinis', user)
+        console.log('cia user context response....', response)
+        
         // if (person === 'admin') {
         //     setUser({...user, email: person, user_role:'admin'})            
         //     localStorage.setItem('token', JSON.stringify({email: person, user_role:'admin'}))
@@ -56,13 +62,13 @@ export function UserProvider ({children}) {
     }
     
     function logoutUser() {
-        setUser({...user, email:'', user_role:''})
-        localStorage.removeItem('token')
-        
+        setUser({...user, email:'', username:'', role_name:''})
+        localStorage.removeItem('user_data')
+
     }
  
     return(
-       <UserContext.Provider value={{user, loginUser, logoutUser}}>
+       <UserContext.Provider value={{user, loginUser, logoutUser, response}}>
         {children}
        </UserContext.Provider>
     )

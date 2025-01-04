@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { UserContext } from "./UserContext"
 import { Navigate } from "react-router-dom"
 
-export function Authentication ({children}) {
+export function Autorization ({children}) {
 
     const {user} = useContext(UserContext)
 

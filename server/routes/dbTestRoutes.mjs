@@ -1,11 +1,11 @@
 import express from 'express'
 import { dbTestController } from '../controllers/dbTestController.mjs'
-import { authenticateToken } from '../middleware/authenticate.js'
+import { authorizationToken } from '../middleware/autorization.js'
 
 
 
 const dbtest = express.Router()
 
-dbtest.get('/', authenticateToken,  dbTestController.getDbTest)
+dbtest.get('/', authorizationToken,  dbTestController.getDbTest)
 
 export { dbtest } 

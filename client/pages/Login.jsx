@@ -1,5 +1,5 @@
 
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
@@ -10,7 +10,7 @@ export function Login() {
 
     const navigate = useNavigate()
     const ctx = useContext(UserContext)
-    const {loginUser} = ctx
+    const {loginUser, response} = ctx
 
     const[user, setUser] = useState() 
     const[email, setEmail] = useState('')
@@ -31,7 +31,16 @@ export function Login() {
     function updatePassword(e) {
         setPassword(e.target.value)
     }
-   
+
+
+    useEffect(() => {
+        setUser({
+            email: email,
+            password: password
+        })
+
+    },[email, password])
+    
     const symbList4 ='`~!#$%^&*()_+=[]{}|-":;?/><,\''
     
     const pwdFilter = /^(?=.*\p{Ll})(?=.*\p{Lu})(?=.*[\d|@#$!%*?&])[\p{L}\d@#$!%*?&]{8,50}$/gmu
@@ -70,36 +79,25 @@ export function Login() {
         }
      
         //validacijos pabaiga  
-
-        setUser({
-            email: email,
-            password: password
-        })
-
         loginUser(user)
 
-    //     axios
-    //     .post('http://localhost:3000/api/users/login',{       
-    //     email : email,
-    //     password : password, 
-    // })
-    // .then((data) => {      
-    //      console.log(data)         
-    //     if(data.data.status === 'ok'){
-    //         setFormValid(data.data.msg)
-    //         setFormErr('')            
-    //         // ctx.loginUser(data.data.data[0].role_name)           
-    //     }
-    // })
-    // .then(() => {navigate('/profile')})
-    // .catch((error) => {
-    //     console.error(error)
+        
+
+         console.log('cia logino response',response)  
+          
+        if(response.status === 'ok'){
+            setFormValid(response.msg)
+            setFormErr('')                 
+        }
+        
+        if(response.status === 'err'){
+            setFormErr(response.msg)
+            setFormValid('')
+        }  
+   
+    
+   
        
-    // if(error.response.data.status === 'err'){
-    //     setFormErr(error.response.data.msg)
-    //     setFormValid('')
-    //     }  
-    // })
 
 }
 

@@ -16,4 +16,5 @@ Content-Type: application/json
 ### 
 
 GET http://localhost:3000/api/dbtest
-token: Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZmFzQGFzZmFzLmNvbSIsInVzZXJuYW1lIjoiYXNmYXMiLCJwYXNzd29yZCI6IjEhcVFhenhzdyIsInJvbGVfbmFtZSI6InVzZXIiLCJpYXQiOjE3MzU4NDc0NTJ9.NP74ikZKDyBYReqgJwn_C3Q_S2M-8qmKfEe6gXtCYis
+
+{"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsInJvbGUiOiJ1c2VyIiwidXNlcm5hbWUiOiJqb25hcyIsInBhc3N3b3JkIjoiYXNmYXNhc2ZhcyIsImlhdCI6MTczNTkxOTA4NX0.0mGts_Meo_JrYlBjbbqCQc3F3oSvI985v5N-tKSUDis"}
