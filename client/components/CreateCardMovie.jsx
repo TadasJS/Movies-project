@@ -97,13 +97,7 @@ export function CreateCardMovie() {
             setTitleValid(true)
         }
 
-        for (const i of symbList){
-            for(const j of title){
-                if(i === j){                    
-                   return setTitleErr(`can't use symbols`)                    
-                }
-            }
-        }
+     
 
         if(!description){
             setDescriptionErr(`field can't be empty`)
@@ -114,13 +108,6 @@ export function CreateCardMovie() {
             setDescriptionValid(true)
         }
 
-        for (const i of symbList){
-            for(const j of description){
-                if(i === j){                    
-                   return setDescriptionErr(`can't use symbols`)                    
-                }
-            }
-        }
 
         if(!imgUrl){
             setImgUrlErr(`field can't be empty`)
@@ -131,13 +118,7 @@ export function CreateCardMovie() {
             setImgUrlValid(true)
         }
 
-        for (const i of symbList){
-            for(const j of imgUrl){
-                if(i === j){                    
-                   return setImgUrlErr(`can't use symbols`)                    
-                }
-            }
-        }
+      
 
         if(!thumbUrl){
             setThumbUrlErr(`field can't be empty`)
@@ -148,13 +129,7 @@ export function CreateCardMovie() {
             setThumbUrlValid(true)
         }
        
-        for (const i of symbList){
-            for(const j of thumbUrl){
-                if(i === j){                    
-                   return setThumbUrlErr(`can't use symbols`)                    
-                }
-            }
-        }
+     
         
         if(!year || year < 1888 || year > 2025){
             setYearErr(`field can't be empty, you can chose years from 1888-2025`)

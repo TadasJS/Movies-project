@@ -1,8 +1,8 @@
-
+import "./Footer.css"
 
 export function Footer() {
     return(
-        <footer>
+        <footer className="footer-container" >
             <br />
             <br />
             <br />
