@@ -9,7 +9,7 @@ import UpdateMovieForm from "../components/UpdateMovieForm"
 import UpdateTvShowForm from '../components/UpdateTvShowForm'
 import { Registration } from '../pages/Registration'
 import { Login } from '../pages/Login'
-import { UserProvider } from '../context/UserContext'
+import { UserContext, UserProvider } from '../context/UserContext'
 import { UserLayout } from '../layout/UserLayout'
 import { GenreList } from '../components/GenreList'
 import { UserProfile } from '../pages/UserProfile'
@@ -20,13 +20,16 @@ import { AdminLayout } from '../layout/AdminLayout'
 function App() {
   
   return (
-<UserProvider>
-    <BrowserRouter>         
-      <Routes>
+    <BrowserRouter> 
+      <UserProvider>
+         <Routes>
             <Route Component={BasicLayout}>
+          
               <Route index path="/" element={<HomePage />} />
               <Route path="/registration" element={<Registration />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/constext" element={<UserProvider />} />
+             
             </Route>
             <Route Component={UserLayout}>
               <Route path="/profile" element={<UserProfile />} />
@@ -42,9 +45,9 @@ function App() {
             <Route Component={BasicLayout}>
               <Route path="*" element={<NoPage />} />
             </Route> 
-        </Routes>
+          </Routes>
+      </UserProvider>
     </BrowserRouter>
-</UserProvider>
   )
 }
 

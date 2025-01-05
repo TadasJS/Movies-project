@@ -16,7 +16,7 @@ const loginController = {
 
       if (!loginValuesCheck) {
         return res
-          .status(400)
+          
           .json({ status: "err", msg: "check your email and password" });
       }
 

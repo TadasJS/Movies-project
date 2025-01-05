@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { UserContext, UserProvider } from "../context/UserContext";
+import { UserContext } from "../context/UserContext";
 
 
 export function Login() {
@@ -77,28 +77,23 @@ export function Login() {
             setPasswordErr(false)
             setPasswordValid(true)
         }
-     
+             
         //validacijos pabaiga  
-        loginUser(user)
 
-        
 
-         console.log('cia logino response',response)  
+        loginUser(user)   
+        console.log('login response...', response)
           
-        if(response.status === 'ok'){
-            setFormValid(response.msg)
-            setFormErr('')                 
-        }
-        
-        if(response.status === 'err'){
-            setFormErr(response.msg)
-            setFormValid('')
-        }  
-   
-    
-   
-       
+        // if(response.status === 'ok'){
+        //     setFormValid(response.msg)
+        //     setFormErr('')                 
+        // }
 
+              
+        // if(response.status === 'err'){
+        //     setFormErr(response.msg)
+        //     setFormValid('')
+        // }     
 }
 
     return (        
