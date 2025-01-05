@@ -9,15 +9,11 @@ export function MovieCard(props) {
   const navigate = useNavigate();
 
   const ctx = useContext(UserContext)
-  const userLoggedIn = ctx.user.loggedIn
+  
 
   const handleUpdateClick = () => {
     navigate(`/updateMovie/${props.id}`); 
-  };
-
-
-
-  
+  }; 
 
   return (
     <div className="col">

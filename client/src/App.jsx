@@ -14,6 +14,8 @@ import { UserLayout } from '../layout/UserLayout'
 import { GenreList } from '../components/GenreList'
 import { UserProfile } from '../pages/UserProfile'
 import { AdminLayout } from '../layout/AdminLayout'
+import { Movies } from '../pages/Movies'
+import { TvShows } from '../pages/TvShows'
 
 
 
@@ -27,6 +29,8 @@ function App() {
               <Route index path="/" element={<HomePage />} />
               <Route path="/registration" element={<Registration />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/movies" element={<Movies />} />
+              <Route path="/tvshow" element={<TvShows />} />
             </Route>
             <Route Component={UserLayout}>
               <Route path="/profile" element={<UserProfile />} />

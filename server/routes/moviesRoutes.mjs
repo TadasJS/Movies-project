@@ -6,6 +6,7 @@ import {  movieController } from '../controllers/moviesController.mjs'
 const movies = express.Router()
 
 movies.get('/', movieController.getMovie)
+movies.post('/search', movieController.searchMovie)
 movies.post('/', movieController.postMovie)
 
 movies.get('/:id', movieController.getMovieById);
