@@ -1,16 +1,13 @@
-import { useContext } from "react"
-import { UserContext } from "./UserContext"
-import { Navigate } from "react-router-dom"
+import { useContext } from 'react';
+import { UserContext } from './UserContext';
+import { Navigate } from 'react-router-dom';
 
-export function Authentication ({children}) {
+export function Authentication({ children }) {
+  const { user } = useContext(UserContext);
 
-    const {user} = useContext(UserContext)
+  if (!user.username) {
+    return <Navigate to="/login" />;
+  }
 
-    if (!user.username) {
-        return <Navigate to="/login" />;
-    }
-
-    return(
-        children
-    )
+  return children;
 }
