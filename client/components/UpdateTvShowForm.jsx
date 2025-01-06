@@ -1,46 +1,45 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './CreateCardForm.css'
+import './CreateCardForm.css';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { GenreSelect } from './genreSelect';
 
 export default function UpdateTvShowForm() {
-  const { id } = useParams(); 
+  const { id } = useParams();
 
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState(null); 
-  const [newData, setNewData] = useState(null)
-  const [loading, setLoading] = useState(true); 
+  const [formData, setFormData] = useState(null);
+  const [newData, setNewData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   //genre select from DB
- const [genreList, setGenreList] = useState([]);
-  
- useEffect(() => {
-   axios
-     .get('http://localhost:3000/api/genre/')
-     .then((response) => {
-       setGenreList(response.data.data);
-     })
-     .catch((error) => console.error("Fetching movie list failed:", error));
- }, []);
+  const [genreList, setGenreList] = useState([]);
 
-//end genre select from DB
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/api/genre/')
+      .then((response) => {
+        setGenreList(response.data.data);
+      })
+      .catch((error) => console.error('Fetching movie list failed:', error));
+  }, []);
+
+  //end genre select from DB
 
   useEffect(() => {
     axios
       .get(`http://localhost:3000/api/tvshows/${id}`)
       .then((response) => {
         setFormData(response.data.data);
-        setLoading(false); 
+        setLoading(false);
       })
       .catch((error) => {
         console.error('Unable to get movie data:', error);
         setLoading(false);
       });
   }, [id]);
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,11 +55,11 @@ export default function UpdateTvShowForm() {
   };
 
   if (loading) {
-    return <p>Loading...</p>; 
+    return <p>Loading...</p>;
   }
 
   if (!formData) {
-    return <p>Error: tv_shows data not found.</p>; 
+    return <p>Error: tv_shows data not found.</p>;
   }
 
   return (
@@ -74,7 +73,6 @@ export default function UpdateTvShowForm() {
               <Form.Control
                 type="text"
                 name="title"
-          
                 onChange={(e) => setNewData({ ...newData, title: e.target.value })}
               />
             </Form.Group>
@@ -85,7 +83,6 @@ export default function UpdateTvShowForm() {
                 as="textarea"
                 rows={5}
                 name="description"
-            
                 onChange={(e) => setNewData({ ...newData, description: e.target.value })}
               />
             </Form.Group>
@@ -95,7 +92,6 @@ export default function UpdateTvShowForm() {
               <Form.Control
                 type="text"
                 name="img_url"
-                
                 onChange={(e) => setNewData({ ...newData, img_url: e.target.value })}
               />
             </Form.Group>
@@ -105,7 +101,6 @@ export default function UpdateTvShowForm() {
               <Form.Control
                 type="text"
                 name="thumbnail_url"
-                
                 onChange={(e) => setNewData({ ...newData, thumbnail_url: e.target.value })}
               />
             </Form.Group>
@@ -115,31 +110,33 @@ export default function UpdateTvShowForm() {
               <Form.Control
                 type="text"
                 name="year"
-             
                 onChange={(e) => setNewData({ ...newData, year: e.target.value })}
               />
             </Form.Group>
-       
+
             <Form.Group className="mb-2">
-                    <Form.Label className="fs-4" id="inputGroup-sizing-default">Genre:</Form.Label>
-                    <select name='genreid' onChange={(e) => setNewData({ ...newData, genreid: e.target.value })} 
-                    className={`form-control  form-select-sm  `} aria-label=".form-select-sm example" required>
-                  <option select="">Select genre</option>
-                    { genreList.map((genre) => ( 
-                          <GenreSelect
-                            key={genre.id}
-                            id={genre.id}
-                            genreType={genre.genre_type}
-                          />))}
-                </select>
-                      </Form.Group>
+              <Form.Label className="fs-4" id="inputGroup-sizing-default">
+                Genre:
+              </Form.Label>
+              <select
+                name="genreid"
+                onChange={(e) => setNewData({ ...newData, genreid: e.target.value })}
+                className={`form-control  form-select-sm  `}
+                aria-label=".form-select-sm example"
+                required
+              >
+                <option select="">Select genre</option>
+                {genreList.map((genre) => (
+                  <GenreSelect key={genre.id} id={genre.id} genreType={genre.genre_type} />
+                ))}
+              </select>
+            </Form.Group>
 
             <Form.Group className="mb-2">
               <Form.Label className="fs-4">Rating:</Form.Label>
               <Form.Control
                 type="text"
                 name="rating"
-                
                 onChange={(e) => setFormData({ ...formData, rating: e.target.value })}
               />
             </Form.Group>

@@ -38,10 +38,10 @@
   transition: background-color 0.3s ease;
 }
 
-.registration-btn:hover{
+.registration-btn:hover {
   background-color: #e05252;
 }
-.registration-link{
+.registration-link {
   text-align: center;
   margin-top: 1rem;
 }
@@ -49,6 +49,6 @@
   color: #ff6b6b;
   text-decoration: none;
 }
-.registration-link a:hover{
+.registration-link a:hover {
   text-decoration: underline;
 }

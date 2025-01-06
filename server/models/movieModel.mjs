@@ -43,6 +43,17 @@ genreidMovie: async (genreid) => {
     }
 },
 
+searchMovie: async(data) => {
+    
+    try {
+        const searchMovie = await pool.query(`SELECT * FROM movies WHERE LOWER (title) LIKE LOWER ($1) ;`,['%' + data + '%'])
+        
+        return searchMovie.rows
+    } catch (error) {
+        console.error(error)
+    }
+},
+
 createMovie: async (jonas) => {
     const {title, description, img_url, thumbnail_url, year, genreid, rating } = jonas
     const genreidInt = parseInt(genreid)
