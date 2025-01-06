@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { SearchMovieData } from './SearchMoviesData';
+import { SearchTvShowData } from './SearchTvShowData';
 
-export function MoviesSearch() {
+export function TvShowSearch() {
   const [searchData, setSearchData] = useState('');
   const [reload, setReload] = useState('');
 
@@ -16,14 +16,14 @@ export function MoviesSearch() {
           onChange={(e) => setSearchData(e.target.value)}
           className="form-control form-control-lg"
           type="search"
-          placeholder="Search movie by title"
+          placeholder="Search TvShow by title"
           aria-label="Search"
         />
         <button onClick={handleSearch} className="btn btn-secondary px-4" type="submit">
           <i className="bi bi-search">search</i>
         </button>
       </div>
-      <SearchMovieData search={reload} />
+      <SearchTvShowData search={reload} />
     </>
   );
 }

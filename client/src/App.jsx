@@ -25,10 +25,10 @@ function App() {
             <Route index path="/" element={<HomePage />} />
             <Route path="/registration" element={<Registration />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/movies" element={<Movies />} />
-            <Route path="/tvshow" element={<TvShows />} />
           </Route>
           <Route Component={UserLayout}>
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/tvshow" element={<TvShows />} />
             <Route path="/profile" element={<UserProfile />} />
           </Route>
           <Route Component={AdminLayout}>

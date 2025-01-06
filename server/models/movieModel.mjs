@@ -46,7 +46,7 @@ genreidMovie: async (genreid) => {
 searchMovie: async(data) => {
     
     try {
-        const searchMovie = await pool.query(`SELECT * FROM movies WHERE title LIKE $1 ;`,['%' + data + '%'])
+        const searchMovie = await pool.query(`SELECT * FROM movies WHERE LOWER (title) LIKE LOWER ($1) ;`,['%' + data + '%'])
         
         return searchMovie.rows
     } catch (error) {

@@ -44,6 +44,17 @@ genreidTvShow: async (genreid) => {
     
 },
 
+searchTvShows: async(data) => {
+    
+    try {
+        const searchTvShow = await pool.query(`SELECT * FROM tv_shows WHERE LOWER (title) LIKE LOWER ($1) ;`,['%' + data + '%'])
+        
+        return searchTvShow.rows
+    } catch (error) {
+        console.error(error)
+    }
+},
+
 createTvShow: async (jonas) => {
     const {title, description, img_url, thumbnail_url, year, genreid, rating } = jonas
     const genreidInt = parseInt(genreid)
