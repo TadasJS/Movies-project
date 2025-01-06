@@ -42,6 +42,17 @@ const tvShowsController = {
     }
   },
 
+  searchTvShows: async (req, res) => {
+    const{data} = req.body
+   
+    try {     
+      const searchTvShow = await tvShowModel.searchTvShows(data)     
+      res.status(200).json({status: 'ok', msg:"get search data successfully", data:searchTvShow})
+    } catch (error) {
+      console.error(error)
+    }
+  },
+
   postTvShows: async (req, res) => {
     const {title, description, img_url, thumbnail_url, year, genreid, rating } = req.body
 

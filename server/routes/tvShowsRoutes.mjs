@@ -7,6 +7,7 @@ const tvshows = express.Router()
 
 tvshows.get('/', tvShowsController .getTvShows)
 tvshows.post('/', tvShowsController.postTvShows)
+tvshows.post('/search', tvShowsController.searchTvShows)
 tvshows.get('/:id', tvShowsController.getTvShowById);
 tvshows.put('/:id', tvShowsController.putTvShows)
 tvshows.delete('/:id', tvShowsController.deleteTvShows)

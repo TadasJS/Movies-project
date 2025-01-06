@@ -41,6 +41,17 @@ const movieController = {
       console.error(error);
       res.status(500).json({ status: 'err', msg: "Can't get movie data" });
     }
+  }, 
+
+  searchMovie: async (req, res) => {
+    const{data} = req.body
+   
+    try {     
+      const searchMovie = await movieModel.searchMovie(data)     
+      res.status(200).json({status: 'ok', msg:"get search data successfully", data:searchMovie})
+    } catch (error) {
+      console.error(error)
+    }
   },
 
   postMovie: async (req, res) => {
