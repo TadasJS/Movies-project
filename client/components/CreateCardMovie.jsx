@@ -74,8 +74,7 @@ export function CreateCardMovie() {
   }
 
   const symbList = '`~!@#$%^&*()_+-=[]{}|":;?/>.<,\'';
-  const symbList2 =
-    '`~!@#$%^&*()_+-=[]{}|":;?/>.<,\'qwertyuioplkjhgfdsazxcvbnmąčęėįšųūQWERTYUIOPLKJHGFDSAZXCVBNMĄČĘĖĮŠŲŪ';
+  const symbList2 ='`~!@#$%^&*()_+-=[]{}|":;?/>.<,\'qwertyuioplkjhgfdsazxcvbnmąčęėįšųūQWERTYUIOPLKJHGFDSAZXCVBNMĄČĘĖĮŠŲŪ';
 
   function handleSubmit(e) {
     e.preventDefault();

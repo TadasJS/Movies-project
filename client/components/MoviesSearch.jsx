@@ -16,7 +16,7 @@ export function MoviesSearch() {
           onChange={(e) => setSearchData(e.target.value)}
           className="form-control form-control-lg"
           type="search"
-          placeholder="Search movie by title"
+          placeholder="Search for Movies"
           aria-label="Search"
         />
         <button onClick={handleSearch} className="btn btn-secondary px-4" type="submit">
