@@ -2,12 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #141625;
+  height: 125vh;
+  background-color: rgb(20, 22, 37);
   color: #fff;
 }
 .registration-form {
-  background-color: hsl(233, 31%, 17%);
+  background-color: rgb(30, 33, 57);
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

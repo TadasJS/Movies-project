@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import { DeleteTvShow } from './DeleteTvShow';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
+import "./TvShowDatalist.css"
 
 export function TvShowCard(props) {
   const ctx = useContext(UserContext)
@@ -17,7 +18,7 @@ export function TvShowCard(props) {
     return (
 
       <div className="col">
-        <div className="card">
+        <div className="card TvShowDataList-card">
           {/* <h5>{props.id}</h5> */}
           <img src={props.thumb} className="card-img-top" alt="..."/>
           <div className="card-body">
@@ -25,7 +26,7 @@ export function TvShowCard(props) {
           <p className="card-text">Genre: {props.genreType}</p>
           <p className="card-text">Rating: {props.rating}</p>
           <p className="card-text">Years: {props.year}</p>
-          {ctx.user.user_role === 'admin' && <button onClick={handleUpdateClick} className="btn btn-primary">
+          {ctx.user.user_role === 'admin' && <button onClick={handleUpdateClick} className="btn btn-primary TvShowDataList-btn">
             Update
           </button>}
           {ctx.user.user_role === 'admin' &&<DeleteTvShow id = {props.id} />}

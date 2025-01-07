@@ -3,6 +3,7 @@ import { UpdateGendre } from './UpdateGenre';
 import { DeleteGenre } from './DeleteGenre';
 
 
+
 export function GenreTable(props) {
 
   return (

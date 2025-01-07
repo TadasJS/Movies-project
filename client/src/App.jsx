@@ -20,7 +20,7 @@ import { AdminLayout } from '../layout/AdminLayout'
 function App() {
   
   return (
-<UserProvider>
+<UserProvider >
     <BrowserRouter>         
       <Routes>
             <Route Component={BasicLayout}>

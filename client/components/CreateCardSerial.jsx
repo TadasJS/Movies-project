@@ -5,6 +5,7 @@ import { Container, Row, Col, Form, Button, Modal } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { GenreSelect } from "./genreSelect";
 import { Link } from "react-router-dom";
+import "./CreateCardSerial.css";
 
 
 
@@ -210,10 +211,10 @@ function handleCreateNew(){
     return (
 
         
-
-        <Container className="">
+        <div className="CreateCardSerial-container">
+        <Container >
         <Row>
-    <Col md={{ span: 6, offset: 3 }}>
+    <Col md={{ span: 6, offset: 3 }} className="CreateCardSerial-form">
       <h2 className='formCenter' >Create Tv_Show</h2>
 
       {formValid && (<div className="ms-5 me-5 alert alert-success " role="alert">
@@ -227,42 +228,42 @@ function handleCreateNew(){
           </div>)}
 
          <form onSubmit={handleSubmit} action="">
-        <Form.Group className="mb-2">
+        <Form.Group className="mb-2 CreateCardSerial-group ">
             <Form.Label className="fs-4 " id="">Title:</Form.Label>
             <Form.Control onChange={updateTitle}  type="text" className={`form-control ${titleValid ? 'is-valid': ''} ${titleErr ? 'is-invalid': ''} `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             <div className="invalid-feedback">
               {titleErr}
             </div>
             </Form.Group>
-        <Form.Group className="mb-2">
+        <Form.Group className="mb-2 CreateCardSerial-group ">
             <Form.Label className="fs-4" id="inputGroup-sizing-default">Description:</Form.Label>
             <Form.Control onChange={updateDescription}  type="text" className={`form-control ${descriptionValid ? 'is-valid': ''} ${descriptionErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             <div className="invalid-feedback">
               {descriptionErr}
             </div>
             </Form.Group>
-        <Form.Group className="mb-2">
+        <Form.Group className="mb-2 CreateCardSerial-group ">
             <Form.Label className="fs-4" id="inputGroup-sizing-default">Img url:</Form.Label>
             <Form.Control onChange={updateImgUrl}  type="text" className={`form-control ${imgUrlValid ? 'is-valid': ''} ${imgUrlErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             <div className="invalid-feedback">
               {imgUrlErr}
             </div>
             </Form.Group>
-        <Form.Group className="mb-2">
+        <Form.Group className="mb-2 CreateCardSerial-group ">
             <Form.Label className="fs-4" id="inputGroup-sizing-default">Thubnail url:</Form.Label>
             <Form.Control onChange={updateThumbUrl}  type="text" className={`form-control ${thumbUrlValid ? 'is-valid': ''} ${thumbUrlErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
         <div className="invalid-feedback">
               {thumbUrlErr}
             </div>
             </Form.Group>
-        <Form.Group className="mb-2">
+        <Form.Group className="mb-2 CreateCardSerial-group ">
             <Form.Label className="fs-4" id="inputGroup-sizing-default">Year:    </Form.Label>
             <Form.Control onChange={updateYear}  type="text" className={`form-control ${yearValid ? 'is-valid': ''} ${yearErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
         <div className="invalid-feedback">
               {yearErr}
             </div>
             </Form.Group>
-        <Form.Group className="mb-2">
+        <Form.Group className="mb-2 CreateCardSerial-group ">
             <Form.Label className="fs-4" id="inputGroup-sizing-default">Genre:</Form.Label>
             <select onChange={updateGenre} className={`form-control ${genreValid ? 'is-valid': ''} ${genreErr ? 'is-invalid': ''} form-select-sm  `} aria-label=".form-select-sm example" required>
         <option select="">Select genre</option>
@@ -277,7 +278,7 @@ function handleCreateNew(){
               {genreErr}
             </div>
             </Form.Group>
-        <Form.Group className="mb-2">
+        <Form.Group className="mb-2 CreateCardSerial-group ">
             <Form.Label className="fs-4" id="inputGroup-sizing-default">Rating:</Form.Label>
             <input onChange={updateRating}  type="text" className={`form-control ${ratingValid ? 'is-valid': ''} ${ratingErr ? 'is-invalid': ''}  `} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             <div className="invalid-feedback">
@@ -285,7 +286,7 @@ function handleCreateNew(){
             </div>
             </Form.Group>
         <div className="d-grid gap-2">
-            <button className="btn btn-outline-primary " type="submit">Submit</button>
+            <button className="btn btn-outline-primary CreateCardSerial-btn " type="submit">Submit</button>
         </div>
     </form>
     </Col>
@@ -301,16 +302,16 @@ function handleCreateNew(){
             </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="success" onClick={handleCreateNew}>
+          <Button variant="success" onClick={handleCreateNew} className="CreateCardSerial-btn" >
             Create Another Tv_Show
           </Button>
-          <Link to='/' type='button' className="btn btn-success ms-3" >
+          <Link to='/' type='button' className="btn btn-success  CreateCardSerial-btn" >
             Go to home page
           </Link>
         </Modal.Footer>
       </Modal>
     </>
-    </Container>
+    </Container></div>
 
     )
 }
