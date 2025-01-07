@@ -1,6 +1,11 @@
+import { useParams } from "react-router-dom"
+
 
 
 export function CardInfo (props) {
+    const {id} = useParams()
+
+    console.log('cia use params id...',id)
 
     return(
         <>

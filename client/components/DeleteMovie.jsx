@@ -74,7 +74,6 @@ export function DeleteMovie(props) {
               <h1 className="fw-bold mb-0 fs-5 text-danger">
                 Are you sure you want to delete this card {props.id} from your system{' '}
               </h1>
-              {/* <button type="button" className="btn-close " data-bs-dismiss="modal" aria-label="Close"></button> */}
             </div>
 
             <div className="modal-body p-5 pt-0">
