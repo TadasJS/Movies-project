@@ -1,7 +1,13 @@
+
+
 export function UserProfile() {
   return (
     <>
-      <h1>Cia bus user profile CONTENT puslapis </h1>
+      <h4>Trending </h4>
+      
+
+
+      <h4>Recomended for You</h4>
     </>
   );
 }
