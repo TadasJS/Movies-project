@@ -1,34 +1,33 @@
-
-.movieform_title_color{
-    background-color: lightblue;
+.movieform_title_color {
+  background-color: lightblue;
 }
 
-.serialform_title_color{
-    background-color: lightgreen;
+.serialform_title_color {
+  background-color: lightgreen;
 }
 
-.formCenter{
-    text-align: center;
+.formCenter {
+  text-align: center;
 }
 
-.tableform1{
-    width: 10%;
+.tableform1 {
+  width: 10%;
 }
 
-.tableform2{
-    width: 20%;
+.tableform2 {
+  width: 20%;
 }
 
-.tableform3{
-    width: 20%;
+.tableform3 {
+  width: 20%;
 }
 
-.tableform4{
-    width: 10%;
+.tableform4 {
+  width: 10%;
 }
 
-.genreupdate{
-    width: 450px;
-    margin-left: 20px;
-    margin-right: 20px;
+.genreupdate {
+  width: 450px;
+  margin-left: 20px;
+  margin-right: 20px;
 }

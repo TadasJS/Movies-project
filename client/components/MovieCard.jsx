@@ -6,20 +6,15 @@ import { UserContext } from "../context/UserContext";
 import "./MovieDataList.css"
 
 
-export function MovieCard(props) {
 
+export function MovieCard(props) {
   const navigate = useNavigate();
 
-  const ctx = useContext(UserContext)
-  const userLoggedIn = ctx.user.loggedIn
+  const ctx = useContext(UserContext);
 
   const handleUpdateClick = () => {
-    navigate(`/updateMovie/${props.id}`); 
+    navigate(`/updateMovie/${props.id}`);
   };
-
-
-
-  
 
   return (
     <div className="col ">
@@ -30,17 +25,15 @@ export function MovieCard(props) {
           <p className="card-text">Genre: {props.genreType}</p>
           <p className="card-text">Rating: {props.rating}</p>
           <p className="card-text">Years: {props.year}</p>
-         {ctx.user.user_role === 'admin' && <button onClick={handleUpdateClick} className="btn btn-primary MovieDataList-btn">
-            Update
-          </button>}
-        {ctx.user.user_role === 'admin' && <DeleteMovie id = {props.id} /> }
+
+          {ctx.user.user_role === 'admin' && (
+            <button onClick={handleUpdateClick} className="btn btn-primary MovieDataList-btn">
+              Update
+            </button>
+          )}
+          {ctx.user.user_role === 'admin' && <DeleteMovie id={props.id} />}
         </div>
       </div>
     </div>
   );
 }
-
-
-
-
-
