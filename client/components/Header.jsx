@@ -19,6 +19,7 @@ export function Header() {
         <header className='header-container' >
           
             <Link to='/' type="button" className="btn btn-primary ms-3 header-btn ">Home</Link>
+            <Link to='/registration' type="button" className="btn btn-primary ms-3 header-btn">Register</Link>
             {(ctx.user.user_role === 'user' || ctx.user.user_role === 'admin')&& <Link to='/movies' type="button" className="btn btn-primary ms-3 header-btn">Movies</Link> }
             {(ctx.user.user_role === 'user' || ctx.user.user_role === 'admin')&& <Link to='/tvshow' type="button" className="btn btn-primary ms-3 header-btn">TvShow</Link> }
             {(ctx.user.user_role === 'user' || ctx.user.user_role === 'admin')&& <Link to='/profile' type="button" className="btn btn-primary ms-3 header-btn">User Profile</Link> }
