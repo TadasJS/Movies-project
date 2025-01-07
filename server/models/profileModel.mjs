@@ -5,14 +5,10 @@ const profileModel = {
     getAllData: async () => {
         try {
             const allData = await pool.query(`SELECT * FROM movies UNION SELECT * FROM tv_shows ORDER BY id ASC `)
-            console.log(allData.rows)
-            return allData.rows[0]
+            return allData.rows
         } catch (error) {
             console.error(error)
         }
-
-
-
     }
 
 
