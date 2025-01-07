@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Form, Button, Modal } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import { GenreSelect } from './genreSelect';
-import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { GenreSelect } from "./genreSelect";
+import { Link } from "react-router-dom";
+import "./CreateCardSerial.css";
+
+
+
 
 export function CreateCardSerial() {
   const navigate = useNavigate();
@@ -188,6 +192,7 @@ export function CreateCardSerial() {
         }
       })
 
+
       .catch((error) => console.error(error));
   }
 
@@ -196,9 +201,10 @@ export function CreateCardSerial() {
   }
 
   return (
+    <div className="CreateCardSerial-container">
     <Container className="">
       <Row>
-        <Col md={{ span: 6, offset: 3 }}>
+        <Col md={{ span: 6, offset: 3 }} className="CreateCardSerial-form">
           <h2 className="formCenter">Create Tv_Show</h2>
 
           {formValid && (
@@ -208,6 +214,7 @@ export function CreateCardSerial() {
             </div>
           )}
 
+
           {formErr && (
             <div className="ms-5 me-5 alert alert-danger " role="alert">
               <h4 className="alert-heading">Error message</h4>
@@ -216,7 +223,7 @@ export function CreateCardSerial() {
           )}
 
           <form onSubmit={handleSubmit} action="">
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 CreateCardSerial-group ">
               <Form.Label className="fs-4 " id="">
                 Title:
               </Form.Label>
@@ -229,7 +236,8 @@ export function CreateCardSerial() {
               />
               <div className="invalid-feedback">{titleErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2">
+
+            <Form.Group className="mb-2 CreateCardSerial-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Description:
               </Form.Label>
@@ -242,7 +250,7 @@ export function CreateCardSerial() {
               />
               <div className="invalid-feedback">{descriptionErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 CreateCardSerial-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Img url:
               </Form.Label>
@@ -255,7 +263,7 @@ export function CreateCardSerial() {
               />
               <div className="invalid-feedback">{imgUrlErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 CreateCardSerial-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Thubnail url:
               </Form.Label>
@@ -268,7 +276,7 @@ export function CreateCardSerial() {
               />
               <div className="invalid-feedback">{thumbUrlErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 CreateCardSerial-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Year:{' '}
               </Form.Label>
@@ -281,7 +289,7 @@ export function CreateCardSerial() {
               />
               <div className="invalid-feedback">{yearErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 CreateCardSerial-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Genre:
               </Form.Label>
@@ -314,7 +322,7 @@ export function CreateCardSerial() {
               <div className="invalid-feedback">{ratingErr}</div>
             </Form.Group>
             <div className="d-grid gap-2">
-              <button className="btn btn-outline-primary " type="submit">
+              <button className="btn btn-outline-primary CreateCardSerial-btn " type="submit">
                 Submit
               </button>
             </div>
@@ -332,15 +340,17 @@ export function CreateCardSerial() {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="success" onClick={handleCreateNew}>
+            <Button variant="success" onClick={handleCreateNew} className="CreateCardSerial-btn" >
               Create Another Tv_Show
             </Button>
-            <Link to="/" type="button" className="btn btn-success ms-3">
+            <Link to="/" type="button" className="btn btn-success ms-3 CreateCardSerial-btn">
               Go to home page
             </Link>
           </Modal.Footer>
         </Modal>
       </>
     </Container>
+    </div>
   );
 }
+

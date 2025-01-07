@@ -19,6 +19,7 @@ import { CardInfo } from '../pages/CardInfo';
 
 function App() {
   return (
+
     <UserProvider>
       <BrowserRouter>
         <Routes>

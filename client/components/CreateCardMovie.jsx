@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Row, Col, Form, Button, Modal } from 'react-bootstrap';
-import { GenreSelect } from './genreSelect';
-import { Link } from 'react-router-dom';
+
+import { GenreSelect } from "./genreSelect";
+import { Link } from "react-router-dom";
+import "./CreateCardMovie.css";
+
 
 export function CreateCardMovie() {
   const navigate = useNavigate();
@@ -171,6 +174,7 @@ export function CreateCardMovie() {
         year,
         genreid: genre,
         rating,
+
       })
       .then((data) => {
         console.log(data.data);
@@ -193,10 +197,12 @@ export function CreateCardMovie() {
     window.location.reload();
   }
   return (
+    <div className="CreateCardMovie-container">
     <Container className="">
       <Row>
-        <Col md={{ span: 6, offset: 3 }}>
+        <Col md={{ span: 6, offset: 3 }} className="CreateCardMovie-form" >
           <h2 className="formCenter">Create Movie</h2>
+
 
           {formValid && (
             <div className="ms-5 me-5 alert alert-success " role="alert">
@@ -212,8 +218,9 @@ export function CreateCardMovie() {
             </div>
           )}
 
+
           <form onSubmit={handleSubmit} action="">
-            <Form.Group className="mb-2">
+           <Form.Group className="mb-2 CreateCardMovie-group">
               <Form.Label className="fs-4 " id="">
                 Title:
               </Form.Label>
@@ -226,7 +233,7 @@ export function CreateCardMovie() {
               />
               <div className="invalid-feedback">{titleErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2">
+              <Form.Group className="mb-2 CreateCardMovie-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Description:
               </Form.Label>
@@ -239,7 +246,7 @@ export function CreateCardMovie() {
               />
               <div className="invalid-feedback">{descriptionErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2  <Form.Group className="mb-2 CreateCardMovie-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Img url:
               </Form.Label>
@@ -252,7 +259,7 @@ export function CreateCardMovie() {
               />
               <div className="invalid-feedback">{imgUrlErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 CreateCardMovie-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Thubnail url:
               </Form.Label>
@@ -265,7 +272,7 @@ export function CreateCardMovie() {
               />
               <div className="invalid-feedback">{thumbUrlErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 CreateCardMovie-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Year:{' '}
               </Form.Label>
@@ -278,7 +285,7 @@ export function CreateCardMovie() {
               />
               <div className="invalid-feedback">{yearErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 CreateCardMovie-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Genre:
               </Form.Label>
@@ -297,7 +304,7 @@ export function CreateCardMovie() {
               </select>
               <div className="invalid-feedback">{genreErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 CreateCardMovie-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Rating:
               </Form.Label>
@@ -311,13 +318,14 @@ export function CreateCardMovie() {
               <div className="invalid-feedback">{ratingErr}</div>
             </Form.Group>
             <div className="d-grid gap-2">
-              <button className="btn btn-outline-primary " type="submit">
+              <button className="btn btn-outline-primary CreateCardMovie-btn" type="submit">
                 Submit
               </button>
             </div>
           </form>
         </Col>
       </Row>
+
       <>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
@@ -329,15 +337,16 @@ export function CreateCardMovie() {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="success" onClick={handleCreateNew}>
+            <Button variant="success" onClick={handleCreateNew} className="btn btn-success ms-3 CreateCardMovie-btn">
               Create Another Movie
             </Button>
-            <Link to="/" type="button" className="btn btn-success ms-3">
+            <Link to="/" type="button" className="btn btn-success ms-3 CreateCardMovie-btn">
               Go to home page
             </Link>
           </Modal.Footer>
         </Modal>
       </>
     </Container>
+     </div>
   );
-}
+}>>>>>>> main
