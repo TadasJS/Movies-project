@@ -19,10 +19,10 @@ export function GenreList() {
   }, []);
 
   return (
-    <div className="container ">
+    <div className="container">
       <CreateGenre />
 
-      <table className="table mt-4">
+      <table className="tableform5">
         <thead>
           <tr>
             <th className="tableform1" scope="col">

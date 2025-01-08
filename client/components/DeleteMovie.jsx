@@ -68,6 +68,7 @@ export function DeleteMovie(props) {
         Delete
       </Button>
 
+
       <Modal  show={show} onHide={handleClose}>
         <Modal.Header className='modalStyle'>
           <Modal.Title  >Message</Modal.Title>          

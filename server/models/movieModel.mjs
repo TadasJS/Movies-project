@@ -27,7 +27,21 @@ ORDER BY id ASC `);
 
 getMovieById: async (id) => {
     try {
-      const result = await pool.query("SELECT * FROM movies WHERE id = $1", [id]);
+      const result = await pool.query(
+        `SELECT   
+        movies.id, 
+        movies.title, 
+        movies.description,
+        movies.img_url, 
+        movies.thumbnail_url,
+        movies.year, 
+        movies.rating,
+        genres.genre_type,
+        movies.updated_at
+        FROM movies
+        INNER JOIN genres
+        ON movies.genreid = genres.id
+        WHERE movies.id = $1`, [id]);
       return result.rows; 
     } catch (error) {
       console.error(error);

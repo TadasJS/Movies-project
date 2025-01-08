@@ -99,11 +99,11 @@ export function CreateGenre(props) {
               <Form.Control
                 onChange={updateGenre}
                 type="text"
-                className={`form-control ${genreValid ? 'is-valid' : ''} ${genreErr ? 'is-invalid' : ''}  `}
+                className={`form-control ${genreValid ? 'is-valid' : ''} ${genreErr ? 'is-invalid' : ''} CreateGenre-group `}
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
               />
-              <div className="invalid-feedback">{genreErr}</div>
+              <div className="invalid-feedback ">{genreErr}</div>
             </Form.Group>
 
             <div className="d-grid gap-2">

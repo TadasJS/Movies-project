@@ -50,12 +50,11 @@
   }
   .update-select {
     background-color: rgb(30, 33, 57);
-    color: white;
+    color: rgb(255, 255, 255);
     padding-top: 1rem;
     padding-bottom: 1rem;
     border-radius: 8px;
     font-size: 15px;
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
     width: 500px;
   }
 

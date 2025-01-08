@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import "./CreateCardForm.css"
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
@@ -22,7 +22,7 @@ export function DeleteGenre(props) {
 
   return (
     <>
-      <Button className="ms-2 pe-3 ps-3" variant="outline-danger" onClick={handleShow}>
+      <Button className="ms-2 pe-3 ps-3 CreateCard-btn" variant="outline-danger" onClick={handleShow}>
         Delete
       </Button>
 
