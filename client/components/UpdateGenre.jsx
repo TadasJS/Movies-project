@@ -62,7 +62,7 @@ export function UpdateGendre(props) {
   }
   return (
     <>
-      <Button className="ms-2 pe-3 ps-3 me-3" variant="outline-success" onClick={handleShow}>
+      <Button className="ms-2 pe-3 ps-3 me-3 CreateCardForm-btn" variant="outline-success" onClick={handleShow}>
         Update
       </Button>
 

@@ -1,11 +1,11 @@
-import './CreateCardForm.css';
+import './GenreTable.css';
 import { UpdateGendre } from './UpdateGenre';
 import { DeleteGenre } from './DeleteGenre';
 
 export function GenreTable(props) {
   return (
     <>
-      <table className="table table-striped tableform ">
+      <table className="GenreTable-container">
         <tbody>
           <tr>
             <td className="tableform1">{props.id}</td>
