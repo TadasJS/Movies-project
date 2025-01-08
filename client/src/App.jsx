@@ -21,7 +21,7 @@ import { TvShowCardInfo } from '../pages/TvShowCardInfo';
 
 function App() {
   return (
-           
+
     <UserProvider>
       <BrowserRouter>
         <Routes>

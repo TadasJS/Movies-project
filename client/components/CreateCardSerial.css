@@ -1,0 +1,55 @@
+.CreateCardSerial-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150vh;
+    background-color: #141625;
+    color: #fff;
+  }
+
+  .CreateCardSerial-form {
+    background-color: rgb(30, 33, 57);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 550px;
+  }
+  .CreateCardSerial-group {
+    margin-bottom: 1rem;
+  }
+  .CreateCardSerial-group input {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-bottom: 2px solid #444;
+    background: transparent;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+.CreateCardSerial-btn {
+   
+    padding: 0.75rem;
+    background-color: #ff6b6b;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .CreateCardSerial-btn:hover {
+    background-color: #e05252;
+  }
+
+  .CreateCardSerial-select {
+    background-color: rgb(30, 33, 57);
+    color: white;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 8px;
+    font-size: 15px;
+    width: 500px;
+  }

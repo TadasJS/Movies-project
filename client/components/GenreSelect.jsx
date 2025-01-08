@@ -1,7 +1,9 @@
+import './UpdateStyle.css'
+
 export function GenreSelect(props) {
   return (
     <>
-      <option value={`${props.id}`}>{props.genreType}</option>
+      <option className='update-select' value={`${props.id}`}>{props.genreType}</option>
     </>
   );
 }

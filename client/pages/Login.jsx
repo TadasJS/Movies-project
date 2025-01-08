@@ -93,8 +93,8 @@ export function Login() {
   }
 
   return (
-    <div className="login-container">
-      <Container>
+    <div >
+      <Container className="login-container">
         <Row>
           <Col md={{ span: 6, offset: 3 }} className="login-form">
             <h2 className="formCenter">Login</h2>
@@ -143,7 +143,7 @@ export function Login() {
               </Form.Group>
               <div className="d-grid gap-2">
                 <button className="btn btn-outline-primary login-btn " type="submit">
-                  Submit
+                  Login
                 </button>
               </div>
               <p className="signup-link">

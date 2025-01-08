@@ -2,7 +2,11 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { UserContext } from '../context/UserContext';
+
+import { UserContext } from "../context/UserContext";
+import "./CreateGenre.css"
+
+
 
 export function CreateGenre(props) {
   const navigate = useNavigate();
@@ -45,6 +49,7 @@ export function CreateGenre(props) {
 
     //validacijos pabaiga
 
+
     axios
       .post('http://localhost:3000/api/genre', {
         genre: genre,
@@ -68,9 +73,10 @@ export function CreateGenre(props) {
 
   return (
     <Container className="">
-      <Row>
-        <Col md={{ span: 6, offset: 3 }}>
+      <Row className="CreateGenre-back">
+        <Col md={{ span: 6, offset: 3 }} className="CreateGenre-back">
           <h2 className="formCenter">Create Genre</h2>
+
 
           {formValid && (
             <div className="ms-5 me-5 alert alert-success " role="alert">
@@ -86,28 +92,30 @@ export function CreateGenre(props) {
             </div>
           )}
           <form onSubmit={handleSubmit} action="">
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 CreateGenre-back">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 New genre name:
               </Form.Label>
               <Form.Control
                 onChange={updateGenre}
                 type="text"
-                className={`form-control ${genreValid ? 'is-valid' : ''} ${genreErr ? 'is-invalid' : ''}  `}
+                className={`form-control ${genreValid ? 'is-valid' : ''} ${genreErr ? 'is-invalid' : ''} CreateGenre-group `}
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
               />
-              <div className="invalid-feedback">{genreErr}</div>
+              <div className="invalid-feedback ">{genreErr}</div>
             </Form.Group>
 
             <div className="d-grid gap-2">
-              <button className="btn btn-outline-primary " type="submit">
+              <button className="btn btn-outline-primary CreateGenre-btn" type="submit">
                 Submit
               </button>
             </div>
           </form>
         </Col>
       </Row>
-    </Container>
-  );
+        </Container>
+        
+    )
 }
+

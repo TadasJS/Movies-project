@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Row, Col, Form, Button, Modal } from 'react-bootstrap';
-import { GenreSelect } from './genreSelect';
-import { Link } from 'react-router-dom';
+
+import { GenreSelect } from "./genreSelect";
+import { Link } from "react-router-dom";
+import "./CreateCardMovie.css";
+
 
 export function CreateCardMovie() {
   const navigate = useNavigate();
@@ -74,8 +77,7 @@ export function CreateCardMovie() {
   }
 
   const symbList = '`~!@#$%^&*()_+-=[]{}|":;?/>.<,\'';
-  const symbList2 =
-    '`~!@#$%^&*()_+-=[]{}|":;?/>.<,\'qwertyuioplkjhgfdsazxcvbnmąčęėįšųūQWERTYUIOPLKJHGFDSAZXCVBNMĄČĘĖĮŠŲŪ';
+  const symbList2 ='`~!@#$%^&*()_+-=[]{}|":;?/>.<,\'qwertyuioplkjhgfdsazxcvbnmąčęėįšųūQWERTYUIOPLKJHGFDSAZXCVBNMĄČĘĖĮŠŲŪ';
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -172,6 +174,7 @@ export function CreateCardMovie() {
         year,
         genreid: genre,
         rating,
+
       })
       .then((data) => {
         console.log(data.data);
@@ -194,10 +197,12 @@ export function CreateCardMovie() {
     window.location.reload();
   }
   return (
+    <div className="container">
     <Container className="">
       <Row>
-        <Col md={{ span: 6, offset: 3 }}>
+        <Col md={{ span: 6, offset: 3 }} className="CreateCardMovie-form" >
           <h2 className="formCenter">Create Movie</h2>
+
 
           {formValid && (
             <div className="ms-5 me-5 alert alert-success " role="alert">
@@ -213,8 +218,9 @@ export function CreateCardMovie() {
             </div>
           )}
 
+
           <form onSubmit={handleSubmit} action="">
-            <Form.Group className="mb-2">
+           <Form.Group className="mb-2 CreateCardMovie-group">
               <Form.Label className="fs-4 " id="">
                 Title:
               </Form.Label>
@@ -227,7 +233,7 @@ export function CreateCardMovie() {
               />
               <div className="invalid-feedback">{titleErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2">
+              <Form.Group className="mb-2 CreateCardMovie-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Description:
               </Form.Label>
@@ -240,7 +246,7 @@ export function CreateCardMovie() {
               />
               <div className="invalid-feedback">{descriptionErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2">
+              <Form.Group className="mb-2 CreateCardMovie-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Img url:
               </Form.Label>
@@ -253,7 +259,7 @@ export function CreateCardMovie() {
               />
               <div className="invalid-feedback">{imgUrlErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 CreateCardMovie-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Thubnail url:
               </Form.Label>
@@ -266,7 +272,7 @@ export function CreateCardMovie() {
               />
               <div className="invalid-feedback">{thumbUrlErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 CreateCardMovie-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Year:{' '}
               </Form.Label>
@@ -279,13 +285,13 @@ export function CreateCardMovie() {
               />
               <div className="invalid-feedback">{yearErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 CreateCardMovie-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Genre:
               </Form.Label>
               <select
                 onChange={updateGenre}
-                className={`form-control ${genreValid ? 'is-valid' : ''} ${
+                className={`CreateCardMovie-select ${genreValid ? 'is-valid' : ''} ${
                   genreErr ? 'is-invalid' : ''
                 } form-select-sm  `}
                 aria-label=".form-select-sm example"
@@ -298,47 +304,50 @@ export function CreateCardMovie() {
               </select>
               <div className="invalid-feedback">{genreErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 CreateCardMovie-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Rating:
               </Form.Label>
               <input
                 onChange={updateRating}
                 type="text"
-                className={`form-control ${ratingValid ? 'is-valid' : ''} ${ratingErr ? 'is-invalid' : ''}  `}
+                className={`CreateCardMovie-select ${ratingValid ? 'is-valid' : ''} ${ratingErr ? 'is-invalid' : ''}  `}
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
               />
               <div className="invalid-feedback">{ratingErr}</div>
             </Form.Group>
             <div className="d-grid gap-2">
-              <button className="btn btn-outline-primary " type="submit">
-                Submit
+              <button className="btn btn-outline-danger CreateCardMovie-btn" type="submit">
+                Create
               </button>
             </div>
           </form>
         </Col>
       </Row>
+
       <>
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Message</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div class="alert alert-success" role="alert">
-              Movie created successfully
-            </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="success" onClick={handleCreateNew}>
-              Create Another Movie
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header className='modalStyle'>
+          <Modal.Title>Message</Modal.Title>
+        </Modal.Header>
+        <div className="textStyle" role="alert">
+          TvShow created successfully
+        </div>
+        <div className='textStyle2'>
+
+            <Button variant="danger" onClick={handleCreateNew} className=" buttonSize ms-2 me-2
+           mb-2 btn btn-lg rounded-3 btn-danger CreateCardSerial-btn" >
+              Create Tv_Show
             </Button>
-            <Link to="/" type="button" className="btn btn-success ms-3">
+            <Link to="/" type="button" className="btn buttonSize ms-2 me-2 
+           mb-2 btn btn-lg rounded-3 btn-danger  CreateCardSerial-btn">
               Go to home page
             </Link>
-          </Modal.Footer>
-        </Modal>
+        </div>
+      </Modal>
       </>
     </Container>
+  </div>
   );
 }

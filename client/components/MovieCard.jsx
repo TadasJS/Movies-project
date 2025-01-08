@@ -1,7 +1,11 @@
-import { useNavigate } from 'react-router-dom';
-import { DeleteMovie } from './DeleteMovie';
-import { useContext } from 'react';
-import { UserContext } from '../context/UserContext';
+
+import { useNavigate } from "react-router-dom";
+import { DeleteMovie } from "./DeleteMovie";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
+import "./MovieDataList.css"
+
+
 
 export function MovieCard(props) {
   const navigate = useNavigate();
@@ -17,8 +21,8 @@ export function MovieCard(props) {
   }
 
   return (
-    <div className="col">
-      <div className="card">
+    <div className="col ">
+      <div className="card MovieDataList-card">
         <img src={props.thumb} className="card-img-top" alt={props.title} onClick={handleOnClick} />
         <div className="card-body">
           <h5 className="card-title">{props.title}</h5>
@@ -26,7 +30,7 @@ export function MovieCard(props) {
           <p className="card-text">Rating: {props.rating}</p>
           <p className="card-text">Years: {props.year}</p>
           {ctx.user.user_role === 'admin' && (
-            <button onClick={handleUpdateClick} className="btn btn-primary">
+            <button onClick={handleUpdateClick} className="btn btn-primary MovieDataList-btn">
               Update
             </button>
           )}

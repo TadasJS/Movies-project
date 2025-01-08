@@ -1,33 +1,70 @@
 .movieform_title_color {
-  background-color: lightblue;
+  background-color: rgb(30, 33, 57);
 }
 
 .serialform_title_color {
-  background-color: lightgreen;
+  background-color: rgb(30, 33, 57);
 }
 
 .formCenter {
   text-align: center;
 }
+.tableform5 {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
 
 .tableform1 {
-  width: 10%;
+  background-color: rgb(42, 45, 73);
+  color: white;
 }
 
 .tableform2 {
   width: 20%;
+  background-color: rgb(30, 33, 57);
 }
 
 .tableform3 {
   width: 20%;
+  background-color: rgb(30, 33, 57);
 }
 
 .tableform4 {
   width: 10%;
+  background-color: rgb(30, 33, 57);
 }
 
 .genreupdate {
   width: 450px;
   margin-left: 20px;
   margin-right: 20px;
+}
+.CreateCardForm-btn {
+  padding: 0.75rem;
+  background-color: #08a334;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.CreateCardForm-btn:hover {
+  background-color: #10c322;
+}
+.CreateCard-btn {
+  padding: 0.75rem;
+  background-color: #ff6b6b;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.CreateCard-btn:hover {
+  background-color: #e05252;
 }

@@ -13,8 +13,9 @@ export function ProfileCard(props) {
     }   
     
     return(
-        <div className="col profileCard" onClick={handleOnClick}>
-             <div className="card">
+
+         <div className="col profileCard profileCard-form" onClick={handleOnClick}>
+             <div className="profileCard-group">
                <img src={props.thumb} className="card-img-top" alt={props.title}  />
                <div className="card-body">
                  <h5 className="card-title">{props.title}</h5>
