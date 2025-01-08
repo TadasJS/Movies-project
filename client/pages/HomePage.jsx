@@ -14,14 +14,14 @@ export function HomePage() {
 
       <div className="container"> 
      <h4 className="mb-3 HomePage-formMov"> TOP MOVIES </h4> 
-    {ctx.user.user_role === 'admin' && <Link to='/addcardmov' type="button" className="btn btn-success mb-3 me-2 HomePage-btn">Create movies card</Link> }
-    {ctx.user.user_role === 'admin' && <Link to='/genres' type="button" className="btn btn-success mb-3 me-2 HomePage-btn">Configure genres</Link> }
+    {ctx.user.user_role === 'admin' && <Link to='/addcardmov' type="button" className="btn btn-danger mb-3 me-2 HomePage-btn">Create movies card</Link> }
+    {ctx.user.user_role === 'admin' && <Link to='/genres' type="button" className="btn btn-danger mb-3 me-2 HomePage-btn">Configure genres</Link> }
      <div className="container">
      <MovieDataList /> 
      </div>
 
-     <h4 className="mb-3   HomePage-formTv" >TOP TV_SHOWS</h4>   
-     {ctx.user.user_role === 'admin' && <Link to='/addcardser' type="button" className="btn btn-success mb-3 HomePage-btn">Create tv_show card</Link>}
+     <h4 className=" HomePage-formTv" >TOP TV_SHOWS</h4>   
+     {ctx.user.user_role === 'admin' && <Link to='/addcardser' type="button" className="btn btn-danger mb-3 HomePage-btn">Create tv_show card</Link>}
      <TvShowDataList /> 
    
     </div>

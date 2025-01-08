@@ -86,24 +86,20 @@ export function DeleteMovie(props) {
                 </Button>
                 <Button
                   className="buttonSize mb-2 btn btn-lg rounded-3 btn-danger DeleteStyle-btn"
-                  variant="secondary"
+                  variant="danger"
                   onClick={handleClose}
                 >
                   No
                 </Button>
               </form>
-      </Modal>    
-
+      </Modal>   
       <Modal show={show1} onHide={handleClose1}>
         <Modal.Header className='modalStyle'>
           <Modal.Title>Message</Modal.Title>
         </Modal.Header>
-
         <div class=" textStyle2" role="alert">
           Movie deleted successfully
         </div>
-
-        {/* <Modal.Footer className='modalStyle'></Modal.Footer> */}
       </Modal>
     </>
   );

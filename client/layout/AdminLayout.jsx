@@ -3,6 +3,7 @@ import { Footer } from '../components/Footer.jsx';
 import { Header } from '../components/Header.jsx';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext.jsx';
+import './GeneralLayout.css'
 
 export function AdminLayout() {
   const ctx = useContext(UserContext);
@@ -10,7 +11,7 @@ export function AdminLayout() {
   return (
     <>
       <Header />
-      <main>
+      <main className='General-container'>
         {ctx.user.user_role === 'admin' ? <Outlet /> : <h1>Only logged user can see this page</h1>}
       </main>
       <Footer />
