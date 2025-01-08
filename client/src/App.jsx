@@ -15,10 +15,12 @@ import { UserProfile } from '../pages/UserProfile';
 import { AdminLayout } from '../layout/AdminLayout';
 import { Movies } from '../pages/Movies';
 import { TvShows } from '../pages/TvShows';
-import { CardInfo } from '../pages/CardInfo';
+import { MovieCardInfo } from '../pages/MovieCardInfo';
+
 
 function App() {
   return (
+           
     <UserProvider>
       <BrowserRouter>
         <Routes>
@@ -26,7 +28,7 @@ function App() {
             <Route index path="/" element={<HomePage />} />
             <Route path="/registration" element={<Registration />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/cardinfo" element={<CardInfo />} />
+            <Route path="/moviecardinfo" element={<MovieCardInfo />} />
           </Route>
           <Route Component={UserLayout}>
             <Route path="/movies" element={<Movies />} />

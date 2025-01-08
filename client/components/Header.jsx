@@ -10,7 +10,7 @@ export function Header() {
     
     function handleLogout () {
         ctx.logoutUser()
-        // navigate('/')
+        navigate('/')
     }
     
     return(

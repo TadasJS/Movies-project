@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { ProfileCard } from './ProfileCard';
-import { CardInfo } from '../pages/CardInfo';
-
 
 export function ProfileDataList() {
   const [profileData, setProfileData] = useState([]);
@@ -36,8 +34,7 @@ export function ProfileDataList() {
         rating={profile.rating}
          />
       ))}
-      </div>  
-      <CardInfo id={profileData.id} title={profileData.title} />   
+      </div> 
     </>
   );
 }

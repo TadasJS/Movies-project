@@ -1,37 +1,50 @@
-import { createContext, useState } from 'react';
+import { createContext, useState } from "react";
+
 
 function getUserFromLocalStorage() {
-  let user = localStorage.getItem('token');
+    let user = localStorage.getItem('token')
 
-  if (!user) {
-    return { email: '', user_role: '' };
-  }
+    if (!user){
+      return  {email:'', user_role:''}
+    }
 
-  return JSON.parse(user);
+    return JSON.parse(user)
 }
 
-export const UserContext = createContext();
 
-export function UserProvider({ children }) {
-  const [user, setUser] = useState(getUserFromLocalStorage());
-  const [token, setToken] = useState();
+export const UserContext = createContext()
 
-  function loginUser(person) {
-    if (person === 'admin') {
-      setUser({ ...user, email: person, user_role: 'admin' });
-      localStorage.setItem('token', JSON.stringify({ email: person, user_role: 'admin' }));
+export function UserProvider ({children}) {
+    
+    const [user, setUser] = useState (getUserFromLocalStorage())
+    const [token, setToken] = useState()
+
+    
+    function loginUser(person) {
+
+        if (person === 'admin') {
+            setUser({...user, email: person, user_role:'admin'})            
+            localStorage.setItem('token', JSON.stringify({email: person, user_role:'admin'}))
+           
+        }  
+
+        if(person === 'user'){          
+            setUser({...user, email: person, user_role:'user'})
+            localStorage.setItem('token', JSON.stringify({email: person, user_role:'user'}))
+                       
+        }   
+        
     }
-
-    if (person === 'user') {
-      setUser({ ...user, email: person, user_role: 'user' });
-      localStorage.setItem('token', JSON.stringify({ email: person, user_role: 'user' }));
+    
+    function logoutUser() {
+        setUser({...user, email:'', user_role:''})
+        localStorage.removeItem('token')
+        
     }
-  }
-
-  function logoutUser() {
-    setUser({ ...user, email: '', user_role: '' });
-    localStorage.removeItem('token');
-  }
-
-  return <UserContext.Provider value={{ user, loginUser, logoutUser }}>{children}</UserContext.Provider>;
+ 
+    return(
+       <UserContext.Provider value={{user, loginUser, logoutUser}}>
+        {children}
+       </UserContext.Provider>
+    )
 }
