@@ -16,6 +16,7 @@ import { AdminLayout } from '../layout/AdminLayout';
 import { Movies } from '../pages/Movies';
 import { TvShows } from '../pages/TvShows';
 import { MovieCardInfo } from '../pages/MovieCardInfo';
+import { TvShowCardInfo } from '../pages/TvShowCardInfo';
 
 
 function App() {
@@ -28,7 +29,8 @@ function App() {
             <Route index path="/" element={<HomePage />} />
             <Route path="/registration" element={<Registration />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/moviecardinfo" element={<MovieCardInfo />} />
+            <Route path="/moviecardinfo/:id" element={<MovieCardInfo />} />
+            <Route path="/tvshowcardinfo/:id" element={<TvShowCardInfo />} />
           </Route>
           <Route Component={UserLayout}>
             <Route path="/movies" element={<Movies />} />

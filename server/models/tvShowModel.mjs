@@ -26,7 +26,21 @@ ORDER BY id ASC `);
 
 getTvShowById: async (id) => {
     try {
-      const result = await pool.query("SELECT * FROM tv_shows WHERE id = $1", [id]);
+      const result = await pool.query(`
+        SELECT   
+        tv_shows.id, 
+        tv_shows.title, 
+        tv_shows.description,
+        tv_shows.img_url, 
+        tv_shows.thumbnail_url,
+        tv_shows.year, 
+        tv_shows.rating,
+        tv_shows.updated_at,
+        genres.genre_type
+        FROM tv_shows
+        INNER JOIN genres
+        ON tv_shows.genreid = genres.id 
+        WHERE tv_shows.id = $1`, [id]);
       return result.rows; 
     } catch (error) {
       console.error(error);

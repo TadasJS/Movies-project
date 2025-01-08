@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { DeleteMovie } from './DeleteMovie';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
-import { MovieCardInfo } from '../pages/MovieCardInfo';
 
 export function MovieCard(props) {
   const navigate = useNavigate();
@@ -13,13 +12,13 @@ export function MovieCard(props) {
     navigate(`/updateMovie/${props.id}`);
   };
 
-  function handleOnClick(){
-    navigate(`/moviecardinfo/${props.id}`)
- }
+  function handleOnClick() {
+    navigate(`/moviecardinfo/${props.id}`);
+  }
 
   return (
     <div className="col">
-      <div className="card" >
+      <div className="card">
         <img src={props.thumb} className="card-img-top" alt={props.title} onClick={handleOnClick} />
         <div className="card-body">
           <h5 className="card-title">{props.title}</h5>
@@ -33,7 +32,6 @@ export function MovieCard(props) {
           )}
           {ctx.user.user_role === 'admin' && <DeleteMovie id={props.id} />}
         </div>
-        <MovieCardInfo id={props.id} />
       </div>
     </div>
   );

@@ -1,34 +1,41 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
+export function MovieCardInfo() {
+  const { id } = useParams();
 
+  const [movieData, setMovieData] = useState();
 
-export function MovieCardInfo (props) {
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/movies/${id}`)
+      .then((response) => {
+        setMovieData(response.data.data[0]);
+      })
+      .catch((error) => {
+        console.error('Unable to get movie data:', error);
+      });
+  }, [id]);
 
-  const [movieData, setMovieData] = useState()
-    
-    useEffect(() => {
-        axios
-          .get(`http://localhost:3000/api/movies/${props.id}`)
-          .then((response) => {
-            console.log(response)
-            setMovieData(response.data)
-           
-          })
-          .catch((error) => {
-            console.error('Unable to get movie data:', error);
-         
-          });
-      }, []);
-
-      console.log('cia set movie data', movieData)
-   
-    return(
-        <>
-       <div>cia bus card info id {}</div> 
-        <div>card info title {}</div> 
-        
-        
-        </>
-    )
+  if (!movieData) {
+    return <h5>Loading...</h5>;
+  }
+  return (
+    <>
+      <div className="card mb-3">
+        <img src={movieData.img_url} className="card-img-top" alt={movieData.title} />
+        <div className="card-body">
+          <h2 className="card-title">{movieData.title}</h2>
+          <p className="card-text">{movieData.description}</p>
+          <p className="card-text">Genre: {movieData.genre_type}</p>
+          <p className="card-text">Year: {movieData.year}</p>
+          <p className="card-text">Rating: {movieData.rating}</p>
+          <p className="card-text">
+            <small className="text-body-secondary">Updated: {movieData.updated_at}</small>
+          </p>
+        </div>
+      </div>
+    </>
+  );
 }
