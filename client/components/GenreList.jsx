@@ -4,6 +4,7 @@ import { CreateGenre } from './CreateGenre';
 import { GenreTable } from './GenreTable';
 import './CreateCardForm.css';
 import { GenreSelect } from './genreSelect';
+import './CreateGenre.css'
 
 export function GenreList() {
   const [genreList, setGenreList] = useState([]);
@@ -18,7 +19,7 @@ export function GenreList() {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container ">
       <CreateGenre />
 
       <table className="table mt-4">

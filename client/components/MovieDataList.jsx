@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { MovieCard } from './MovieCard';
+import "./MovieDataList.css";
 
 export function MovieDataList(props) {
   const [movieList, setMovieList] = useState([]);
@@ -15,7 +16,7 @@ export function MovieDataList(props) {
   }, []);
 
   return (
-    <div className="row row-cols-1 row-cols-md-2 row-cols-xl-4  g-4">
+    <div className="row row-cols-1 row-cols-md-2 row-cols-xl-4  g-4  MovieDataList-container">
       {movieList.length === 0 ? (
         <p>Loading...</p>
       ) : (

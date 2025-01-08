@@ -187,7 +187,7 @@ export function Registration() {
   }
 
   return (
-    <div className="registration-container">
+    <div className="container">
       <Container className="">
         <Row>
           <Col md={{ span: 6, offset: 3 }} className="registration-form">
@@ -286,8 +286,8 @@ export function Registration() {
                 <div className="invalid-feedback">{repassErr}</div>
               </Form.Group>
               <div className="d-grid gap-2">
-                <button className="btn btn-outline-primary registration-btn " type="submit">
-                  Submit
+                <button className="btn btn-outline-danger registration-btn " type="submit">
+                  Register
                 </button>
               </div>
               <p className="registration-link">

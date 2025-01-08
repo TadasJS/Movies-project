@@ -1,3 +1,11 @@
+
+import "./UserLogin.css"
+
+
+
 function UserLogin() {
-  return <dvi>Cia bus user content puslaplis. Jį matys prislogines paprastas vartotojas.</dvi>;
+  return <div className="UserLogin-container">
+    Cia bus user content puslaplis. Jį matys prislogines paprastas vartotojas.
+      </div>;
 }
+
