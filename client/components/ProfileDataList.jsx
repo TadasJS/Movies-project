@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { ProfileCard } from './ProfileCard';
-import { CardInfo } from '../pages/CardInfo';
 
 export function ProfileDataList() {
   const [profileData, setProfileData] = useState([]);
@@ -10,13 +9,10 @@ export function ProfileDataList() {
     axios
       .get('http://localhost:3000/api/profile')
       .then((res) => {
-        console.log(res.data);
         setProfileData(res.data.data);
       })
       .catch((error) => console.error(error));
   }, []);
-
-  console.log(profileData);
 
   if(!profileData){
     return <div>Loading data...</div>
@@ -38,8 +34,7 @@ export function ProfileDataList() {
         rating={profile.rating}
          />
       ))}
-      </div>
-     
+      </div> 
     </>
   );
 }

@@ -7,12 +7,10 @@ import "./Header.css";
 export function Header() {
     const navigate = useNavigate()
     const ctx = useContext(UserContext)
-     
     
-
     function handleLogout () {
         ctx.logoutUser()
-        // navigate('/')
+        navigate('/')
     }
     
     return(

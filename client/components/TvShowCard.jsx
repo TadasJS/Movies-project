@@ -6,7 +6,6 @@ import "./TvShowDatalist.css"
 
 export function TvShowCard(props) {
   const ctx = useContext(UserContext);
-  const usserLogedIn = ctx.user.loggedIn;
 
   const navigate = useNavigate();
 
@@ -14,11 +13,16 @@ export function TvShowCard(props) {
     navigate(`/updateTvshow/${props.id}`);
   };
 
+  function handleOnClick() {
+    navigate(`/tvshowcardinfo/${props.id}`);
+  }
+
   return (
     <div className="col">
+
       <div className="card TvShowDataList-card">
         {/* <h5>{props.id}</h5> */}
-        <img src={props.thumb} className="card-img-top" alt="..." />
+        <img src={props.thumb} className="card-img-top" alt={props.title} onClick={handleOnClick} />
         <div className="card-body">
           <h5 className="card-title">{props.title}</h5>
           <p className="card-text">Genre: {props.genreType}</p>
