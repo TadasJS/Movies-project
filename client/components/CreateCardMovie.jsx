@@ -197,7 +197,7 @@ export function CreateCardMovie() {
     window.location.reload();
   }
   return (
-    <div className="CreateCardMovie-container">
+    <div className="container">
     <Container className="">
       <Row>
         <Col md={{ span: 6, offset: 3 }} className="CreateCardMovie-form" >
@@ -246,7 +246,7 @@ export function CreateCardMovie() {
               />
               <div className="invalid-feedback">{descriptionErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2  <Form.Group className="mb-2 CreateCardMovie-group">
+              <Form.Group className="mb-2 CreateCardMovie-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Img url:
               </Form.Label>
@@ -291,7 +291,7 @@ export function CreateCardMovie() {
               </Form.Label>
               <select
                 onChange={updateGenre}
-                className={`form-control ${genreValid ? 'is-valid' : ''} ${
+                className={`CreateCardMovie-select ${genreValid ? 'is-valid' : ''} ${
                   genreErr ? 'is-invalid' : ''
                 } form-select-sm  `}
                 aria-label=".form-select-sm example"
@@ -311,15 +311,15 @@ export function CreateCardMovie() {
               <input
                 onChange={updateRating}
                 type="text"
-                className={`form-control ${ratingValid ? 'is-valid' : ''} ${ratingErr ? 'is-invalid' : ''}  `}
+                className={`CreateCardMovie-select ${ratingValid ? 'is-valid' : ''} ${ratingErr ? 'is-invalid' : ''}  `}
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
               />
               <div className="invalid-feedback">{ratingErr}</div>
             </Form.Group>
             <div className="d-grid gap-2">
-              <button className="btn btn-outline-primary CreateCardMovie-btn" type="submit">
-                Submit
+              <button className="btn btn-outline-danger CreateCardMovie-btn" type="submit">
+                Create
               </button>
             </div>
           </form>
@@ -327,26 +327,27 @@ export function CreateCardMovie() {
       </Row>
 
       <>
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Message</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div class="alert alert-success" role="alert">
-              Movie created successfully
-            </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="success" onClick={handleCreateNew} className="btn btn-success ms-3 CreateCardMovie-btn">
-              Create Another Movie
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header className='modalStyle'>
+          <Modal.Title>Message</Modal.Title>
+        </Modal.Header>
+        <div className="textStyle" role="alert">
+          TvShow created successfully
+        </div>
+        <div className='textStyle2'>
+
+            <Button variant="danger" onClick={handleCreateNew} className=" buttonSize ms-2 me-2
+           mb-2 btn btn-lg rounded-3 btn-danger CreateCardSerial-btn" >
+              Create Tv_Show
             </Button>
-            <Link to="/" type="button" className="btn btn-success ms-3 CreateCardMovie-btn">
+            <Link to="/" type="button" className="btn buttonSize ms-2 me-2 
+           mb-2 btn btn-lg rounded-3 btn-danger  CreateCardSerial-btn">
               Go to home page
             </Link>
-          </Modal.Footer>
-        </Modal>
+        </div>
+      </Modal>
       </>
     </Container>
-     </div>
+  </div>
   );
-}>>>>>>> main
+}

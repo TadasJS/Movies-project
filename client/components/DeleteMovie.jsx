@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import './DeleteStyle.css'
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -63,53 +64,42 @@ export function DeleteMovie(props) {
   }
   return (
     <>
-      <Button className="ms-2 pe-3 ps-3" variant="danger" onClick={handleShow}>
+      <Button className="ms-2 pe-3 ps-3 DeleteStyle-btn" variant="danger" onClick={handleShow}>
         Delete
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
-        <div className="form-register2 modal-dialog" role="document">
-          <div className="modal-content rounded-4 shadow">
-            <div className="modal-header p-5 pb-4 border-bottom-0">
-              <h1 className="fw-bold mb-0 fs-5 text-danger">
-                Are you sure you want to delete this card {props.id} from your system{' '}
-              </h1>
-              {/* <button type="button" className="btn-close " data-bs-dismiss="modal" aria-label="Close"></button> */}
-            </div>
-
-            <div className="modal-body p-5 pt-0">
-              <form onSubmit={handleOnSubmit}>
+      <Modal  show={show} onHide={handleClose}>
+        <Modal.Header className='modalStyle'>
+          <Modal.Title  >Message</Modal.Title>          
+        </Modal.Header>
+        <div class="textStyle" role="alert">
+         Are you sure you want to delete this Movie
+        </div>
+        <form className='textStyle1' onSubmit={handleOnSubmit}>
                 <Button
-                  className="buttonSize mb-2 btn btn-lg rounded-3 btn-success"
-                  variant="secondary"
                   onClick={handleClose}
-                >
-                  No
-                </Button>
-                <button
-                  onClick={handleClose}
-                  className="buttonSize ms-1
+                  className="buttonSize ms-2 me-2 DeleteStyle-btn
            mb-2 btn btn-lg rounded-3 btn-danger"
                   type="submit"
                 >
                   Yes
-                </button>
+                </Button>
+                <Button
+                  className="buttonSize mb-2 btn btn-lg rounded-3 btn-danger DeleteStyle-btn"
+                  variant="danger"
+                  onClick={handleClose}
+                >
+                  No
+                </Button>
               </form>
-            </div>
-          </div>
-        </div>
-      </Modal>
-
+      </Modal>   
       <Modal show={show1} onHide={handleClose1}>
-        <Modal.Header closeButton>
+        <Modal.Header className='modalStyle'>
           <Modal.Title>Message</Modal.Title>
         </Modal.Header>
-
-        <div class="alert alert-success" role="alert">
+        <div class=" textStyle2" role="alert">
           Movie deleted successfully
         </div>
-
-        <Modal.Footer></Modal.Footer>
       </Modal>
     </>
   );

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import './CreateCardForm.css';
+import './UpdateStyle.css';
 import { Container, Row, Col, Form, Button, Modal } from 'react-bootstrap';
 import { GenreSelect } from './genreSelect';
 
@@ -58,7 +58,7 @@ export default function UpdateTvShowForm() {
     axios
       .get(`http://localhost:3000/api/tvshows/${id}`)
       .then((response) => {
-        setFormData(response.data.data);
+        setFormData(response.data.data[0]);
         setLoading(false);
       })
       .catch((error) => {
@@ -137,7 +137,7 @@ export default function UpdateTvShowForm() {
 
 
     axios
-      .put(`http://localhost:3000/api/tvshows/${id}`, newData)
+      .put(`http://localhost:3000/api/tvshows/${id}`, formData)
       .then((data) => console.log(data))
       .then(() => {
         handleShow()
@@ -156,12 +156,12 @@ export default function UpdateTvShowForm() {
   }
 
   return (
-    <Container className="">
+    <Container className="update-container">
       <Row>
-        <Col md={{ span: 6, offset: 3 }}>
+        <Col className='update-form' md={{ span: 6, offset: 3 }}>
           <h2 className="formCenter">Update Tv_show</h2>
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 update-group">
               <Form.Label className="fs-4">Title:</Form.Label>
               <Form.Control
                 className={`form-control ${titleValid ? 'is-valid' : ''} ${titleErr ? 'is-invalid' : ''} `}
@@ -173,11 +173,11 @@ export default function UpdateTvShowForm() {
               <div className="invalid-feedback">{titleErr}</div>
             </Form.Group>
 
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 update-group">
               <Form.Label className="fs-4">Description:</Form.Label>
               <Form.Control
                 className={`form-control ${descriptionValid ? 'is-valid' : ''} ${descriptionErr ? 'is-invalid' : ''} `}
-                as="textarea"
+                type="text"
                 name="description"
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -185,7 +185,7 @@ export default function UpdateTvShowForm() {
               <div className="invalid-feedback">{descriptionErr}</div>
             </Form.Group>
 
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 update-group">
               <Form.Label className="fs-4">Img URL:</Form.Label>
               <Form.Control
                 className={`form-control ${imgUrlValid ? 'is-valid' : ''} ${imgUrlErr ? 'is-invalid' : ''} `}
@@ -197,7 +197,7 @@ export default function UpdateTvShowForm() {
               <div className="invalid-feedback">{imgUrlErr}</div>
             </Form.Group>
 
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 update-group">
               <Form.Label className="fs-4">Thumb URL:</Form.Label>
               <Form.Control
                className={`form-control ${thumbUrlValid ? 'is-valid' : ''} ${thumbUrlErr ? 'is-invalid' : ''} `}
@@ -209,7 +209,7 @@ export default function UpdateTvShowForm() {
              <div className="invalid-feedback">{thumbUrlErr}</div>
             </Form.Group>
 
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 update-group">
               <Form.Label className="fs-4">Years:</Form.Label>
               <Form.Control
               className={`form-control ${yearValid ? 'is-valid' : ''} ${yearErr ? 'is-invalid' : ''} `}
@@ -229,7 +229,7 @@ export default function UpdateTvShowForm() {
                 name="genreid"
                 value={formData.genreid}
                 onChange={(e) => setNewData({ ...newData, genreid: e.target.value })}
-                className={`form-control ${genreValid ? 'is-valid' : ''} ${
+                className={`update-select ${genreValid ? 'is-valid' : ''} ${
                   genreErr ? 'is-invalid' : ''
                 } form-select-sm  `}
                 aria-label=".form-select-sm example"
@@ -242,7 +242,7 @@ export default function UpdateTvShowForm() {
               <div className="invalid-feedback">{genreErr}</div>
             </Form.Group>
 
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 update-group">
               <Form.Label className="fs-4">Rating:</Form.Label>
               <Form.Control
                className={`form-control ${ratingValid ? 'is-valid' : ''} ${ratingErr ? 'is-invalid' : ''}  `}
@@ -254,7 +254,7 @@ export default function UpdateTvShowForm() {
              <div className="invalid-feedback">{ratingErr}</div>
             </Form.Group>
 
-            <Button variant="secondary" type="submit" className="w-100 fs-5">
+            <Button variant="secondary" type="submit" className="w-100 fs-5 btn-danger update-btn">
               Update
             </Button>
           </Form>
@@ -262,21 +262,19 @@ export default function UpdateTvShowForm() {
       </Row>
 
       <>
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Message</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="alert alert-success" role="alert">
-              TvShow updated successfully
-            </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Link to="/" type="button" className="btn btn-success ms-3">
-              Go to home page
-            </Link>
-          </Modal.Footer>
-        </Modal>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header className='modalStyle'>
+          <Modal.Title>Message</Modal.Title>
+        </Modal.Header>
+        <div className="textStyle" role="alert">
+          TvShow updated successfully
+        </div>
+       <Modal.Footer className="textStyle2" >
+         <Link to="/" type="button" className="btn btn-danger update-btn ms-3">
+           Go to home page
+         </Link>
+       </Modal.Footer>
+      </Modal>
       </>
 
     </Container>
