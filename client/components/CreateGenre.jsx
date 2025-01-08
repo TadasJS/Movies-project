@@ -115,7 +115,7 @@ export function CreateGenre(props) {
         </Col>
       </Row>
         </Container>
-         </div>
+        
     )
 }
 

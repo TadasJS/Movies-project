@@ -287,7 +287,7 @@ export function Registration() {
               </Form.Group>
               <div className="d-grid gap-2">
                 <button className="btn btn-outline-primary registration-btn " type="submit">
-                  Submit
+                  Register
                 </button>
               </div>
               <p className="registration-link">

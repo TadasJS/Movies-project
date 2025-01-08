@@ -10,7 +10,9 @@ export function AdminLayout() {
   return (
     <>
       <Header />
-      <main>{ctx.user.user_role === 'admin' ? <Outlet /> : <h1>Only logged user can see this page</h1>}</main>
+      <main>
+        {ctx.user.user_role === 'admin' ? <Outlet /> : <h1>Only logged user can see this page</h1>}
+      </main>
       <Footer />
     </>
   );

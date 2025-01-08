@@ -1,9 +1,7 @@
 .login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #141625;
+  margin-top: 18vh;
+  margin-bottom: 18vh;
+  /* background-color: #141625; */
   color: #fff;
 }
 
@@ -36,7 +34,7 @@
   background-color: #ff6b6b;
   border: none;
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.4rem;
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s ease;

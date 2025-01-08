@@ -246,7 +246,7 @@ export function CreateCardMovie() {
               />
               <div className="invalid-feedback">{descriptionErr}</div>
             </Form.Group>
-            <Form.Group className="mb-2  <Form.Group className="mb-2 CreateCardMovie-group">
+              <Form.Group className="mb-2 CreateCardMovie-group">
               <Form.Label className="fs-4" id="inputGroup-sizing-default">
                 Img url:
               </Form.Label>
@@ -347,6 +347,6 @@ export function CreateCardMovie() {
         </Modal>
       </>
     </Container>
-     </div>
+  </div>
   );
-}>>>>>>> main
+}

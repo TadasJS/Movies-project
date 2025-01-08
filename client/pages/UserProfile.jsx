@@ -6,7 +6,7 @@ import "./UserProfile.css"
 export function UserProfile() {
   return (
     <>
-     <div className="UserProfile-container">
+     <div className="container UserProfile-container row">
 
       <h4>Trending </h4>
       
