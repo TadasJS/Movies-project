@@ -25,14 +25,14 @@ export function GenreList() {
       <table className="tableform5">
         <thead>
           <tr>
-            <th className="tableform1" scope="col">
+            <th className="tableform1">
               Id
             </th>
-            <th className="tableform2" scope="col">
+            <th className="tableform2">
               Genre Type
             </th>
-            <th className="tableform3 " scope="col">
-              Update/Delete
+            <th className="tableform3">
+              Functions
             </th>
           </tr>
         </thead>

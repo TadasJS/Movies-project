@@ -17,6 +17,20 @@ const genreController = {
         }
     },
 
+    genreGetById: async (req,  res) => {
+        const{id} = req.params
+        try {
+            const genreGetById = await genreModels.genreGetById(id)
+            if(genreGetById.length === 0){
+                res.status(404).json({status: 'err', msg: 'Genre not found'})
+            }
+        res.status(200).json({status: 'ok', msg:'Genre get successfully', data: genreGetById })
+
+        } catch (error) {
+            console.error(error)
+        }
+    },
+
     genrePost: async (req, res) => {
         const { genre } = req.body
              
@@ -26,9 +40,7 @@ const genreController = {
             if(genreFind > 0){
              return res.status(409).json({status: 'err', msg: 'genre already exists'})
             }   
-
-            const genreCreate = await genreModels.genrePost(genre)
-          
+            const genreCreate = await genreModels.genrePost(genre)          
             if(genreCreate === 1){
                 res.status(200).json({status: 'ok', msg: 'genre is created '})
             }
@@ -41,15 +53,15 @@ const genreController = {
 
     genrePut: async(req, res) => {
         const {id} = req.params
-        const {genre} = req.body
+        const {genre_type} = req.body
       try {
-        const genreFind = await genreModels.genreFind(genre)
+        const genreFind = await genreModels.genreFind(genre_type)
     
         if(genreFind > 0){
          return res.status(409).json({status: 'err', msg: 'genre already exists'})
         } 
         
-        const genreUpdate = await genreModels.genreUpdate(genre, id)
+        const genreUpdate = await genreModels.genreUpdate(genre_type, id)
        
         if(genreUpdate === 1){
            return res.status(200).json({status: 'ok', msg: 'genre updated successfully' })

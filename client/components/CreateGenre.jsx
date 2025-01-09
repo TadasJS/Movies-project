@@ -1,16 +1,17 @@
-import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-
-import { UserContext } from "../context/UserContext";
+import { Container, Row, Col, Form, Modal } from 'react-bootstrap';
 import "./CreateGenre.css"
 
 
 
-export function CreateGenre(props) {
-  const navigate = useNavigate();
-  const ctx = useContext(UserContext);
+export function CreateGenre() {
+  const [show1, setShow1] = useState(false);
+  const handleClose1 = () => {
+    setShow1(false);
+    window.location.reload();
+  };
+  const handleShow1 = () => setShow1(true);
 
   const [genre, setGenre] = useState('');
   const [genreErr, setGenreErr] = useState('');
@@ -49,7 +50,6 @@ export function CreateGenre(props) {
 
     //validacijos pabaiga
 
-
     axios
       .post('http://localhost:3000/api/genre', {
         genre: genre,
@@ -58,6 +58,7 @@ export function CreateGenre(props) {
         if (data.data.status === 'ok') {
           setFormValid(data.data.msg);
           setFormErr('');
+          handleShow1()
         }
       })
       // .then(() => {navigate('/')})
@@ -107,13 +108,22 @@ export function CreateGenre(props) {
             </Form.Group>
 
             <div className="d-grid gap-2">
-              <button className="btn btn-outline-primary CreateGenre-btn" type="submit">
-                Submit
+              <button className="btn btn-outline-danger CreateGenre-btn" type="submit">
+                Create
               </button>
             </div>
           </form>
         </Col>
       </Row>
+              
+      <Modal show={show1} onHide={handleClose1}>
+        <Modal.Header className='modalStyle'>
+          <Modal.Title>Message</Modal.Title>
+        </Modal.Header>
+        <div className=" textStyle2" role="alert">
+          Genre created successfully
+        </div>
+      </Modal>
         </Container>
         
     )

@@ -7,13 +7,17 @@ export function GenreTable(props) {
     <>
       <table className="GenreTable-container">
         <tbody>
-          <tr>
-            <td className="tableform1">{props.id}</td>
-            <td className="tableform2">{props.genreType}</td>
-            <td className="tableform3">
+          <tr className="table-tr">
+            <th className="tableform1">
+              {props.id}
+            </th>
+            <th className="tableform2">
+              {props.genreType}
+            </th>
+            <th className="tableform3">
               <UpdateGendre id={props.id} genreType={props.genreType} />
               <DeleteGenre id={props.id} />
-            </td>
+            </th>
           </tr>
         </tbody>
       </table>

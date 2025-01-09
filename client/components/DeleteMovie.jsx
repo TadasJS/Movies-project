@@ -73,7 +73,7 @@ export function DeleteMovie(props) {
         <Modal.Header className='modalStyle'>
           <Modal.Title  >Message</Modal.Title>          
         </Modal.Header>
-        <div class="textStyle" role="alert">
+        <div className="textStyle" role="alert">
          Are you sure you want to delete this Movie
         </div>
         <form className='textStyle1' onSubmit={handleOnSubmit}>
@@ -98,7 +98,7 @@ export function DeleteMovie(props) {
         <Modal.Header className='modalStyle'>
           <Modal.Title>Message</Modal.Title>
         </Modal.Header>
-        <div class=" textStyle2" role="alert">
+        <div className=" textStyle2" role="alert">
           Movie deleted successfully
         </div>
       </Modal>
