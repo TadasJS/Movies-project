@@ -12,6 +12,15 @@ genreData: async () => {
     }
 },
 
+genreGetById: async (id) => {
+    try {
+        const dataGetById = await pool.query(`SELECT * FROM genres Where id = $1;`, [id])
+        return dataGetById.rows
+    } catch (error) {
+        console.error(error)
+    }
+},
+
 genreFind: async (data) => {
     
     try {
