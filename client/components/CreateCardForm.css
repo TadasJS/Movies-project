@@ -9,31 +9,6 @@
 .formCenter {
   text-align: center;
 }
-.tableform5 {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 2rem;
-}
-
-.tableform1 {
-  background-color: rgb(42, 45, 73);
-  color: white;
-}
-
-.tableform2 {
-  width: 20%;
-  background-color: rgb(30, 33, 57);
-}
-
-.tableform3 {
-  width: 20%;
-  background-color: rgb(30, 33, 57);
-}
-
-.tableform4 {
-  width: 10%;
-  background-color: rgb(30, 33, 57);
-}
 
 .genreupdate {
   width: 450px;
@@ -67,4 +42,24 @@
 
 .CreateCard-btn:hover {
   background-color: #e05252;
+}
+
+.textStyle3{
+  background-color:#383849;
+  color: white;
+  border-color:#e05252 ;
+  border-radius: 0;
+}
+
+.alertStyle1{
+  /* width: 100%; */
+  padding: 10px;
+  background-color: #4d9a4d;
+  color:white;
+}
+.alertStyle2{
+  /* width: 100%; */
+  padding: 10px;
+  background-color: #ff6b6b;
+  color:white;
 }
