@@ -36,6 +36,7 @@ getTvShowById: async (id) => {
         tv_shows.year, 
         tv_shows.rating,
         tv_shows.updated_at,
+        tv_shows.genreid,
         genres.genre_type
         FROM tv_shows
         INNER JOIN genres

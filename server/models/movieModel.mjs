@@ -36,6 +36,7 @@ getMovieById: async (id) => {
         movies.thumbnail_url,
         movies.year, 
         movies.rating,
+        movies.genreid,
         genres.genre_type,
         movies.updated_at
         FROM movies

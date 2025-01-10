@@ -228,7 +228,7 @@ export default function UpdateTvShowForm() {
               <select
                 name="genreid"
                 value={formData.genreid}
-                onChange={(e) => setNewData({ ...newData, genreid: e.target.value })}
+                onChange={(e) => setFormData({ ...formData, genreid: e.target.value })}
                 className={`update-select ${genreValid ? 'is-valid' : ''} ${
                   genreErr ? 'is-invalid' : ''
                 } form-select-sm  `}
