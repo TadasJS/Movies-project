@@ -1,8 +1,7 @@
-An app for managing and viewing films and TV series
+# An app for managing and viewing films and TV series
 
-Version: 0.1
+### About the application: 
 
-About the application: 
 The Films and Series Administration and Review application allows visitors to search for films and 
 view their information, select their favourites and comment on them. Admin can manage genres and movie/series data.
  # Functional requirements
