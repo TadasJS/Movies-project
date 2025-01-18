@@ -297,23 +297,24 @@ export function Registration() {
           </Col>
         </Row>
 
-        <>
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Message</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <div class="alert alert-success" role="alert">
-                User created successfully
-              </div>
-            </Modal.Body>
-            <Modal.Footer>
-              <Link to="/" type="button" className="btn btn-success ms-3">
-                Go to home page
-              </Link>
-            </Modal.Footer>
-          </Modal>
-        </>
+        <>        
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header className='modalStyle'>
+          <Modal.Title>Message</Modal.Title>
+        </Modal.Header>
+        <div className="textStyle" role="alert">
+        User registered successfully
+        </div>
+       <Modal.Footer className="textStyle2" >
+         <Link to="/login" type="button" className="btn btn-danger update-btn ms-3">
+           Login
+         </Link>
+         <Link to="/" type="button" className="btn btn-danger update-btn ms-3">
+           Home page
+         </Link>
+       </Modal.Footer>
+      </Modal>
+      </>
       </Container>
     </div>
   );

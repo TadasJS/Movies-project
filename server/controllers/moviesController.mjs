@@ -89,6 +89,7 @@ const movieController = {
   putMovie: async (req, res) => {
     const {id} = req.params   
     const newData = req.body
+    console.log(newData)
   
    
    try {

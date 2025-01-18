@@ -57,6 +57,8 @@ export default function UpdateMovieForm() {
   const [formData, setFormData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  console.log('cia form data...',formData)
+
   useEffect(() => {
     axios
       .get(`http://localhost:3000/api/movies/${id}`)
@@ -67,7 +69,7 @@ export default function UpdateMovieForm() {
       })
       .catch((error) => {
         console.error('Unable to get movie data:', error);
-        setLoading(false);
+        setLoading(true);
       });
   }, [id]); 
 
@@ -229,9 +231,9 @@ export default function UpdateMovieForm() {
                 Genre:
               </Form.Label>
               <select                
-                name="genreid"               
-                value={formData.genreid}
-                onChange={(e) => setFormData({ ...formData, genreid: e.target.value })}
+                name="genre_type"               
+                value={formData.genre_type}
+                onChange={(e) => setFormData({ ...formData, genreid: e.target.value, genre_type:e.target.value })}
                 className={` update-select  ${genreValid ? 'is-valid' : ''} ${
                   genreErr ? 'is-invalid' : ''
                 } form-select-sm  `}
